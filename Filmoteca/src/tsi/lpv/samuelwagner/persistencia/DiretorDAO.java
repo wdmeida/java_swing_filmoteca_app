@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import tsi.lpv.samuelwagner.tipo.Diretor;
 
-/**Classe Responsavel das Operações do Banco para a Classe <code>Diretor</code>.
+/**A classe <code>Diretor</code> implementa as operações necessárias para manipulação dos dados na tabela diretor.
  * @author Samuel
  * @author Wagner
  */
