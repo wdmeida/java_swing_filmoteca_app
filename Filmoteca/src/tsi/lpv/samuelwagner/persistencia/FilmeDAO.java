@@ -85,7 +85,6 @@ public class FilmeDAO {
 			PreparedStatement stmt = ConnectionFactory.getConnection().prepareStatement(PESQUISA_FILME_TITULO);
 			stmt.setString(1, nomeFilme);
 			ResultSet resultSet = stmt.executeQuery();
-			stmt.close();
 			resultSet.next();
 			
 			//Cria Objeto Filme.
@@ -103,6 +102,7 @@ public class FilmeDAO {
 			filme.setClassificacaoPessoal(resultSet.getInt(9));
 			filme.setMidia(resultSet.getString(10));
 			filme.setPoster(MetodosConversaoBanco.reconstroiImagemDoBanco(resultSet.getBytes(11), filme.getTitulo()));
+			stmt.close();
 			return filme;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -122,7 +122,7 @@ public class FilmeDAO {
 			PreparedStatement stmt = ConnectionFactory.getConnection().prepareStatement(PESQUISA_FILME_CODIGO);
 			stmt.setInt(1, codigo);
 			ResultSet resultSet = stmt.executeQuery();
-			stmt.close();
+			
 			resultSet.next();
 			
 			//Cria Objeto Filme.
@@ -140,6 +140,7 @@ public class FilmeDAO {
 			filme.setClassificacaoPessoal(resultSet.getInt(9));
 			filme.setMidia(resultSet.getString(10));
 			filme.setPoster(MetodosConversaoBanco.reconstroiImagemDoBanco(resultSet.getBytes(11), filme.getTitulo()));
+			stmt.close();
 			return filme;
 		} catch (SQLException e) {
 			e.printStackTrace();

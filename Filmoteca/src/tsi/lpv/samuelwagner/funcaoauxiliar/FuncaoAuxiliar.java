@@ -6,15 +6,9 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 import java.awt.Component;
 import java.text.Collator;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.StringTokenizer;
-
-import javax.swing.DefaultComboBoxModel;
 /**
  * A classe <code>FuncaoAuxiliar</code>
  * @author Samuel
