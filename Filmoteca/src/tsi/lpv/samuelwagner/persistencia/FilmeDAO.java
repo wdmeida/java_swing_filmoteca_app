@@ -85,25 +85,28 @@ public class FilmeDAO {
 			PreparedStatement stmt = ConnectionFactory.getConnection().prepareStatement(PESQUISA_FILME_TITULO);
 			stmt.setString(1, nomeFilme);
 			ResultSet resultSet = stmt.executeQuery();
-			resultSet.next();
-			
-			//Cria Objeto Filme.
-			Filme filme= new Filme();
-			filme.setCodigo(resultSet.getInt(1));
-			filme.setTitulo(resultSet.getString(2));
-			filme.setDuracao(resultSet.getInt(3));
-			filme.setAno(resultSet.getInt(4));
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(resultSet.getDate(5));
-			filme.setDataLancamento(cal);
-			filme.setSinopse(resultSet.getString(6));
-			filme.setClassificacaoEtaria(resultSet.getString(7));
-			filme.setClassificacaoIMDB(resultSet.getInt(8));
-			filme.setClassificacaoPessoal(resultSet.getInt(9));
-			filme.setMidia(resultSet.getString(10));
-			filme.setPoster(MetodosConversaoBanco.reconstroiImagemDoBanco(resultSet.getBytes(11), filme.getTitulo()));
-			stmt.close();
+			if(resultSet.next()){
+				//Cria Objeto Filme.
+				Filme filme= new Filme();
+				filme.setCodigo(resultSet.getInt(1));
+				filme.setTitulo(resultSet.getString(2));
+				filme.setDuracao(resultSet.getInt(3));
+				filme.setAno(resultSet.getInt(4));
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(resultSet.getDate(5));
+				filme.setDataLancamento(cal);
+				filme.setSinopse(resultSet.getString(6));
+				filme.setClassificacaoEtaria(resultSet.getString(7));
+				filme.setClassificacaoIMDB(resultSet.getInt(8));
+				filme.setClassificacaoPessoal(resultSet.getInt(9));
+				filme.setMidia(resultSet.getString(10));
+				filme.setPoster(MetodosConversaoBanco.reconstroiImagemDoBanco(resultSet.getBytes(11), filme.getTitulo()));
+				stmt.close();
 			return filme;
+			}else{
+				stmt.close();
+				return null;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -123,25 +126,28 @@ public class FilmeDAO {
 			stmt.setInt(1, codigo);
 			ResultSet resultSet = stmt.executeQuery();
 			
-			resultSet.next();
-			
-			//Cria Objeto Filme.
-			Filme filme= new Filme();
-			filme.setCodigo(resultSet.getInt(1));
-			filme.setTitulo(resultSet.getString(2));
-			filme.setDuracao(resultSet.getInt(3));
-			filme.setAno(resultSet.getInt(4));
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(resultSet.getDate(5));
-			filme.setDataLancamento(cal);
-			filme.setSinopse(resultSet.getString(6));
-			filme.setClassificacaoEtaria(resultSet.getString(7));
-			filme.setClassificacaoIMDB(resultSet.getInt(8));
-			filme.setClassificacaoPessoal(resultSet.getInt(9));
-			filme.setMidia(resultSet.getString(10));
-			filme.setPoster(MetodosConversaoBanco.reconstroiImagemDoBanco(resultSet.getBytes(11), filme.getTitulo()));
-			stmt.close();
+			if(resultSet.next()){
+				//Cria Objeto Filme.
+				Filme filme= new Filme();
+				filme.setCodigo(resultSet.getInt(1));
+				filme.setTitulo(resultSet.getString(2));
+				filme.setDuracao(resultSet.getInt(3));
+				filme.setAno(resultSet.getInt(4));
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(resultSet.getDate(5));
+				filme.setDataLancamento(cal);
+				filme.setSinopse(resultSet.getString(6));
+				filme.setClassificacaoEtaria(resultSet.getString(7));
+				filme.setClassificacaoIMDB(resultSet.getInt(8));
+				filme.setClassificacaoPessoal(resultSet.getInt(9));
+				filme.setMidia(resultSet.getString(10));
+				filme.setPoster(MetodosConversaoBanco.reconstroiImagemDoBanco(resultSet.getBytes(11), filme.getTitulo()));
+				stmt.close();
 			return filme;
+			}else{
+				stmt.close();
+				return null;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
