@@ -1,4 +1,4 @@
-package tsi.lpv.samuelwagner.metodosauxiliares;
+package tsi.lpv.samuelwagner.funcaoauxiliar;
 
 import java.io.File;
 import java.io.FileInputStream;

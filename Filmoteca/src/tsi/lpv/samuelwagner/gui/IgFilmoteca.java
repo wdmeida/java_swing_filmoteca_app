@@ -4,9 +4,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
+
+import javafx.scene.input.KeyCode;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,6 +23,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+
+import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoPesquisarFilme;
 /**
  * A classe <code>IgFilmoteca</code> é a responsável por construir a janela gráfica principal.
  * @author Wagner Almeida
@@ -68,6 +76,15 @@ public class IgFilmoteca extends JFrame {
 		cadastrarFilmeButton.setToolTipText("Cadastrar Filmes");
 		cadastrarFilmeButton.setBounds(0, 11, 153, 38);
 		panel.add(cadastrarFilmeButton);
+		
+		//Registra o tratador de eventos do botão cadastrar filme.
+		cadastrarFilmeButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new IgCadastrarFilme(IgFilmoteca.this);
+			}
+		});
 		
 		//Cria o botão de procurar diretor.
 		JButton diretorButton = new JButton("Buscar Diretor");
@@ -125,8 +142,8 @@ public class IgFilmoteca extends JFrame {
 		
 		//Instância o objeto responsável por conter os dados da pesquisa.
 		pesquisarTextField = new JTextField();
-		
-		//Registra o tratador de eventos do jtextField.
+		TratadorEventoPesquisarFilme tratadorPesquisa = new TratadorEventoPesquisarFilme(this);
+		//Registra o tratador de eventos do jtextField relativo ao teclado.
 		pesquisarTextField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -145,8 +162,11 @@ public class IgFilmoteca extends JFrame {
 		pesquisarButton.setBounds(786, 4, 43, 30);
 		pesquisarPanel.add(pesquisarButton);
 		pesquisarButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/Film_strip_24.png")));
-		pesquisarButton.setBackground(corSubMenu);
+		pesquisarButton.setBackground(new Color(124, 61, 139));
 		pesquisarButton.setBorderPainted(false);
+		
+		//Registra o tratador de eventos do botão pesquisa.
+		pesquisarButton.addActionListener(tratadorPesquisa);
 		
 		//Instância o painel de exibição.
 		exibicaoPanel = new JPanel();

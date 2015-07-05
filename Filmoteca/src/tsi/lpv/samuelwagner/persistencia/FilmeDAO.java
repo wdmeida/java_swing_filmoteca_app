@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.SQLTimeoutException;
 import java.util.Calendar;
 
-import tsi.lpv.samuelwagner.metodosauxiliares.MetodosConversaoBanco;
+import tsi.lpv.samuelwagner.funcaoauxiliar.MetodosConversaoBanco;
 import tsi.lpv.samuelwagner.tipo.Filme;
 
 /**

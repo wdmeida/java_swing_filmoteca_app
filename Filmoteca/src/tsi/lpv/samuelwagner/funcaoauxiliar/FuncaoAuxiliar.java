@@ -103,5 +103,4 @@ public class FuncaoAuxiliar {
 			texto += textos[indice] + "\n";
 		return texto;
 	}
-	
 }//class FuncaoAuxiliar
