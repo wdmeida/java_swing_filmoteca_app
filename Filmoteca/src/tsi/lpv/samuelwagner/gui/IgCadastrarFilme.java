@@ -19,11 +19,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
@@ -35,6 +35,8 @@ import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoInserirImagem;
 
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JYearChooser;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class IgCadastrarFilme extends JDialog {
 	private JTextField tituloField;
