@@ -19,10 +19,10 @@ import tsi.lpv.samuelwagner.tipo.Filme;
  *
  */
 public class FilmeDAO {
-	private final String INSERT_FILME = "INSERT INTO filme (titulo,duracao,ano,data_lancamento,sinopse,"
+	private static final String INSERT_FILME = "INSERT INTO filme (titulo,duracao,ano,data_lancamento,sinopse,"
 			+ "classificacao_etaria,classificacao_imdb,classificacao_pessoal,midia,poster) VALUES (?,?,?,?,?,?,?,?,?,?);";
-	private final String PESQUISA_FILME_TITULO = "SELECT * FROM filme WHERE titulo = ?;";
-	private final String PESQUISA_FILME_CODIGO = "SELECT * FROM filme WHERE codigo_filme = ?;";
+	private static final String PESQUISA_FILME_TITULO = "SELECT * FROM filme WHERE titulo = ?;";
+	private static final String PESQUISA_FILME_CODIGO = "SELECT * FROM filme WHERE codigo_filme = ?;";
 	
 	/**
 	 * Cadastra um filme na tabela filme do banco de dados.
@@ -30,7 +30,7 @@ public class FilmeDAO {
 	 * @throws SQLException
 	 * @throws SQLTimeoutException
 	 */
-	public void cadastrarFilme(Filme filme) {
+	public static void cadastrarFilme(Filme filme) {
 		//Obtém uma conexão com o banco.
 		Connection conn = ConnectionFactory.getConnection();
 		try {
@@ -59,7 +59,7 @@ public class FilmeDAO {
 	 * Obtém o ultimo código cadastrado para um filme na tabela.
 	 * @return <code>int</code>.
 	 */
-	public int obterUltimoCodigo() {
+	public static int obterUltimoCodigo() {
 		try {
 			Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement stmt = conn.prepareStatement("SELECT currval('filme_codigo_filme_seq');");
@@ -79,7 +79,7 @@ public class FilmeDAO {
 	 * @param nomeFilme <code>String</code> nome do filme.
 	 * @return <code>Filme</code> ou <code>null</code> caso o filme não seja encontrado.
 	 */
-	public Filme pesquisarFilme(String nomeFilme){
+	public static Filme pesquisarFilme(String nomeFilme){
 		
 		try {
 			PreparedStatement stmt = ConnectionFactory.getConnection().prepareStatement(PESQUISA_FILME_TITULO);
@@ -116,7 +116,7 @@ public class FilmeDAO {
 	 * @param codigo <code>int</code> com o código do filme.
 	 * @return <code>Filme</code> ou <code>null</code> caso o filme não seja encontrado.
 	 */
-	public Filme pesquisarFilme(int codigo){
+	public static Filme pesquisarFilme(int codigo){
 		
 		try {
 			PreparedStatement stmt = ConnectionFactory.getConnection().prepareStatement(PESQUISA_FILME_CODIGO);

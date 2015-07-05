@@ -8,16 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PaisFilmeDAO {
-	private final String INSERIR_PAIS_FILME = "INSERT INTO paisfilme (codigo_filme,codigo_pais) VALUES (?,?);";
-	private final String OBTER_PAIS_FILME = "SELECT codigo_pais FROM paisfilme WHERE codigo_filme = ?;";
-	private final String OBTER_FILMES_PAIS = "SELECT codigo_filme FROM paisfilme WHERE codigo_pais = ?;";
+	private static final String INSERIR_PAIS_FILME = "INSERT INTO paisfilme (codigo_filme,codigo_pais) VALUES (?,?);";
+	private static final String OBTER_PAIS_FILME = "SELECT codigo_pais FROM paisfilme WHERE codigo_filme = ?;";
+	private static final String OBTER_FILMES_PAIS = "SELECT codigo_filme FROM paisfilme WHERE codigo_pais = ?;";
 	
 	/**
 	 * Cadastra os códigos do filme e do país na tabela de referência do banco.
 	 * @param codigoFilme <code>int</code> código do filme.
 	 * @param codigoPais <code>int</code> código do país.
 	 */
-	public void cadastrarPaisFilme(int codigoFilme, int codigoPais) {
+	public static void cadastrarPaisFilme(int codigoFilme, int codigoPais) {
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -38,7 +38,7 @@ public class PaisFilmeDAO {
 	 * @param codigo <code>int</code> com o código do filme que se deseja obter o país em que ele foi produzido.
 	 * @return <code>int</code> com o código país em que um determinado filme foi produzido.
 	 */
-	public int obterPaisFilme(int codigo) {
+	public static int obterPaisFilme(int codigo) {
 		Connection conn = ConnectionFactory.getConnection();
 		int codigoPais = 0;
 		
@@ -62,7 +62,7 @@ public class PaisFilmeDAO {
 	 * @param codigo <code>int</code> com o código do país que se deseja obter os filmes.
 	 * @return <code>List</code> com os códigos dos filmes produzidos em um determinado país.
 	 */
-	public List<Integer> obterFilmesPais(int codigo) {
+	public static List<Integer> obterFilmesPais(int codigo) {
 		Connection conn = ConnectionFactory.getConnection();
 		List<Integer> codigos = new ArrayList<Integer>();
 		

@@ -12,14 +12,14 @@ import tsi.lpv.samuelwagner.tipo.Diretor;
  * @author Wagner
  */
 public class DiretorDAO {
-	private final String INSERT_DIRETOR = "INSERT INTO diretor (nome) VALUES (?);";
-	private final String SELECT_DIRETOR_CODIGO = "SELECT * FROM diretor WHERE codigo_diretor = ?;";
-	private final String SELECT_DIRETOR_NOME = "SELECT * FROM diretor WHERE nome = ?;";
+	private static final String INSERT_DIRETOR = "INSERT INTO diretor (nome) VALUES (?);";
+	private static final String SELECT_DIRETOR_CODIGO = "SELECT * FROM diretor WHERE codigo_diretor = ?;";
+	private static final String SELECT_DIRETOR_NOME = "SELECT * FROM diretor WHERE nome = ?;";
 	
 	/**Cadastra <code>Diretor</code> no Banco de Dados.
 	 * @param diretor <code>Diretor</code>.
 	 */
-	public void cadastraDiretor(Diretor diretor) {
+	public static void cadastraDiretor(Diretor diretor) {
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -37,7 +37,7 @@ public class DiretorDAO {
 	 * @param nome <code>Int</code>.
 	 * @return um <code>Diretor</code>.
 	 */
-	public Diretor pesquisaDiretor(String nome) {
+	public static Diretor pesquisaDiretor(String nome) {
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -67,7 +67,7 @@ public class DiretorDAO {
 	 * @param codigoDiretor <code>Int</code>.
 	 * @return um <code>Diretor</code>.
 	 */
-	public Diretor pesquisaDiretor(int codigoDiretor) {
+	public static Diretor pesquisaDiretor(int codigoDiretor) {
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -95,7 +95,7 @@ public class DiretorDAO {
 	 * Obtém o ultimo código cadastrado para um diretor na tabela.
 	 * @return <code>int</code>
 	 */
-	public int obterUltimoCodigo() {
+	public static int obterUltimoCodigo() {
 		try {
 			Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement stmt = conn.prepareStatement("SELECT currval('diretor_codigo_diretor_seq'::regclass);");

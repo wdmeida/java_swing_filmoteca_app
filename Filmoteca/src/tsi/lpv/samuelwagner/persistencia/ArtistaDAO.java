@@ -12,14 +12,14 @@ import tsi.lpv.samuelwagner.tipo.Artista;
  * @author Wagner
  */
 public class ArtistaDAO {
-	private final String INSERT_ARTISTA = "INSERT INTO artista (nome) VALUES (?);";
-	private final String SELECT_ARTISTA_CODIGO = "SELECT * FROM artista WHERE codigo_artista = ?;";
-	private final String SELECT_ARTISTA_NOME = "SELECT * FROM artista WHERE nome = ?;";
+	private static final String INSERT_ARTISTA = "INSERT INTO artista (nome) VALUES (?);";
+	private static final String SELECT_ARTISTA_CODIGO = "SELECT * FROM artista WHERE codigo_artista = ?;";
+	private static final String SELECT_ARTISTA_NOME = "SELECT * FROM artista WHERE nome = ?;";
 	
 	/**Cadastra o Objeto <code>Artista</code> no Banco de Dados.
 	 * @param artista <code>Artista</code>.
 	 */
-	public void cadastraArtista(Artista artista){
+	public static void cadastraArtista(Artista artista){
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -37,7 +37,7 @@ public class ArtistaDAO {
 	 * @param nome <code>Int</code>.
 	 * @return um <code>Artista</code>.
 	 */
-	public Artista pesquisaArtista(String nome){
+	public static Artista pesquisaArtista(String nome){
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -66,7 +66,7 @@ public class ArtistaDAO {
 	 * @param codigoArtista <code>Int</code>.
 	 * @return um <code>Artista</code>.
 	 */
-	public Artista pesquisaArtista(int codigoArtista){
+	public static Artista pesquisaArtista(int codigoArtista){
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -95,7 +95,7 @@ public class ArtistaDAO {
 	 * Obtém o ultimo código cadastrado para um artista na tabela.
 	 * @return <code>int</code>
 	 */
-	public int obterUltimoCodigo() {
+	public static int obterUltimoCodigo() {
 		try {
 			Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement stmt = conn.prepareStatement("SELECT currval('artista_codigo_artista_seq'::regclass);");

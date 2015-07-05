@@ -12,14 +12,14 @@ import tsi.lpv.samuelwagner.tipo.Genero;
  * @author Wagner
  */
 public class GeneroDAO {
-	private final String INSERT_GENERO = "INSERT INTO genero (descricao) VALUES (?);";
-	private final String SELECT_GENERO_CODIGO = "SELECT * FROM genero WHERE codigo_genero = ?;";
-	private final String SELECT_GENERO_DESCRICAO = "SELECT * FROM genero WHERE descricao = ?;";
+	private static final String INSERT_GENERO = "INSERT INTO genero (descricao) VALUES (?);";
+	private static final String SELECT_GENERO_CODIGO = "SELECT * FROM genero WHERE codigo_genero = ?;";
+	private static final String SELECT_GENERO_DESCRICAO = "SELECT * FROM genero WHERE descricao = ?;";
 	
 	/**Cadastra <code>Genero</code> no Banco de Dados.
 	 * @param genero <code>Genero</code>.
 	 */
-	public void cadastrarGenero(Genero genero){
+	public static void cadastrarGenero(Genero genero){
 		//Obtém uma conexão com o banco.
 		Connection conn = ConnectionFactory.getConnection();
 		
@@ -40,7 +40,7 @@ public class GeneroDAO {
 	 * @param codigoGenero <code>Int</code>.
 	 * @return um <code>Genero</code>.
 	 */
-	public Genero pesquisaGenero(int codigoGenero){
+	public static Genero pesquisaGenero(int codigoGenero){
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -68,7 +68,7 @@ public class GeneroDAO {
 	 * @param descricao <code>String</code>.
 	 * @return um <code>Genero</code>.
 	 */
-	public Genero pesquisaGenero(String descricao){
+	public static Genero pesquisaGenero(String descricao){
 		Connection conn = ConnectionFactory.getConnection();
 		
 		
@@ -98,15 +98,16 @@ public class GeneroDAO {
 	 * Obtém o ultimo código cadastrado para um genero na tabela.
 	 * @return <code>int</code>
 	 */
-	public int obterUltimoCodigo() {
+	public static int obterUltimoCodigo() {
 		try {
 			Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement stmt = conn.prepareStatement("SELECT currval('genero_codigo_genero_seq'::regclass);");
 			
 			ResultSet resultSet = stmt.executeQuery();
 			if(resultSet.next()){
+				int codigo = resultSet.getInt(1);
 				stmt.close();
-				return resultSet.getInt(1);
+				return codigo;
 			}else{ 
 				stmt.close();
 				return -1;

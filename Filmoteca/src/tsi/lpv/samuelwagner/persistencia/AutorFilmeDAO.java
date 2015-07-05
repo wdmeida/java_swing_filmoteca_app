@@ -14,16 +14,16 @@ import java.util.List;
  *
  */
 public class AutorFilmeDAO {
-	private final String INSERIR_AUTOR_FILME = "INSERT INTO autorfilme (codigo_filme,codigo_autor) VALUES (?,?);";
-	private final String OBTER_AUTOR_FILME = "SELECT codigo_autor FROM autorfilme WHERE codigo_filme = ?;";
-	private final String OBTER_FILMES_AUTOR = "SELECT codigo_filme FROM autorfilme WHERE codigo_autor = ?;";
+	private static final String INSERIR_AUTOR_FILME = "INSERT INTO autorfilme (codigo_filme,codigo_autor) VALUES (?,?);";
+	private static final String OBTER_AUTOR_FILME = "SELECT codigo_autor FROM autorfilme WHERE codigo_filme = ?;";
+	private static final String OBTER_FILMES_AUTOR = "SELECT codigo_filme FROM autorfilme WHERE codigo_autor = ?;";
 	
 	/**
 	 * Cadastra os códigos do autor e do filme na tabela de referência do banco.
 	 * @param codigoFilme <code>int</code> código do filme.
 	 * @param codigoDiretor <code>int</code> código do autor.
 	 */
-	public void cadastrarAutorFilme(int codigoFilme, int codigoAutor) {
+	public static void cadastrarAutorFilme(int codigoFilme, int codigoAutor) {
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -44,7 +44,7 @@ public class AutorFilmeDAO {
 	 * @param codigo <code>int</code> com o código do filme que se deseja obter os autores.
 	 * @return <code>List</code> com os códigos dos autores que escritos o filme.
 	 */
-	public List<Integer> obterAutoresFilme(int codigo) {
+	public static List<Integer> obterAutoresFilme(int codigo) {
 		Connection conn = ConnectionFactory.getConnection();
 		List<Integer> codigos = new ArrayList<Integer>();
 		
@@ -68,7 +68,7 @@ public class AutorFilmeDAO {
 	 * @param codigo <code>int</code> com o código do autor que se deseja obter os filmes.
 	 * @return <code>List</code> com os códigos dos filmes que o autor informado escreveu.
 	 */
-	public List<Integer> obterFilmesAutor(int codigo) {
+	public static List<Integer> obterFilmesAutor(int codigo) {
 		Connection conn = ConnectionFactory.getConnection();
 		List<Integer> codigos = new ArrayList<Integer>();
 		

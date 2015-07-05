@@ -12,14 +12,14 @@ import tsi.lpv.samuelwagner.tipo.Autor;
  * @author Wagner Almeida
  */
 public class AutorDAO {
-	private final String INSERT_AUTOR = "INSERT INTO autor (nome) VALUES (?);";
-	private final String SELECT_AUTOR_CODIDO = "SELECT * FROM autor WHERE codigo_autor = ?";
-	private final String SELECT_AUTOR_NOME = "SELECT * FROM autor WHERE nome = ?";
+	private static final String INSERT_AUTOR = "INSERT INTO autor (nome) VALUES (?);";
+	private static final String SELECT_AUTOR_CODIDO = "SELECT * FROM autor WHERE codigo_autor = ?";
+	private static final String SELECT_AUTOR_NOME = "SELECT * FROM autor WHERE nome = ?";
 	
 	/** Cadastra <code>Autor</code> no Banco de Dados.
 	 * @param autor <code>Autor</code>.
 	 */
-	public void cadastraAutor(Autor autor){
+	public static void cadastraAutor(Autor autor){
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -37,7 +37,7 @@ public class AutorDAO {
 	 * @param nome <code>Int</code>.
 	 * @return um <code>Autor</code>.
 	 */
-	public Autor pesquisaAutor(String nome){
+	public static Autor pesquisaAutor(String nome){
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -65,7 +65,7 @@ public class AutorDAO {
 	 * @param codigoAutor <code>Int</code>.
 	 * @return um <code>Autor</code>.
 	 */
-	public Autor pesquisaAutor(int codigoAutor){
+	public static Autor pesquisaAutor(int codigoAutor){
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -93,7 +93,7 @@ public class AutorDAO {
 	 * Obtém o ultimo código cadastrado para um autor na tabela.
 	 * @return <code>int</code>
 	 */
-	public int obterUltimoCodigo() {
+	public static int obterUltimoCodigo() {
 		try {
 			Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement stmt = conn.prepareStatement("SELECT currval('autor_codigo_autor_seq'::regclass);");

@@ -12,15 +12,15 @@ import java.util.List;
  * @author Wagner
  */
 public class ElencoDAO {
-	private final String INSERT_ELENCO = "INSERT INTO elenco(codigo_filme,codigo_artista) VALUES(?,?);";
-	private final String SELECT_ELENCO_FILME = "SELECT codigo_filme FROM elenco WHERE codigo_artista = ?";
-	private final String SELECT_ELENCO_ARTISTA = "SELECT codigo_artista FROM elenco WHERE codigo_filme = ?";
+	private static final String INSERT_ELENCO = "INSERT INTO elenco(codigo_filme,codigo_artista) VALUES(?,?);";
+	private static final String SELECT_ELENCO_FILME = "SELECT codigo_filme FROM elenco WHERE codigo_artista = ?";
+	private static final String SELECT_ELENCO_ARTISTA = "SELECT codigo_artista FROM elenco WHERE codigo_filme = ?";
 	
 	/** Associa o artista ao filme que participa.
 	 * @param codigoFilme <code>int</code> código do filme.
 	 * @param codigoArtista <code>int</code> código do artista.
 	 */
-	public void cadastraElenco(int codigoFilme,int codigoArtista){
+	public static void cadastraElenco(int codigoFilme,int codigoArtista){
 		Connection conn = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement stmt = conn.prepareStatement(INSERT_ELENCO);
@@ -39,7 +39,7 @@ public class ElencoDAO {
 	 * @param codigoArtista <code>int</code> código do artista. 
 	 * @return um <code>List</code> com os códigos dos Filmes.
 	 */
-	public List<Integer> pesquisElencoFilme(int codigoArtista){
+	public static List<Integer> pesquisElencoFilme(int codigoArtista){
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -73,7 +73,7 @@ public class ElencoDAO {
 	 * @param codigoFilme <code>int</code> código do filme. 
 	 * @return um <code>List</code> com os códigos dos artistas.
 	 */
-	public List<Integer> pesquisElencoArtista(int codigoFilme){
+	public static List<Integer> pesquisElencoArtista(int codigoFilme){
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
