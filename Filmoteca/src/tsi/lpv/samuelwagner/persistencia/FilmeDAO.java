@@ -65,9 +65,14 @@ public class FilmeDAO {
 			PreparedStatement stmt = conn.prepareStatement("SELECT currval('filme_codigo_filme_seq');");
 			
 			ResultSet resultSet = stmt.executeQuery();
-			stmt.close();
-			resultSet.next();
-			return resultSet.getInt(1);
+			if(resultSet.next()){
+				int codigo = resultSet.getInt(1);
+				stmt.close();
+				return codigo;
+			}else{
+				stmt.close();
+				return -1;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return -1;

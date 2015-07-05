@@ -100,8 +100,9 @@ public class AutorDAO {
 			
 			ResultSet resultSet = stmt.executeQuery();
 			if(resultSet.next()){
+				int codigo = resultSet.getInt(1);
 				stmt.close();
-				return resultSet.getInt(1);
+				return codigo;
 			}else{
 				stmt.close();
 				return -1;
