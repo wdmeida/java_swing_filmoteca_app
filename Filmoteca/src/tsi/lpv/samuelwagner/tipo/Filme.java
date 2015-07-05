@@ -28,6 +28,40 @@ public class Filme {
 	 */
 	public Filme() {}
 	
+	
+	
+	/**Construtor sobrecarregado da classe Filme.
+	 * @param codigo
+	 * @param duracao
+	 * @param ano
+	 * @param classificacaoIMDB
+	 * @param classificacaoPessoal
+	 * @param titulo
+	 * @param sinopse
+	 * @param classificacaoEtaria
+	 * @param midia
+	 * @param dataLancamento
+	 * @param poster
+	 */
+	public Filme(int codigo, int duracao, int ano, int classificacaoIMDB,
+			int classificacaoPessoal, String titulo, String sinopse,
+			String classificacaoEtaria, String midia, Calendar dataLancamento,
+			File poster) {
+		this.codigo = codigo;
+		this.duracao = duracao;
+		this.ano = ano;
+		this.classificacaoIMDB = classificacaoIMDB;
+		this.classificacaoPessoal = classificacaoPessoal;
+		this.titulo = titulo;
+		this.sinopse = sinopse;
+		this.classificacaoEtaria = classificacaoEtaria;
+		this.midia = midia;
+		this.dataLancamento = dataLancamento;
+		this.poster = poster;
+	}
+
+
+
 	/**
 	 * Obtém um <code>int</code> contendo o código do filme.
 	 * @return codigo<code>int</code>

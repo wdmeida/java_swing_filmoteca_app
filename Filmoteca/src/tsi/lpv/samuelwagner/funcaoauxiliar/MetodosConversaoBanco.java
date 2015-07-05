@@ -26,15 +26,19 @@ public class MetodosConversaoBanco {
 	public static byte[] preparaImagemParaBanco(File file){
 		try {
 			//Converte o objeto file em um array de bytes para poder ser inserido no banco.
-			@SuppressWarnings("resource")
-			InputStream imagem = new FileInputStream(file);
-			byte[] bytes = new byte[(int)file.length()];
-			int offset = 0, numRead = 0;
+			if(file != null){
+
+				@SuppressWarnings("resource")
+				InputStream imagem = new FileInputStream(file);
+				byte[] bytes = new byte[(int)file.length()];
+				int offset = 0, numRead = 0;
 			
-			while(offset < bytes.length && (numRead = imagem.read(bytes, offset, bytes.length - offset)) >= 0)
-				offset += numRead;
+				while(offset < bytes.length && (numRead = imagem.read(bytes, offset, bytes.length - offset)) >= 0)
+					offset += numRead;
 			
-			return bytes;
+				return bytes;
+			}
+			return null;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
@@ -51,9 +55,11 @@ public class MetodosConversaoBanco {
 		File f = new File(DIR_TEMP + File.separator + nome);
 		 
 		try {
-			FileOutputStream fos = new FileOutputStream(f);
-			fos.write(bytes);
-			fos.close();
+			if(bytes != null){
+				FileOutputStream fos = new FileOutputStream(f);
+				fos.write(bytes);
+				fos.close();
+			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

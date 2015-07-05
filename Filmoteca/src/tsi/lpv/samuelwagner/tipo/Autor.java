@@ -13,4 +13,11 @@ public class Autor extends Dados {
 	public Autor() {
 		super();
 	}
+	
+	/**
+	 * Construtor sobrecarregado da classe <code>Autor</code>.
+	 */
+	public Autor(int codigo, String nome) {
+		super(codigo,nome);
+	}
 }//class Autor 

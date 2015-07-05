@@ -13,4 +13,11 @@ public class Genero extends Dados {
 	public Genero() {
 		super();
 	}
+	
+	/**
+	 * Construtor sobrecarregado da classe <code>Genero</code>.
+	 */
+	public Genero(int codigo, String nome) {
+		super(codigo,nome);
+	}
 }//class Genero
