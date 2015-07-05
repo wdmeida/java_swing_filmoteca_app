@@ -37,9 +37,11 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 	
 	private void validaCadastro(){
 		if(validaNomeFilme() && validaNomePais() && validaSinopse() && validaNomesAtor() && validaNomesAutor()
-				&& validaNomesDiretor() && validaDuracao())
+				&& validaNomesDiretor() && validaDuracao()){
 			cadastraFilme();
-		else
+			FuncaoAuxiliar.exibirMensagem(igCadastrarFilme, "Filme Cadastrado Com sucesso.", "Cadastra Filme.");
+			igCadastrarFilme.dispose();
+		}else
 			FuncaoAuxiliar.exibirMensagemErro(igCadastrarFilme, "Erro", "Cadastra Filme");
 	}
 	

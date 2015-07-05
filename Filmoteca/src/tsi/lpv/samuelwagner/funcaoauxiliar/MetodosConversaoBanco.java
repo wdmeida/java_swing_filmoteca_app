@@ -26,7 +26,7 @@ public class MetodosConversaoBanco {
 	public static byte[] preparaImagemParaBanco(File file){
 		try {
 			//Converte o objeto file em um array de bytes para poder ser inserido no banco.
-			if(file != null){
+			if(file.exists()){
 
 				@SuppressWarnings("resource")
 				InputStream imagem = new FileInputStream(file);
