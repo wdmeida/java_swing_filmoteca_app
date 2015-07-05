@@ -2,8 +2,11 @@ package tsi.lpv.samuelwagner.gui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,7 +17,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-
+/**
+ * A classe <code>IgFilmoteca</code> é a responsável por construir a janela gráfica principal.
+ * @author Wagner Almeida
+ * @author Samuel Gonçalves.
+ *
+ */
 public class IgFilmoteca extends JFrame {
 	private Color corBase =  new Color(17, 17, 17);
 	private Color corFonte = new Color(237,255,40);
@@ -23,20 +31,35 @@ public class IgFilmoteca extends JFrame {
 	private JTextField pesquisarTextField;
 	private JPanel exibicaoPanel;
 	
+	/**
+	 * Construtor da classe IgFilmoteca.
+	 */
 	public IgFilmoteca() {
 		//Define o nome do app
 		super("Filmoteca Darth Vader");
 		
+		//Muda o icone da barra de títulos da janela. Cria um objeto url e passa o endereço da imagem.
+		URL url = this.getClass().getResource("/tsi/lpv/samuelwagner/imagens/Darth_Vader_Mask_64.png");
+	
+		//Cria um objeto imagem, Obtém a referência da imagem da barra e seta a nova imagem.
+		Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+		
+		//Define a nova imagem para a janela.
+		this.setIconImage(imagemTitulo);
+		
+		//Muda a cor do painel.
 		getContentPane().setBackground(corBase);
 		getContentPane().setForeground(corFonte);
 		getContentPane().setLayout(null);
 		
+		//Cria o painel lateral.
 		JPanel panel = new JPanel();
 		panel.setBackground(corBase);
 		panel.setBounds(0, 108, 153, 305);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
+		//Cria o botão de cadastrar filme.
 		JButton cadastrarFilmeButton = new JButton("Cadastrar Filme");
 		cadastrarFilmeButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/video.png")));
 		cadastrarFilmeButton.setBackground(Color.BLACK);
@@ -46,6 +69,7 @@ public class IgFilmoteca extends JFrame {
 		cadastrarFilmeButton.setBounds(0, 11, 153, 38);
 		panel.add(cadastrarFilmeButton);
 		
+		//Cria o botão de procurar diretor.
 		JButton diretorButton = new JButton("Buscar Diretor");
 		diretorButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/director_sit.png")));
 		diretorButton.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -54,6 +78,7 @@ public class IgFilmoteca extends JFrame {
 		diretorButton.setBounds(0, 158, 153, 38);
 		panel.add(diretorButton);
 		
+		//Cria o botão de buscar por ator.
 		JButton atorButton = new JButton("Buscar Ator");
 		atorButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/actordark.png")));
 		atorButton.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -62,6 +87,7 @@ public class IgFilmoteca extends JFrame {
 		atorButton.setBounds(0, 60, 153, 38);
 		panel.add(atorButton);
 		
+		//Cria botão de busca por autor.
 		JButton autorButton = new JButton("Buscar Autor");
 		autorButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/author.png")));
 		autorButton.setBackground(Color.BLACK);
@@ -70,6 +96,7 @@ public class IgFilmoteca extends JFrame {
 		autorButton.setBounds(0, 109, 153, 38);
 		panel.add(autorButton);
 		
+		//Criar botão de busca por genêro.
 		JButton btnGenro = new JButton("Filmes G\u00EAnero");
 		btnGenro.setBounds(0, 207, 153, 38);
 		panel.add(btnGenro);
@@ -79,6 +106,7 @@ public class IgFilmoteca extends JFrame {
 		btnGenro.setForeground(Color.WHITE);
 		btnGenro.setToolTipText("Pesquisar por g\u00EAneros");
 		
+		//Criar botão de exibir por filmes melhor classificados.
 		JButton rankingButton = new JButton("Ver Preferidos");
 		rankingButton.setBounds(0, 256, 153, 38);
 		panel.add(rankingButton);
@@ -88,12 +116,14 @@ public class IgFilmoteca extends JFrame {
 		rankingButton.setForeground(Color.WHITE);
 		rankingButton.setToolTipText("Visualizar filmes na ordem de prefer\u00EAncia.");
 		
+		//Cria o painel pra barra de pesquisa.
 		JPanel pesquisarPanel = new JPanel();
 		pesquisarPanel.setBackground(corSubMenu);
 		pesquisarPanel.setBounds(0, 21, 839, 38);
 		getContentPane().add(pesquisarPanel);
 		pesquisarPanel.setLayout(null);
 		
+		//Instância o objeto responsável por conter os dados da pesquisa.
 		pesquisarTextField = new JTextField();
 		
 		//Registra o tratador de eventos do jtextField.
@@ -110,6 +140,7 @@ public class IgFilmoteca extends JFrame {
 		pesquisarPanel.add(pesquisarTextField);
 		pesquisarTextField.setColumns(10);
 		
+		//Cria o botão de pesquisa.
 		JButton pesquisarButton = new JButton("");
 		pesquisarButton.setBounds(786, 4, 43, 30);
 		pesquisarPanel.add(pesquisarButton);
@@ -117,6 +148,7 @@ public class IgFilmoteca extends JFrame {
 		pesquisarButton.setBackground(corSubMenu);
 		pesquisarButton.setBorderPainted(false);
 		
+		//Instância o painel de exibição.
 		exibicaoPanel = new JPanel();
 		exibicaoPanel.setBackground(corBase);
 		exibicaoPanel.setBorder(new LineBorder(corMenu, 1, true));
@@ -151,4 +183,20 @@ public class IgFilmoteca extends JFrame {
 		//Define a tela como vísivel.
 		setVisible(true);
 	}//IgFilmoteca
+
+	/**
+	 * Obtém a referência da caixa de texto de pesquisa.
+	 * @return <code>JTextField</code>
+	 */
+	public JTextField getPesquisarTextField() {
+		return pesquisarTextField;
+	}
+
+	/**
+	 * Retorna a referência do painel de exibição da tela principal onde serão realizadas as operações.
+	 * @return <code>JPanel</code>
+	 */
+	public JPanel getExibicaoPanel() {
+		return exibicaoPanel;
+	}
 }//class IgFilmoteca
