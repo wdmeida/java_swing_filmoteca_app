@@ -15,4 +15,11 @@ public class Artista extends Dados {
 		super();
 	}
 	
+	/**
+	 * Construtor sobrecarregado da classe <code>Artista</code>.
+	 */
+	public Artista(int codigo, String nome) {
+		super(codigo,nome);
+	}
+	
 }//class Artista

@@ -48,8 +48,8 @@ public class IgCadastrarFilme extends JDialog {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JButton cadastrarButton;
 	private JButton cancelarButton;
-	private JComboBox comboBox;
-	private JComboBox comboBox_1;
+	private JComboBox<String> generoComboBox;
+	private JComboBox<String> faixaEtariaComboBox;
 	private JDateChooser chooser;
 	private JYearChooser jYearChooser;
 	private JEditorPane sinopseEditorPane;
@@ -136,6 +136,7 @@ public class IgCadastrarFilme extends JDialog {
 		
 		setLocationRelativeTo(igFilmoteca);
 		setResizable(false);
+		setModal(true);
 		setVisible(true);
 	}//IgCadastrarFilme()
 	
@@ -178,12 +179,11 @@ public class IgCadastrarFilme extends JDialog {
 		filmePanel.add(generoPanel);
 		generoPanel.setLayout(null);
 		
-		comboBox = new JComboBox();
-		comboBox.setSize(195, 21);
-		comboBox.setLocation(10, 18);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Terror", "A\u00E7\u00E3o", "Suspense", "Comedia", "Aventura", "Roma\u00E7a"}));
-		comboBox.setSelectedIndex(0);
-		generoPanel.add(comboBox);
+		generoComboBox = new JComboBox<String>(new String[] {"Terror", "A\u00E7\u00E3o", "Suspense", "Comedia", "Aventura", "Roma\u00E7a"});
+		generoComboBox.setSize(195, 21);
+		generoComboBox.setLocation(10, 18);
+		generoComboBox.setSelectedIndex(0);
+		generoPanel.add(generoComboBox);
 		
 		JPanel anoPanel = new JPanel();
 		anoPanel.setBounds(235, 11, 134, 50);
@@ -216,11 +216,10 @@ public class IgCadastrarFilme extends JDialog {
 		filmePanel.add(faixaEtariaPanel);
 		faixaEtariaPanel.setLayout(null);
 		
-		comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Livre", " inadequado para menores de 10", " inadequado para menores de 12", " inadequado para menores de 14", " inadequado para menores de 16", " inadequado para menores de 18"}));
-		comboBox_1.setSelectedIndex(0);
-		comboBox_1.setBounds(10, 21, 195, 22);
-		faixaEtariaPanel.add(comboBox_1);
+		faixaEtariaComboBox = new JComboBox<String>(new String[] {"Livre", " inadequado para menores de 10", " inadequado para menores de 12", " inadequado para menores de 14", " inadequado para menores de 16", " inadequado para menores de 18"});
+		faixaEtariaComboBox.setSelectedIndex(0);
+		faixaEtariaComboBox.setBounds(10, 21, 195, 22);
+		faixaEtariaPanel.add(faixaEtariaComboBox);
 		
 		JPanel midiaPanel = new JPanel();
 		midiaPanel.setBackground(new Color(87, 87, 87));
@@ -557,12 +556,12 @@ public class IgCadastrarFilme extends JDialog {
 		return cancelarButton;
 	}
 
-	public JComboBox getComboBox() {
-		return comboBox;
+	public JComboBox<String> getGeneroComboBox() {
+		return generoComboBox;
 	}
 
-	public JComboBox getComboBox_1() {
-		return comboBox_1;
+	public JComboBox<String> getFaixaEtariaComboBox() {
+		return faixaEtariaComboBox;
 	}
 
 	public JDateChooser getChooser() {

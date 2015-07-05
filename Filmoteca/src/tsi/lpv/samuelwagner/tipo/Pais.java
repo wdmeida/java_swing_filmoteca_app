@@ -13,4 +13,11 @@ public class Pais extends Dados {
 	public Pais() {
 		super();
 	}
+	
+	/**
+	 * Construtor sobrecarregado da classe <code>Pais</code>.
+	 */
+	public Pais(int codigo, String nome) {
+		super(codigo,nome);
+	}
 }//class Pais

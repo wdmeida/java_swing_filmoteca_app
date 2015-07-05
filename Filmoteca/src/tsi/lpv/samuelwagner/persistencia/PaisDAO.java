@@ -12,7 +12,7 @@ import tsi.lpv.samuelwagner.tipo.Pais;
  * @author Wagner
  */
 public class PaisDAO {
-	private static final String INSERT_PAIS = "INSERT INTO artista (nome) VALUES (?);";
+	private static final String INSERT_PAIS = "INSERT INTO pais (nome) VALUES (?);";
 	private static final String SELECT_PAIS_CODIGO = "SELECT * FROM pais WHERE codigo_pais = ?;";
 	private static final String SELECT_PAIS_NOME = "SELECT * FROM pais WHERE nome = ?;";
 	

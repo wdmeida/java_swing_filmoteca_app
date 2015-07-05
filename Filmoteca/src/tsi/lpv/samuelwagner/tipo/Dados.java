@@ -16,6 +16,20 @@ public /*abstract*/ class Dados {
 	 */
 	public Dados() {}
 	
+	
+	
+	/**Construtor sobrecarregado da Classe abstrata dados.
+	 * @param codigo <code>int</code>.
+	 * @param nome <code>String</code>.
+	 */
+	public Dados(int codigo, String nome) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+	}
+
+
+
 	/**
 	 * Obtém um <code>int</code> contendo o código inserido.
 	 * @return codigo <code>int</code>.
