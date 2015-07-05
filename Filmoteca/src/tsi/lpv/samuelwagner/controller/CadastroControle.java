@@ -25,25 +25,43 @@ public class CadastroControle {
 		
 		codigoFilme = cadastraFilme(filme);
 		for(Artista artista : artistas){
-			codigoArtista = cadastraArtista(artista);
+			Artista igual = ArtistaDAO.pesquisaArtista(artista.getNome());
+			if(igual == null)
+				codigoArtista = cadastraArtista(artista);
+			else
+				codigoArtista = igual.getCodigo();
 			cadastraEleco(codigoFilme, codigoArtista);
 		}
 		
 		for(Diretor diretor : diretores){
-			codigoDiretor = cadastraDiretor(diretor);
+			Diretor igual = DiretorDAO.pesquisaDiretor(diretor.getNome());
+			if(igual == null)
+				codigoDiretor = cadastraDiretor(diretor);
+			else
+				codigoDiretor = igual.getCodigo();
 			cadastraDiretorFilme(codigoFilme, codigoDiretor);
 		}
 		
 		for(Autor autor : autores){
-			codigoAutor = cadastraAutor(autor);
+			Autor igual = AutorDAO.pesquisaAutor(autor.getNome());
+			if(igual == null)
+				codigoAutor = cadastraAutor(autor);
+			else
+				codigoAutor = igual.getCodigo();
 			cadastraAutorFilme(codigoFilme, codigoAutor);
 		}
 		
-		codigoGenero = cadastraGenero(genero);
-		codigoPais = cadastraPais(pais);
+		if(genero.getCodigo() == 0)
+			codigoGenero = cadastraGenero(genero);
+		else
+			codigoGenero = genero.getCodigo();
+		if(pais.getCodigo() == 0)
+			codigoPais = cadastraPais(pais);
+		else
+			codigoPais = pais.getCodigo();
+		
 		cadastraPaisFilme(codigoFilme, codigoPais);
 		cadastraGeneroFilme(codigoFilme, codigoGenero);
-		
 	}
 	
 	private static int cadastraFilme(Filme filme) {

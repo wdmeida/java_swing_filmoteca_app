@@ -55,9 +55,7 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 	
 	private boolean validaNomePais(){
 		if(!Validador.validaCampoVazio(igCadastrarFilme.getPaisField().getText()))
-			if(PaisDAO.pesquisaPais(igCadastrarFilme.getPaisField().getText()) == null)
-				return true;
-			else return false;
+			return true;
 		else return false;
 	}
 	
