@@ -31,9 +31,12 @@ import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoCadastraFilme;
 import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoInsereAtor;
 import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoInsereAutor;
 import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoInsereDiretor;
+import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoInserirImagem;
 
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JYearChooser;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class IgCadastrarFilme extends JDialog {
 	private JTextField tituloField;
@@ -64,6 +67,10 @@ public class IgCadastrarFilme extends JDialog {
 	private JButton inserirAutorButton;
 	private JButton inserirAtorButton;
 	private JButton limparAtorButton;
+	private JLabel posterLabel;
+	private JTextField duracaoField;
+	private JSpinner cllassificacaoSpinner;
+	private JSpinner classificacaoIMDBspinner;
 
 	public IgCadastrarFilme(IgFilmoteca igFilmoteca) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IgCadastrarFilme.class.getResource("/tsi/lpv/samuelwagner/imagens/movie61.png")));
@@ -71,32 +78,32 @@ public class IgCadastrarFilme extends JDialog {
 		setBackground(new Color(87, 87, 87));
 		setTitle("Cadastrar Filme");
 		
-		setSize(465, 418);
+		setSize(648, 418);
 		getContentPane().setLayout(null);
 		
 		JPanel panelSul = new JPanel();
 		panelSul.setBackground(new Color(87, 87, 87));
-		panelSul.setBounds(0, 356, 475, 35);
+		panelSul.setBounds(0, 356, 616, 35);
 		getContentPane().add(panelSul);
 		panelSul.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel(obtemData());
-		lblNewLabel.setBounds(10, 9, 149, 14);
+		lblNewLabel.setBounds(118, 9, 241, 19);
 		panelSul.add(lblNewLabel);
 		
 		cadastrarButton = new JButton("Cadastrar");
-		cadastrarButton.setBounds(273, 5, 83, 23);
+		cadastrarButton.setBounds(436, 5, 83, 23);
 		panelSul.add(cadastrarButton);
 		
 		cancelarButton = new JButton("Cancelar");
-		cancelarButton.setBounds(366, 5, 77, 23);
+		cancelarButton.setBounds(529, 5, 77, 23);
 		panelSul.add(cancelarButton);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setForeground(Color.BLACK);
 		
 		tabbedPane.setBackground(new Color(87, 87, 87));
-		tabbedPane.setBounds(0, 0, 457, 354);
+		tabbedPane.setBounds(0, 0, 644, 354);
 		getContentPane().add(tabbedPane);
 		
 		tabbedPane.addTab("Filme", new ImageIcon(IgCadastrarFilme.class.getResource("/tsi/lpv/samuelwagner/imagens/movie47.png")), criaAbaFilme(), "F");
@@ -116,12 +123,6 @@ public class IgCadastrarFilme extends JDialog {
 		
 		tabbedPane.addTab("Ator", new ImageIcon(IgCadastrarFilme.class.getResource("/tsi/lpv/samuelwagner/imagens/star-shape.png")), criaAbaArtista(), null);
 		tabbedPane.setMnemonicAt(4, 84);
-		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(new Color(87, 87, 87));
-		tabbedPane.addTab("Classifica\u00E7\u00E3o", null, panel_4, null);
-		tabbedPane.setDisplayedMnemonicIndexAt(5, 4);
-		tabbedPane.setMnemonicAt(5, 67);
 		
 		TratadorEventoCadastraFilme eventoCadastraFilme = new TratadorEventoCadastraFilme(this);
 		cadastrarButton.addActionListener(eventoCadastraFilme);
@@ -185,7 +186,7 @@ public class IgCadastrarFilme extends JDialog {
 		generoPanel.add(comboBox);
 		
 		JPanel anoPanel = new JPanel();
-		anoPanel.setBounds(235, 72, 215, 50);
+		anoPanel.setBounds(235, 11, 134, 50);
 		anoPanel.setBorder(new TitledBorder(null, "Ano", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		anoPanel.setBackground(new Color(87, 87, 87));
 		filmePanel.add(anoPanel);
@@ -193,18 +194,18 @@ public class IgCadastrarFilme extends JDialog {
 		
 		jYearChooser = new JYearChooser();
 		jYearChooser.setSize(97, 20);
-		jYearChooser.setLocation(49, 19);
+		jYearChooser.setLocation(21, 19);
 		
 		anoPanel.add(jYearChooser);
 		
 		JPanel anoLacamentoPanel = new JPanel(null);
-		anoLacamentoPanel.setBounds(235, 11, 215, 50);
+		anoLacamentoPanel.setBounds(379, 11, 134, 50);
 		anoLacamentoPanel.setBackground(new Color(87, 87, 87));
 		anoLacamentoPanel.setBorder(new TitledBorder(null, "Ano de Lan\u00E7amento", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		filmePanel.add(anoLacamentoPanel);
 		chooser = new JDateChooser(cal.getTime());
 		chooser.setSize(101, 20);
-		chooser.setLocation(53, 19);
+		chooser.setLocation(21, 19);
 		
 		anoLacamentoPanel.add(chooser);
 		
@@ -250,18 +251,54 @@ public class IgCadastrarFilme extends JDialog {
 		JPanel sinopsePanel = new JPanel();
 		sinopsePanel.setBorder(new TitledBorder(null, "Sinopse", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		sinopsePanel.setBackground(new Color(87, 87, 87));
-		sinopsePanel.setBounds(235, 133, 215, 193);
+		sinopsePanel.setBounds(235, 133, 394, 193);
 		filmePanel.add(sinopsePanel);
 		sinopsePanel.setLayout(null);
 		
 		JScrollPane sinopseScrollPane = new JScrollPane();
-		sinopseScrollPane.setBounds(10, 14, 195, 168);
+		sinopseScrollPane.setBounds(10, 14, 374, 168);
 		sinopseScrollPane.setBackground(new Color(87, 87, 87));
 		sinopsePanel.add(sinopseScrollPane);
 		
 		sinopseEditorPane = new JEditorPane();
 		sinopseEditorPane.setBackground(Color.WHITE);
 		sinopseScrollPane.setViewportView(sinopseEditorPane);
+		
+		JPanel duracaoPanel = new JPanel();
+		duracaoPanel.setBorder(new TitledBorder(null, "Dura\u00E7\u00E3o", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		duracaoPanel.setBounds(523, 11, 106, 50);
+		duracaoPanel.setBackground(new Color(87, 87, 87));
+		filmePanel.add(duracaoPanel);
+		duracaoPanel.setLayout(null);
+		
+		duracaoField = new JTextField();
+		duracaoField.setBounds(10, 19, 86, 20);
+		duracaoPanel.add(duracaoField);
+		duracaoField.setColumns(10);
+		
+		JPanel classificacaoPessoalPanel = new JPanel();
+		classificacaoPessoalPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Classifica\u00E7\u00E3o Pessoal", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		classificacaoPessoalPanel.setBounds(235, 72, 184, 50);
+		classificacaoPessoalPanel.setBackground(new Color(87, 87, 87));
+		filmePanel.add(classificacaoPessoalPanel);
+		classificacaoPessoalPanel.setLayout(null);
+		
+		cllassificacaoSpinner = new JSpinner();
+		cllassificacaoSpinner.setModel(new SpinnerNumberModel(5, 1, 10, 1));
+		cllassificacaoSpinner.setBounds(53, 21, 87, 18);
+		classificacaoPessoalPanel.add(cllassificacaoSpinner);
+		
+		JPanel classificacaoIMDBpanel = new JPanel();
+		classificacaoIMDBpanel.setBorder(new TitledBorder(null, "Classifica\u00E7\u00E3o IMDB", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		classificacaoIMDBpanel.setBounds(445, 72, 184, 50);
+		classificacaoIMDBpanel.setBackground(new Color(87, 87, 87));
+		filmePanel.add(classificacaoIMDBpanel);
+		classificacaoIMDBpanel.setLayout(null);
+		
+		classificacaoIMDBspinner = new JSpinner();
+		classificacaoIMDBspinner.setModel(new SpinnerNumberModel(5, 1, 10, 1));
+		classificacaoIMDBspinner.setBounds(53, 21, 87, 18);
+		classificacaoIMDBpanel.add(classificacaoIMDBspinner);
 		
 		return filmePanel;
 	}
@@ -446,39 +483,48 @@ public class IgCadastrarFilme extends JDialog {
 		JPanel posterImagemPanel = new JPanel();
 		posterImagemPanel.setBorder(new TitledBorder(null, "P\u00F4ster", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		posterImagemPanel.setBackground(new Color(87, 87, 87));
-		posterImagemPanel.setBounds(10, 11, 222, 307);
+		posterImagemPanel.setBounds(10, 11, 399, 307);
 		posterPanel.add(posterImagemPanel);
 		posterImagemPanel.setLayout(null);
+		
+		posterLabel = new JLabel("");
+		posterLabel.setBounds(10, 15, 379, 285);
+		posterImagemPanel.add(posterLabel);
 		
 		JPanel informacoePanel = new JPanel();
 		informacoePanel.setBackground(new Color(87, 87, 87));
 		informacoePanel.setBorder(new TitledBorder(null, "Informa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		informacoePanel.setBounds(242, 11, 210, 185);
+		informacoePanel.setBounds(419, 11, 210, 185);
 		posterPanel.add(informacoePanel);
 		informacoePanel.setLayout(null);
 		
 		JPanel fotoPanel = new JPanel();
 		fotoPanel.setBackground(new Color(87, 87, 87));
 		fotoPanel.setBorder(new TitledBorder(null, "Foto", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		fotoPanel.setBounds(242, 207, 210, 61);
+		fotoPanel.setBounds(419, 207, 210, 61);
 		posterPanel.add(fotoPanel);
 		fotoPanel.setLayout(null);
 		
 		fotoField = new JTextField();
+		fotoField.setEditable(false);
 		fotoField.setBounds(10, 23, 190, 20);
 		fotoPanel.add(fotoField);
 		fotoField.setColumns(10);
 		
 		inserirFotoButton = new JButton("Inserir");
-		inserirFotoButton.setBounds(242, 295, 91, 23);
+		inserirFotoButton.setBounds(437, 295, 91, 23);
 		posterPanel.add(inserirFotoButton);
 		
 		limparFotoButton = new JButton("Limpar");
-		limparFotoButton.setBounds(351, 295, 91, 23);
+		limparFotoButton.setBounds(538, 295, 91, 23);
 		posterPanel.add(limparFotoButton);
 		
 		inserirFotoButton.setMnemonic(KeyEvent.VK_I);
 		limparFotoButton.setMnemonic(KeyEvent.VK_I);
+		
+		TratadorEventoInserirImagem eventoInserirImagem = new TratadorEventoInserirImagem(IgCadastrarFilme.this);
+		inserirFotoButton.addActionListener(eventoInserirImagem);
+		limparFotoButton.addActionListener(eventoInserirImagem);
 		
 		return posterPanel;
 	}
@@ -531,11 +577,11 @@ public class IgCadastrarFilme extends JDialog {
 		return sinopseEditorPane;
 	}
 
-	public JButton getInserirButton_1() {
+	public JButton getInserirFotoButton() {
 		return inserirFotoButton;
 	}
 
-	public JButton getLimparButton_1() {
+	public JButton getLimparFotoButton() {
 		return limparFotoButton;
 	}
 	
@@ -598,26 +644,23 @@ public class IgCadastrarFilme extends JDialog {
 	public JButton getLimparAtorButton() {
 		return limparAtorButton;
 	}
-
-	public static void main(String[] args) {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		new IgCadastrarFilme(null);
-	}
 	
+	public JLabel getPosterLabel() {
+		return posterLabel;
+	}
+
+	public JSpinner getCllassificacaoSpinner() {
+		return cllassificacaoSpinner;
+	}
+
+	public JSpinner getClassificacaoIMDBspinner() {
+		return classificacaoIMDBspinner;
+	}
+
+	public JTextField getDuracaoField() {
+		return duracaoField;
+	}
+
 	/**
 	 * Obtém um objeto string formatado com a data atual.
 	 * @return <code>String</code> com a data formatada.
@@ -628,5 +671,4 @@ public class IgCadastrarFilme extends JDialog {
 		data.setTime(Calendar.getInstance().getTimeInMillis());
 		return String.format("%1$tA, %1$te de %1$tB de %1$tY.",data);	
 	}//obtemData()
-	
 }//class IgCadastrarFilme

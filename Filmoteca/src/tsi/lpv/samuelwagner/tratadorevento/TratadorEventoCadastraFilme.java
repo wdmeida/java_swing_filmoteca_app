@@ -27,7 +27,7 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 	
 	public void cadastraFilme(){
 		if(validaNomeFilme() && validaNomePais() && validaSinopse() && validaNomesAtor() && validaNomesAutor()
-				&& validaNomesDiretor())
+				&& validaNomesDiretor() && validaDuracao())
 			;
 		else
 			FuncaoAuxiliar.exibirMensagemErro(igCadastrarFilme, "Erro", "Cadastra Filme");
@@ -44,6 +44,14 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 	private boolean validaNomePais(){
 		if(!Validador.validaCampoVazio(igCadastrarFilme.getPaisField().getText()))
 			if(PaisDAO.pesquisaPais(igCadastrarFilme.getPaisField().getText()) == null)
+				return true;
+			else return false;
+		else return false;
+	}
+	
+	private boolean validaDuracao(){
+		if(!Validador.validaCampoVazio(igCadastrarFilme.getPaisField().getText()))
+			if(Validador.validaNumeroInteiro(igCadastrarFilme.getDuracaoField().getText()))
 				return true;
 			else return false;
 		else return false;
