@@ -16,6 +16,8 @@ public class Genero extends Dados {
 	
 	/**
 	 * Construtor sobrecarregado da classe <code>Genero</code>.
+	 * @param codigo <code>int</code> do Genero.
+	 * @param nome  <code>String</code> nome do Genero.
 	 */
 	public Genero(int codigo, String nome) {
 		super(codigo,nome);

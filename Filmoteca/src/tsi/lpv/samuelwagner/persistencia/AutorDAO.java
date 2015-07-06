@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import tsi.lpv.samuelwagner.tipo.Autor;
 
-/**Classe Responsavel das Operações do Banco para a Classe <code>Autor</code>.
+/**A classe <code>AutorDAO</code> implementa as operações necessárias para manipulação dos dados na tabela autor
  * @author Samuel Gonçalves
  * @author Wagner Almeida
  */

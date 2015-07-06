@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import tsi.lpv.samuelwagner.tipo.Artista;
 
-/**Classe Responsavel das Operações do Banco para a Classe <code>Artista</code>.
+/**A classe <code>ArtistaDAO</code> implementa as operações necessárias para manipulação dos dados na tabela artista.
  * @author Samuel
  * @author Wagner
  */

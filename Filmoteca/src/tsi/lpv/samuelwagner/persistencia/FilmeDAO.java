@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLTimeoutException;
 import java.util.Calendar;
 
 import tsi.lpv.samuelwagner.funcaoauxiliar.MetodosConversaoBanco;
@@ -26,9 +25,7 @@ public class FilmeDAO {
 	
 	/**
 	 * Cadastra um filme na tabela filme do banco de dados.
-	 * @param filme
-	 * @throws SQLException
-	 * @throws SQLTimeoutException
+	 * @param filme <code>Filme</code> objeto a ser persistido.
 	 */
 	public static void cadastrarFilme(Filme filme) {
 		//Obtém uma conexão com o banco.

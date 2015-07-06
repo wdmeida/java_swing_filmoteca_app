@@ -9,11 +9,19 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import tsi.lpv.samuelwagner.gui.IgCadastrarFilme;
 
+/** Classe <code>TratadorEventoInserirImagem</code> responsavel por tratar os eventos 
+ *  da classe <code>IgCadastrarFilme</code>.
+ * @author Samuel
+ * @author Wanger
+ */
 public class TratadorEventoInserirImagem implements ActionListener {
 	private IgCadastrarFilme igCadastraFilme;
 	
-	public TratadorEventoInserirImagem(IgCadastrarFilme igCadastraFilme) {
-		this.igCadastraFilme = igCadastraFilme;
+	/**Construtor Sobrecarregado da classe <code>TratadorEventoInsereAtor</code>.
+	 * @param igCadastrarFilme referencia da Classe <code>IgCadastrarFilme</code>.
+	 */
+	public TratadorEventoInserirImagem(IgCadastrarFilme igCadastrarFilme) {
+		this.igCadastraFilme = igCadastrarFilme;
 	}
 
 	@Override

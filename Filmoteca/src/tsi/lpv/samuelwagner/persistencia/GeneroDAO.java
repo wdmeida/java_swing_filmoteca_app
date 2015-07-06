@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import tsi.lpv.samuelwagner.tipo.Genero;
 
-/**Classe Responsavel das Operações do Banco para a Classe <code>Genero</code>.
+/**A classe <code>GeneroDAO</code> implementa as operações necessárias para manipulação dos dados na tabela genero.
  * @author Samuel
  * @author Wagner
  */

@@ -51,22 +51,22 @@ public class FuncaoAuxiliar {
 		return dataPesquisa;
 	}
 	
-	/**
-	 * @param componente
-	 * @param Mensagem
-	 * @param titulo
+	/**Cria uma mensagem para o usuario.
+	 * @param componente <code>Component</code>, localidade de exibição.
+	 * @param mensagem <code>String</code>, 
+	 * @param titulo <code>String</code> da mensagem.
 	 */
-	public static void exibirMensagem(Component componente, String Mensagem, String titulo) {
-		showMessageDialog(componente, Mensagem, titulo, INFORMATION_MESSAGE);
+	public static void exibirMensagem(Component componente, String mensagem, String titulo) {
+		showMessageDialog(componente, mensagem, titulo, INFORMATION_MESSAGE);
 	}//exibirMensagem
 	
-	/**
-	 * @param componente
-	 * @param Mensagem
-	 * @param titulo
+	/**Cria uma mensagem de Erro para o usuario.
+	 * @param componente <code>Component</code>, localidade de exibição.
+	 * @param mensagem <code>String</code>, 
+	 * @param titulo <code>String</code> da mensagem.
 	 */
-	public static void exibirMensagemErro(Component componente, String Mensagem, String titulo) {
-		showMessageDialog(componente, Mensagem, titulo, ERROR_MESSAGE);
+	public static void exibirMensagemErro(Component componente, String mensagem, String titulo) {
+		showMessageDialog(componente, mensagem, titulo, ERROR_MESSAGE);
 	}//exibirMensagemErro
 	
 	/**
@@ -81,7 +81,11 @@ public class FuncaoAuxiliar {
 		 return (collator.compare(textoA,textoB))== 0 ? true : false;
 	}//comparaString()
 	
-	public static String[] obtemNomes(String texto) {
+	/**Obtém palavras de um texto.
+	 * @param texto <code>String</code> a ser obtidos as palavras.
+	 * @return um array de <code>String</code> com as palavras.
+	 */
+	public static String[] obtemPalavras(String texto) {
 		StringTokenizer tokens = new StringTokenizer(texto, "\n\t");
 		
 		String[] nomes = new String[tokens.countTokens()];
@@ -91,7 +95,12 @@ public class FuncaoAuxiliar {
 		return nomes;
 	}
 	
-	public static String juntaTexto(String[] textos, int numero) {
+	/**Junta um número de palavras de um array de <code>String</code>.
+	 * @param textos <code>String</code> array a ser unido.
+	 * @param numero <code>int</code> o número de palavras a ser unidas.
+	 * @return um <code>String</code> com as palavras unidas.
+	 */
+	public static String juntaPalavra(String[] textos, int numero) {
 		String texto = "";
 		for(int indice = 0; indice < numero;indice++)
 			texto += textos[indice] + "\n";

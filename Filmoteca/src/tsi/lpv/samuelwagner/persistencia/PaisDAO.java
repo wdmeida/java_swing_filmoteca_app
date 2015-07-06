@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import tsi.lpv.samuelwagner.tipo.Pais;
 
-/**Classe Responsavel das Operações do Banco para a Classe <code>Pais</code>.
+/**A classe <code>PaisDAO</code> implementa as operações necessárias para manipulação dos dados na tabela pais.
  * @author Samuel
  * @author Wagner
  */

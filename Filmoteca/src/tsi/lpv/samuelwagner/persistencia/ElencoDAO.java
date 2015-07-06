@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**Classe Responsavel das Operações do Banco para obter as relações entre o Artistas e seu filme.
+/**A classe <code>ElencoDAO</code> contém as operações de inserção e pesquisa de dados na tabela de referência
+ * de artista e filme.
  * @author Samuel
  * @author Wagner
  */

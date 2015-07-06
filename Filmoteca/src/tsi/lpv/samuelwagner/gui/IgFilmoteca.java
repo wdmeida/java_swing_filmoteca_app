@@ -40,7 +40,6 @@ public class IgFilmoteca extends JFrame {
 	 */
 	public IgFilmoteca() {
 		//Define o nome do app
-		super("Filmoteca Darth Vader");
 		setTitle("Darth Movies");
 		
 		//Muda o icone da barra de títulos da janela. Cria um objeto url e passa o endereço da imagem.
@@ -198,7 +197,8 @@ public class IgFilmoteca extends JFrame {
 		arquivoMenu.add(apagarMenuItem);
 		
 		//Define a tela como vísivel.
-		setVisible(true);
+		setLocationRelativeTo(null);
+		setVisible(false);
 	}//IgFilmoteca
 
 	/**

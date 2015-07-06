@@ -21,7 +21,7 @@ public class AutorFilmeDAO {
 	/**
 	 * Cadastra os códigos do autor e do filme na tabela de referência do banco.
 	 * @param codigoFilme <code>int</code> código do filme.
-	 * @param codigoDiretor <code>int</code> código do autor.
+	 * @param codigoAutor <code>int</code> código do autor.
 	 */
 	public static void cadastrarAutorFilme(int codigoFilme, int codigoAutor) {
 		Connection conn = ConnectionFactory.getConnection();

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import tsi.lpv.samuelwagner.tipo.Diretor;
 
-/**A classe <code>Diretor</code> implementa as operações necessárias para manipulação dos dados na tabela diretor.
+/**A classe <code>DiretorDAO</code> implementa as operações necessárias para manipulação dos dados na tabela diretor.
  * @author Samuel
  * @author Wagner
  */

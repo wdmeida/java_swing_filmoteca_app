@@ -31,17 +31,17 @@ public class Filme {
 	
 	
 	/**Construtor sobrecarregado da classe Filme.
-	 * @param codigo
-	 * @param duracao
-	 * @param ano
-	 * @param classificacaoIMDB
-	 * @param classificacaoPessoal
-	 * @param titulo
-	 * @param sinopse
-	 * @param classificacaoEtaria
-	 * @param midia
-	 * @param dataLancamento
-	 * @param poster
+	 * @param codigo <code>int</code> do filme.
+	 * @param duracao <code>int</code> do filme.
+	 * @param ano <code>int</code>  do filme.
+	 * @param classificacaoIMDB <code>int</code> do filme.
+	 * @param classificacaoPessoal <code>int</code> do filme.
+	 * @param titulo <code>String</code> do filme.
+	 * @param sinopse <code>String</code> do filme.
+	 * @param classificacaoEtaria <code>String</code> do filme.
+	 * @param midia <code>String</code> do filme.
+	 * @param dataLancamento <code>Calendar</code> do filme.
+	 * @param poster <code>File</code> do filme.
 	 */
 	public Filme(int codigo, int duracao, int ano, int classificacaoIMDB,
 			int classificacaoPessoal, String titulo, String sinopse,
@@ -120,7 +120,7 @@ public class Filme {
 	
 	/**
 	 * Atribui a classificação <code>int</code> segundo o IMDB.
-	 * @param classificacaoIMDB
+	 * @param classificacaoIMDB <code>int</code> com a classificacao do IMDB.
 	 */
 	public void setClassificacaoIMDB(int classificacaoIMDB) {
 		this.classificacaoIMDB = classificacaoIMDB;
@@ -208,7 +208,7 @@ public class Filme {
 	
 	/**
 	 * Obtém a data de lançamento do filme.
-	 * @return
+	 * @return <code>Calendar</code> com a data de Lançamento.
 	 */
 	public Calendar getDataLancamento() {
 		return dataLancamento;
@@ -232,7 +232,7 @@ public class Filme {
 	
 	/**
 	 * Atribui a imagem a ser utilizada como pôster do filme.
-	 * @param poster
+	 * @param poster <code>File</code> com o pôster.
 	 */
 	public void setPoster(File poster) {
 		this.poster = poster;

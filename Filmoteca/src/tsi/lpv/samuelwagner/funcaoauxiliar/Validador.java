@@ -50,6 +50,11 @@ public class Validador {
 		return false;
 	}
 	
+	/**Procura a ocorrencia de um texto em um array de <code>String</code>.
+	 * @param texto <code>String</code> a ser comparado.
+	 * @param textos array de <code>String</code> a ser comparado.
+	 * @return um <code>boolean</code> informando se e ou não igual.
+	 */
 	public static boolean procuraIgualdede(String texto, String[] textos){
 		for(String palavra : textos)
 			if(FuncaoAuxiliar.comparaString(texto, palavra))

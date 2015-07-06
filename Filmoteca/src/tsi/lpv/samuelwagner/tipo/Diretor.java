@@ -17,6 +17,8 @@ public class Diretor extends Dados {
 	
 	/**
 	 * Construtor sobrecarregado da classe <code>Diretor</code>.
+	 * @param codigo <code>int</code> do Diretor.
+	 * @param nome  <code>String</code> nome do Diretor.
 	 */
 	public Diretor(int codigo, String nome) {
 		super(codigo,nome);

@@ -7,6 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Samuel
+ * @author Wagner
+ */
 public class PaisFilmeDAO {
 	private static final String INSERIR_PAIS_FILME = "INSERT INTO paisfilme (codigo_filme,codigo_pais) VALUES (?,?);";
 	private static final String OBTER_PAIS_FILME = "SELECT codigo_pais FROM paisfilme WHERE codigo_filme = ?;";
