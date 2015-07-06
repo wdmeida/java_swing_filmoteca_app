@@ -6,13 +6,9 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
-
-import javafx.scene.input.KeyCode;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -45,6 +41,7 @@ public class IgFilmoteca extends JFrame {
 	public IgFilmoteca() {
 		//Define o nome do app
 		super("Filmoteca Darth Vader");
+		setTitle("Darth Movies");
 		
 		//Muda o icone da barra de títulos da janela. Cria um objeto url e passa o endereço da imagem.
 		URL url = this.getClass().getResource("/tsi/lpv/samuelwagner/imagens/Darth_Vader_Mask_64.png");
