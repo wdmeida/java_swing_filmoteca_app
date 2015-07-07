@@ -6,6 +6,7 @@ import java.util.List;
 
 import tsi.lpv.samuelwagner.persistencia.ArtistaDAO;
 import tsi.lpv.samuelwagner.persistencia.AutorDAO;
+import tsi.lpv.samuelwagner.persistencia.AutorFilmeDAO;
 import tsi.lpv.samuelwagner.persistencia.DiretorDAO;
 import tsi.lpv.samuelwagner.persistencia.DiretorFilmeDAO;
 import tsi.lpv.samuelwagner.persistencia.ElencoDAO;
@@ -78,7 +79,7 @@ public class PesquisaControle {
 	 * @return <code>String</code> com os autores cadastrados.
 	 */
 	public static String obterAutores(int codigoFilme){
-		List<Integer> autores = DiretorFilmeDAO.obterDiretorFilme(codigoFilme);
+		List<Integer> autores = AutorFilmeDAO.obterAutoresFilme(codigoFilme);
 		
 		String autor = "";
 		

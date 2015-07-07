@@ -2,11 +2,15 @@ package tsi.lpv.samuelwagner.tratadorevento;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.StringTokenizer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import tsi.lpv.samuelwagner.funcaoauxiliar.FuncaoAuxiliar;
+import tsi.lpv.samuelwagner.funcaoauxiliar.MetodosConversaoBanco;
 import tsi.lpv.samuelwagner.gui.IgCadastrarFilme;
 
 /** Classe <code>TratadorEventoInserirImagem</code> responsavel por tratar os eventos 
@@ -64,10 +68,25 @@ public class TratadorEventoInserirImagem implements ActionListener {
 			  // Obtém o nome do arquivo selecionado pelo usuário no diálogo.
 			  if (opcao == JFileChooser.APPROVE_OPTION){ 
 				 String caminhoImagem = dialogoAbrir.getSelectedFile().getPath();
-				 ImageIcon icon = new ImageIcon(caminhoImagem);
-				 igCadastraFilme.getPosterLabel().setIcon(icon);
-				 igCadastraFilme.getFotoField().setText(caminhoImagem);
-			  }else 
+				 File file = new File(caminhoImagem);
+				 
+					 File fileNovo = MetodosConversaoBanco.redimensionarImagem(file,igCadastraFilme.getPosterLabel().getWidth(),
+							 igCadastraFilme.getPosterLabel().getHeight(), obtemExtensao(file.getName()));
+					 if(fileNovo != null){
+						 ImageIcon icon = new ImageIcon(fileNovo.getAbsolutePath());
+						 igCadastraFilme.getPosterLabel().setIcon(icon);
+						 igCadastraFilme.getFotoField().setText(fileNovo.getAbsolutePath());
+					 }else{
+						 FuncaoAuxiliar.exibirMensagemErro(igCadastraFilme, "Imagem Não suportada.", "Inserir Imagem");
+					 }
+			}else 
 				  return;
 		} // dialogoAbrirArquivo()
+	
+	//Obtem a extensão da Imagem.
+	private String obtemExtensao(String nome){
+		StringTokenizer tokenizer = new StringTokenizer(nome,".");
+		tokenizer.nextToken();
+		return "."+tokenizer.nextToken();
+	}
 }

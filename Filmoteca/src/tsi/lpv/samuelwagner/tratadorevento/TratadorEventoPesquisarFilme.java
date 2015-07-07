@@ -3,6 +3,8 @@ package tsi.lpv.samuelwagner.tratadorevento;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+
 import tsi.lpv.samuelwagner.controller.PesquisaControle;
 import tsi.lpv.samuelwagner.funcaoauxiliar.FuncaoAuxiliar;
 import tsi.lpv.samuelwagner.gui.IgFilmoteca;
@@ -24,7 +26,7 @@ public class TratadorEventoPesquisarFilme implements ActionListener {
 	private String nomeFilme;
 	
 	/**Construtor Sobrecarregado da classe <code>TratadorEventoPesquisarFilme</code>.
-	 * @param componente <code>Component</code> referencia da Classe que relializou a chamada ao método.
+	 * @param igFilmoteca <code>IgFilmoteca</code> referencia da Classe que relializou a chamada ao método.
 	 * @param nomeFilme <code>String</code> com o nome do filme.
 	 */
 	public TratadorEventoPesquisarFilme(IgFilmoteca igFilmoteca, String nomeFilme) {
@@ -107,7 +109,8 @@ public class TratadorEventoPesquisarFilme implements ActionListener {
 		igResultadoPesquisaFilme.getLancamentoTextField().setText(FuncaoAuxiliar.coverteDataParaString(filme.getDataLancamento(), true));
 		
 		//Configura a foto
-		//igResultadoPesquisaFilme.getFotoLabel().setIcon());
+		ImageIcon icon = new ImageIcon(filme.getPoster().getAbsolutePath());
+		igResultadoPesquisaFilme.getFotoLabel().setIcon(icon);
 		
 		//Exibe a tela para o usuário.
 		igResultadoPesquisaFilme.setVisible(true);

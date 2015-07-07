@@ -76,6 +76,7 @@ public class MetodosConversaoBanco {
 	 * @param file <code>File</code> com a imagem a ser redimensionada.
 	 * @param width <code>int</code> com a largura da imagem.
 	 * @param heigth <code>int</code> com a altura da imagem.
+	 * @param formato <code>String</code>.
 	 * @return <code>File</code> com a nova imagem a ser inserida ou <code>null</code> caso não seja
 	 * 			possível redimensionar.
 	 */
@@ -89,7 +90,7 @@ public class MetodosConversaoBanco {
 			
 			//Redimensiona a imagem original na imagem redimensionada.
 			redimensionada.getGraphics().drawImage(original, 0, 0, width, heigth, null);
-			
+			new File(DIR_TEMP + File.separator).mkdirs();
 			//Salva a imagem em um arquivo.
 			ImageIO.write(redimensionada, formato, new File(DIR_TEMP + File.separator + file.getName()));
 			return new File(DIR_TEMP + File.separator + file.getName());
