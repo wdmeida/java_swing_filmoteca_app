@@ -323,7 +323,7 @@ public class IgCadastrarFilme extends JDialog {
 		midiaPanel.add(arquivoDigitalRadio);
 		
 		JButton btnProximo = new JButton("Proximo");
-		btnProximo.setBounds(375, 310, 89, 23);
+		btnProximo.setBounds(375, 320, 89, 23);
 		btnProximo.setMnemonic(KeyEvent.VK_X);
 		filmePanel1.add(btnProximo);
 		
@@ -336,13 +336,13 @@ public class IgCadastrarFilme extends JDialog {
 		
 		informaLabel = new JLabel("");
 		informaLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		informaLabel.setBounds(14, 292, 343, 30);
+		informaLabel.setBounds(4, 272, 447, 30);
 		informaLabel.setForeground(new Color(255, 102, 0));
 		filmePanel1.add(informaLabel);
 		
 		inforFilmeRepitido = new JLabel("");
 		inforFilmeRepitido.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		inforFilmeRepitido.setBounds(14, 328, 347, 30);
+		inforFilmeRepitido.setBounds(14, 313, 347, 30);
 		inforFilmeRepitido.setForeground(new Color(255, 102, 0));
 		filmePanel1.add(inforFilmeRepitido);
 		
