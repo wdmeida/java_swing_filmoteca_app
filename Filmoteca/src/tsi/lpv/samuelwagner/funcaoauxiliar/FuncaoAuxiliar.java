@@ -8,7 +8,8 @@ import java.awt.Component;
 import java.text.Collator;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.StringTokenizer;
+
+import javax.swing.JList;
 /**
  * A classe <code>FuncaoAuxiliar</code>
  * @author Samuel
@@ -85,13 +86,11 @@ public class FuncaoAuxiliar {
 	 * @param texto <code>String</code> a ser obtidos as palavras.
 	 * @return um array de <code>String</code> com as palavras.
 	 */
-	public static String[] obtemPalavras(String texto) {
-		StringTokenizer tokens = new StringTokenizer(texto, "\n\t");
+	public static String[] obtemPalavras(JList<String> texto) {
+		String nomes[] = new String[texto.getModel().getSize()];
 		
-		String[] nomes = new String[tokens.countTokens()];
-		int indice = 0;
-		while(tokens.hasMoreTokens())
-			nomes[indice++] = tokens.nextToken();
+		for(int indice = 0; indice < texto.getModel().getSize(); indice++)
+			nomes[indice] =  texto.getModel().getElementAt(indice);
 		return nomes;
 	}
 	

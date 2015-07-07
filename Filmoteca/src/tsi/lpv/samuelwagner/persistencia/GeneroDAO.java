@@ -134,6 +134,7 @@ public class GeneroDAO {
 				do{nomesCategoria.add(resultSet.getString(1));}while(resultSet.next());
 				stmt.close();
 				resultSet.close();
+				nomesCategoria.add("Novo Genero...");
 				return nomesCategoria.toArray(new String[0]);
 			}else{
 				resultSet.close();
