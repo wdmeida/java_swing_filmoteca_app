@@ -76,6 +76,8 @@ public class IgPesquisa extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new RespostaEventoPesquisaElemento(igFilmoteca, pesquisaTextField.getText(), botaoChamada).pesquisa();
+				if(!pesquisaTextField.getText().equals(""))
+					IgPesquisa.this.dispose();
 			}
 		});
 		

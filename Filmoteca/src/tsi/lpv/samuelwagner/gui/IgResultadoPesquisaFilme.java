@@ -79,12 +79,8 @@ public class IgResultadoPesquisaFilme extends JDialog {
 		fotoPanel.setBounds(10, 11, 135, 227);
 		getContentPane().add(fotoPanel);
 		fotoPanel.setLayout(null);
-		
-		JLabel label = new JLabel("New label");
-		label.setBounds(44, 21, 46, 14);
-		fotoPanel.add(label);
-		
-		fotoLabel = new JLabel("New label");
+
+		fotoLabel = new JLabel("Não há Foto.");
 		fotoLabel.setBounds(10, 21, 115, 195);
 		fotoPanel.add(fotoLabel);
 		

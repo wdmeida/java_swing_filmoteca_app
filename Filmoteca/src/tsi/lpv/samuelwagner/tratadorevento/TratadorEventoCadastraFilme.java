@@ -12,6 +12,7 @@ import tsi.lpv.samuelwagner.controller.CadastroControle;
 import tsi.lpv.samuelwagner.funcaoauxiliar.FuncaoAuxiliar;
 import tsi.lpv.samuelwagner.funcaoauxiliar.Validador;
 import tsi.lpv.samuelwagner.gui.IgCadastrarFilme;
+import tsi.lpv.samuelwagner.gui.IgMensagem;
 import tsi.lpv.samuelwagner.persistencia.FilmeDAO;
 import tsi.lpv.samuelwagner.persistencia.GeneroDAO;
 import tsi.lpv.samuelwagner.persistencia.PaisDAO;
@@ -52,10 +53,9 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 		if(validaCadastroEAvisaUsuario(validaNomeFilme(),validaNomePais(),validaDuracao(),validaNomesAtor(),
 				validaNomesAutor(),validaNomesDiretor())){
 				cadastraFilme();
-				FuncaoAuxiliar.exibirMensagem(igCadastrarFilme, "Filme Cadastrado Com sucesso.", "Cadastra Filme.");
 					igCadastrarFilme.dispose();
 				}else{
-					igCadastrarFilme.getInformaLabel().setText("Os Campos em Vermelho são de Preenchimento Obrigatorio.");
+					igCadastrarFilme.getInformaLabel().setText("Contem campos de Preencimento Obrigatorio sem preencher.");
 				}
 	}
 	//Valida o nome do filme.
@@ -169,7 +169,7 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 		Pais pais = PaisDAO.pesquisaPais(igCadastrarFilme.getPaisField().getText());
 		if(pais == null)
 			pais = new Pais(0, igCadastrarFilme.getPaisField().getText());
-		
+		new ThreadMensagem().start();
 		CadastroControle.cadastro(filme, artistas, diretores, autores, genero, pais);
 	}
 	
@@ -215,5 +215,12 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 				return "Blu-Ray";
 			else
 				return "Arquivo Digital";
+	}
+	
+	private class ThreadMensagem extends Thread{
+		@Override
+		public void run() {
+			new IgMensagem(igCadastrarFilme, "Salvando o Filme no Banco de Dados.");
+		}
 	}
 }
