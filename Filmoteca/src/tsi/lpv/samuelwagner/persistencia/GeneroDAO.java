@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 import tsi.lpv.samuelwagner.tipo.Genero;
 
@@ -15,7 +16,7 @@ public class GeneroDAO {
 	private static final String INSERT_GENERO = "INSERT INTO genero (descricao) VALUES (?);";
 	private static final String SELECT_GENERO_CODIGO = "SELECT * FROM genero WHERE codigo_genero = ?;";
 	private static final String SELECT_GENERO_DESCRICAO = "SELECT * FROM genero WHERE descricao = ?;";
-	
+	private static final String SELECT_GENERO = "SELECT descricao FROM genero";
 	/**Cadastra <code>Genero</code> no Banco de Dados.
 	 * @param genero <code>Genero</code>.
 	 */
@@ -115,6 +116,33 @@ public class GeneroDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return -1;
+		}
+	}
+	
+	/**Obtém todos os nomes de generos cadastrado na tabela.
+	 * @return um array de <code>String</code>.
+	 */
+	public static String[] obtemNomesGenero(){
+		try {
+			Connection conn = ConnectionFactory.getConnection();
+			PreparedStatement stmt = conn.prepareStatement(SELECT_GENERO);
+			
+			ResultSet resultSet = stmt.executeQuery();
+			
+			if(resultSet.next()){
+				LinkedList<String> nomesCategoria = new LinkedList<String>();
+				do{nomesCategoria.add(resultSet.getString(1));}while(resultSet.next());
+				stmt.close();
+				resultSet.close();
+				return nomesCategoria.toArray(new String[0]);
+			}else{
+				resultSet.close();
+				stmt.close();
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 }
