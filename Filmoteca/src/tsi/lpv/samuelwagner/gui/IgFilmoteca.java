@@ -122,7 +122,7 @@ public class IgFilmoteca extends JFrame {
 		diretorButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new IgPesquisa("Pesquisar Filmes Diretor", "Nome do Diretor: ", IgFilmoteca.this, IgFilmoteca.this.diretorButton);
+				new IgTelaPesquisa("Pesquisar Filmes Diretor", "Nome do Diretor: ", IgFilmoteca.this, IgFilmoteca.this.diretorButton);
 			}
 		});
 		
@@ -140,7 +140,7 @@ public class IgFilmoteca extends JFrame {
 		atorButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new IgPesquisa("Pesquisar Filmes Artista", "Nome do artista: ", IgFilmoteca.this, IgFilmoteca.this.atorButton);
+				new IgTelaPesquisa("Pesquisar Filmes Artista", "Nome do artista: ", IgFilmoteca.this, IgFilmoteca.this.atorButton);
 			}
 		});
 		
@@ -158,7 +158,7 @@ public class IgFilmoteca extends JFrame {
 		autorButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new IgPesquisa("Pesquisar Filmes Autor", "Nome do autor: ", IgFilmoteca.this, IgFilmoteca.this.autorButton);
+				new IgTelaPesquisa("Pesquisar Filmes Autor", "Nome do autor: ", IgFilmoteca.this, IgFilmoteca.this.autorButton);
 			}
 		});
 		
@@ -177,7 +177,7 @@ public class IgFilmoteca extends JFrame {
 		generoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new IgPesquisa("Pesquisar Filmes pelo Gênero", "Gênero: ", IgFilmoteca.this, IgFilmoteca.this.generoButton);
+				new IgTelaPesquisa("Pesquisar Filmes pelo Gênero", "Gênero: ", IgFilmoteca.this, IgFilmoteca.this.generoButton);
 			}
 		});
 		
@@ -258,38 +258,6 @@ public class IgFilmoteca extends JFrame {
 		exibicaoPanel.setBounds(161, 70, 668, 387);
 		getContentPane().add(exibicaoPanel);
 		exibicaoPanel.setLayout(null);
-		
-		//Cria o resultado ScroopPane.
-		resultadoScrollPane = new JScrollPane();
-		resultadoScrollPane.setBounds(10, 37, 648, 295);
-		exibicaoPanel.add(resultadoScrollPane);
-		
-		//Cria o resultadoJList.
-		resultadoJList = new JList<String>();
-		resultadoJList.setCellRenderer(new Cores());
-		resultadoJList.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		resultadoJList.setBackground(corBase);
-		resultadoJList.setForeground(Color.WHITE);
-		resultadoJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		resultadoScrollPane.setViewportView(resultadoJList);
-		
-		//Cria o botão detalhes do filme.
-		JButton detalhesButton = new JButton("Detalhes");
-		detalhesButton.setMnemonic(KeyEvent.VK_E);
-		detalhesButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/movie47.png")));
-		detalhesButton.setBackground(Color.BLACK);
-		detalhesButton.setForeground(corSubMenu);
-		detalhesButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
-		//Registra o tratador de eventos do botão de detalhes
-		detalhesButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				exibirDetalhes();
-			}
-		});
-		detalhesButton.setToolTipText("Selecione um filme da pesquisa e clique em detalhes para ver mais informa\u00F5es do filme.");
-		detalhesButton.setBounds(520, 340, 138, 36);
-		exibicaoPanel.add(detalhesButton);
 		
 		//Define a tela como não redimensionável.
 		setResizable(false);
@@ -432,37 +400,5 @@ public class IgFilmoteca extends JFrame {
 	 */
 	public JButton getGeneroButtono() {
 		return generoButton;
-	}
-	
-	@SuppressWarnings("rawtypes")
-	public class Cores extends JLabel implements ListCellRenderer{
-		  public Cores(){
-		    setOpaque(true);
-		  }
-		  
-		  //Obtém a referência do objeto a ser modificado.
-		  public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus){
-		     
-		    setText(value.toString());
-		    setForeground(Color.WHITE);
-		    resultadoJList.setFont(new Font("Tahoma", Font.BOLD, 14));
-		    if(!isSelected){
-		      if(index % 2 == 0)
-		        setBackground(corLista);
-		      else
-		        setBackground(corBase);
-		    }
-		    else
-		      setBackground(list.getSelectionBackground());
-
-		    return this;
-		  } 
-	}
-	
-	private void exibirDetalhes(){
-		if(resultadoJList.getSelectedIndex() == -1) new IgMensagem(IgFilmoteca.this, "Você deve selecionar um item retornado da pesquisa");
-		else{
-			new TratadorEventoPesquisarFilme(IgFilmoteca.this, resultadoJList.getSelectedValue()).pesquisarFilme();
-		}
 	}
 }//class IgFilmoteca

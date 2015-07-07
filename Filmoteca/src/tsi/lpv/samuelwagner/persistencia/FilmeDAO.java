@@ -89,6 +89,7 @@ public class FilmeDAO {
 			PreparedStatement stmt = ConnectionFactory.getConnection().prepareStatement(PESQUISA_FILME_TITULO);
 			stmt.setString(1, nomeFilme);
 			ResultSet resultSet = stmt.executeQuery();
+			
 			if(resultSet.next()){
 				//Cria Objeto Filme.
 				Filme filme= new Filme();

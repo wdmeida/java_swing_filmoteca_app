@@ -1,7 +1,5 @@
 package tsi.lpv.samuelwagner.tratadorevento;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -17,13 +15,11 @@ import tsi.lpv.samuelwagner.persistencia.AutorFilmeDAO;
 import tsi.lpv.samuelwagner.persistencia.DiretorDAO;
 import tsi.lpv.samuelwagner.persistencia.DiretorFilmeDAO;
 import tsi.lpv.samuelwagner.persistencia.ElencoDAO;
-import tsi.lpv.samuelwagner.persistencia.FilmeDAO;
 import tsi.lpv.samuelwagner.persistencia.GeneroDAO;
 import tsi.lpv.samuelwagner.persistencia.GeneroFilmeDAO;
 import tsi.lpv.samuelwagner.tipo.Artista;
 import tsi.lpv.samuelwagner.tipo.Autor;
 import tsi.lpv.samuelwagner.tipo.Diretor;
-import tsi.lpv.samuelwagner.tipo.Filme;
 import tsi.lpv.samuelwagner.tipo.Genero;
 
 /**
@@ -150,7 +146,7 @@ public class RespostaEventoPesquisaElemento {
 	
 	/**
 	 * Carrega os elementos encontrados para o comboBox.
-	 * @param filmes
+	 * @param filmes <code>String[]</code> com os nomes dos filmes para serem carregados.
 	 */
 	private void carregarElementosJList(String[] filmes){
 		DefaultListModel<String> valores = new DefaultListModel<String>();

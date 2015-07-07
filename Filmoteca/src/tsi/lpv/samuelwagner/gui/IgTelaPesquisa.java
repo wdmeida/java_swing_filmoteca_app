@@ -28,7 +28,7 @@ import java.awt.Toolkit;
  * @author Samuel Gonçalves
  *
  */
-public class IgPesquisa extends JDialog {
+public class IgTelaPesquisa extends JDialog {
 	private JTextField pesquisaTextField;
 	private Color corBase = new Color(17,17,17);
 
@@ -39,8 +39,8 @@ public class IgPesquisa extends JDialog {
 	 * @param igFilmoteca <code>IgFilmoteca</code> com a referência da tela principal.
 	 * @param botaoChamada <code>JButton</code> com a referência do botão que disparou o evento.
 	 */
-	public IgPesquisa(String tipoPesquisa, String mensagem, IgFilmoteca igFilmoteca, JButton botaoChamada) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(IgPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema-icon.png")));
+	public IgTelaPesquisa(String tipoPesquisa, String mensagem, IgFilmoteca igFilmoteca, JButton botaoChamada) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(IgTelaPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema-icon.png")));
 		setSize(443,222);
 		setTitle(tipoPesquisa);
 		
@@ -76,7 +76,7 @@ public class IgPesquisa extends JDialog {
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.setMnemonic(KeyEvent.VK_P);
 		btnPesquisar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnPesquisar.setIcon(new ImageIcon(IgPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Watching_a_video_on_a_tablet_16.png")));
+		btnPesquisar.setIcon(new ImageIcon(IgTelaPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Watching_a_video_on_a_tablet_16.png")));
 		btnPesquisar.setForeground(Color.BLACK);
 		btnPesquisar.setBackground(Color.WHITE);
 		btnPesquisar.setBounds(178, 123, 110, 38);
@@ -88,14 +88,14 @@ public class IgPesquisa extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				new RespostaEventoPesquisaElemento(igFilmoteca, pesquisaTextField.getText(), botaoChamada).pesquisa();
 				if(!pesquisaTextField.getText().equals(""))
-					IgPesquisa.this.dispose();
+					IgTelaPesquisa.this.dispose();
 			}
 		});
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setMnemonic(KeyEvent.VK_C);
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnCancelar.setIcon(new ImageIcon(IgPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Film_reel_circular_shape_16.png")));
+		btnCancelar.setIcon(new ImageIcon(IgTelaPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Film_reel_circular_shape_16.png")));
 		btnCancelar.setBounds(298, 123, 110, 38);
 		pesquisaPanel.add(btnCancelar);
 		
@@ -104,7 +104,7 @@ public class IgPesquisa extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				IgPesquisa.this.dispose();
+				IgTelaPesquisa.this.dispose();
 			}
 		});
 		
@@ -113,18 +113,18 @@ public class IgPesquisa extends JDialog {
 		pesquisaPanel.add(separator);
 		
 		JLabel popLabel = new JLabel("");
-		popLabel.setIcon(new ImageIcon(IgPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Popcorn_from_cinema_24.png")));
+		popLabel.setIcon(new ImageIcon(IgTelaPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Popcorn_from_cinema_24.png")));
 		popLabel.setBounds(360, 11, 48, 38);
 		pesquisaPanel.add(popLabel);
 		
 		JLabel cineLabel = new JLabel("");
-		cineLabel.setIcon(new ImageIcon(IgPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/3d_boy.png")));
+		cineLabel.setIcon(new ImageIcon(IgTelaPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/3d_boy.png")));
 		cineLabel.setBounds(10, 128, 39, 33);
 		pesquisaPanel.add(cineLabel);
 		
 		JLabel ticketLabel = new JLabel("");
 		ticketLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		ticketLabel.setIcon(new ImageIcon(IgPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema_date_day_calendar_page_24.png")));
+		ticketLabel.setIcon(new ImageIcon(IgTelaPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema_date_day_calendar_page_24.png")));
 		ticketLabel.setBounds(10, 11, 32, 41);
 		pesquisaPanel.add(ticketLabel);
 		
@@ -132,7 +132,7 @@ public class IgPesquisa extends JDialog {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				IgPesquisa.this.dispose();
+				IgTelaPesquisa.this.dispose();
 			}
 		});
 		
