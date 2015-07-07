@@ -10,10 +10,10 @@ import tsi.lpv.samuelwagner.persistencia.ElencoDAO;
 import tsi.lpv.samuelwagner.persistencia.FilmeDAO;
 import tsi.lpv.samuelwagner.tipo.Filme;
 
-/** Classe <code>TratadorEventoPesquisarFilme</code> responsavel por tratar os eventos 
+/** Classe <code>TratadorEventoPesquisarFilme</code> responsável por tratar os eventos 
  *  da classe <code>IgFilmoteca</code>.
- * @author Samuel
- * @author Wanger
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida 
  */
 public class TratadorEventoPesquisarFilme implements ActionListener {
 	private IgFilmoteca igFilmoteca;
@@ -32,7 +32,8 @@ public class TratadorEventoPesquisarFilme implements ActionListener {
 	}
 	
 	/**
-	 * 
+	 * Pesquisa as informações do filme no banco, caso encontrado, carrega os dados para o painel de resultado 
+	 * da pesquisa e retorna o resultado para o usuário.
 	 */
 	public void pesquisarFilme(){
 		String nome = igFilmoteca.getPesquisarTextField().getText();

@@ -1,11 +1,14 @@
 package tsi.lpv.samuelwagner.funcaoauxiliar;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import javax.imageio.ImageIO;
 /**
  * A classe <code>MetodosConversaoBanco</code> possui os atributos e métodos auxiliares responsáveis por
  * realizar as manipulações das funções do banco de dados.
@@ -67,4 +70,46 @@ public class MetodosConversaoBanco {
 		}
 		return f;
 	}//reconstroiImagemDoBanco()
+	
+	/**
+	 * Redimenciona uma imagem para um tamanho específico para que possa ser salva no banco.
+	 * @param file <code>File</code> com a imagem a ser redimensionada.
+	 * @param width <code>int</code> com a largura da imagem.
+	 * @param heigth <code>int</code> com a altura da imagem.
+	 * @return <code>File</code> com a nova imagem a ser inserida ou <code>null</code> caso não seja
+	 * 			possível redimensionar.
+	 */
+	public static File redimensionarImagem(File file, int width, int heigth, String formato){
+		try {
+			//Lê a imagem original para o buffer.
+			BufferedImage original = ImageIO.read(file);
+			
+			//Cria uma imagem redimensionada com altura e largura específicada.
+			BufferedImage redimensionada = new BufferedImage(width, heigth, BufferedImage.TYPE_INT_RGB);
+			
+			//Redimensiona a imagem original na imagem redimensionada.
+			redimensionada.getGraphics().drawImage(original, 0, 0, width, heigth, null);
+			
+			//Salva a imagem em um arquivo.
+			ImageIO.write(redimensionada, formato, new File(DIR_TEMP + File.separator + file.getName()));
+			return new File(DIR_TEMP + File.separator + file.getName());
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}//redimensionarImagem()
+	
+	/**
+	 * Apaga o conteúdo da pasta temporária criada para redimensionar as imagens.
+	 */
+	public static void apagarPastaTemporaria(){
+		File tmp = new File(DIR_TEMP);
+		
+		String arquivo[] = tmp.list();
+	
+		for(String arq : arquivo){
+			new File(tmp + File.separator + arq).delete();
+		}
+	}//apagarPastaTemporaria()
 }//MetodosConversaoBanco
