@@ -14,7 +14,7 @@ import tsi.lpv.samuelwagner.tipo.Diretor;
 public class DiretorDAO {
 	private static final String INSERT_DIRETOR = "INSERT INTO diretor (nome) VALUES (?);";
 	private static final String SELECT_DIRETOR_CODIGO = "SELECT * FROM diretor WHERE codigo_diretor = ?;";
-	private static final String SELECT_DIRETOR_NOME = "SELECT * FROM diretor WHERE nome = ?;";
+	private static final String SELECT_DIRETOR_NOME = "SELECT * FROM diretor WHERE nome ~* (?);";
 	
 	/**Cadastra <code>Diretor</code> no Banco de Dados.
 	 * @param diretor <code>Diretor</code>.

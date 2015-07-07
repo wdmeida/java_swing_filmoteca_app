@@ -14,7 +14,7 @@ import tsi.lpv.samuelwagner.tipo.Autor;
 public class AutorDAO {
 	private static final String INSERT_AUTOR = "INSERT INTO autor (nome) VALUES (?);";
 	private static final String SELECT_AUTOR_CODIDO = "SELECT * FROM autor WHERE codigo_autor = ?";
-	private static final String SELECT_AUTOR_NOME = "SELECT * FROM autor WHERE nome = ?";
+	private static final String SELECT_AUTOR_NOME = "SELECT * FROM autor WHERE nome ~* (?)";
 	
 	/** Cadastra <code>Autor</code> no Banco de Dados.
 	 * @param autor <code>Autor</code>.
@@ -33,9 +33,9 @@ public class AutorDAO {
 		}
 	}//CadastraAutor
 	
-	/**Pesquisa a o autor apartir do codigo fornecido.
-	 * @param nome <code>Int</code>.
-	 * @return um <code>Autor</code>.
+	/**Pesquisa um autor a partir do nome fornecido.
+	 * @param nome <code>String</code> com o nome do autor.
+	 * @return um <code>Autor</code> com os dados encontrados ou <code>null</code> informando que não foi encontrado.
 	 */
 	public static Autor pesquisaAutor(String nome){
 		Connection conn = ConnectionFactory.getConnection();
@@ -61,9 +61,9 @@ public class AutorDAO {
 		}
 	}
 	
-	/**Pesquisa a o autor apartir do codigo fornecido.
+	/**Pesquisa a partir do código recebido por parâmetro.
 	 * @param codigoAutor <code>Int</code>.
-	 * @return um <code>Autor</code>.
+	 * @return um <code>Autor</code> com os dados encontrados ou <code>null</code> informando que não foi encontrado.
 	 */
 	public static Autor pesquisaAutor(int codigoAutor){
 		Connection conn = ConnectionFactory.getConnection();

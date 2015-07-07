@@ -1,5 +1,6 @@
 package tsi.lpv.samuelwagner.controller;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -8,11 +9,13 @@ import tsi.lpv.samuelwagner.persistencia.AutorDAO;
 import tsi.lpv.samuelwagner.persistencia.DiretorDAO;
 import tsi.lpv.samuelwagner.persistencia.DiretorFilmeDAO;
 import tsi.lpv.samuelwagner.persistencia.ElencoDAO;
+import tsi.lpv.samuelwagner.persistencia.FilmeDAO;
 import tsi.lpv.samuelwagner.persistencia.GeneroDAO;
 import tsi.lpv.samuelwagner.persistencia.GeneroFilmeDAO;
 import tsi.lpv.samuelwagner.tipo.Artista;
 import tsi.lpv.samuelwagner.tipo.Autor;
 import tsi.lpv.samuelwagner.tipo.Diretor;
+import tsi.lpv.samuelwagner.tipo.Filme;
 import tsi.lpv.samuelwagner.tipo.Genero;
 
 /**
@@ -107,7 +110,24 @@ public class PesquisaControle {
 			if(pesquisarGenero != null)
 				generos += pesquisarGenero.getNome() + ", ";
 		}
-		System.out.println(generos);
 		return generos;
 	}//obterGeneros
+	
+	/**
+	 * Obtém um array com os nomes dos filmes que os códigos foram recebidos por parâmetro.
+	 * @param codigoFilmes <code>List<Integer></code> com os codigos dos filmes.
+	 * @return <code>String[]</code> com os nomes dos filmes.
+	 */
+	public static String[] obterFilmes(List<Integer> codigoFilmes) {
+		List<String> nomesFilmes = new ArrayList<String>();
+		
+		Iterator<Integer> itCodigoFilmes = codigoFilmes.iterator();
+		while(itCodigoFilmes.hasNext()){
+			Integer codigo = itCodigoFilmes.next();
+			Filme filme = FilmeDAO.pesquisarFilme(codigo);
+			if(filme != null)
+				nomesFilmes.add(filme.getTitulo());
+		}
+		return nomesFilmes.toArray(new String[0]);
+	}//obterFilmes
 }//classPesquisaControle

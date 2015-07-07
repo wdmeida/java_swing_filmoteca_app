@@ -13,6 +13,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+
+import tsi.lpv.samuelwagner.tipo.Filme;
 /**
  * A classe <code>IgResultadoPesquisaFilme</code> constrói a janela gráfica responsável por exibir os resultados da busca 
  * por um filme, caso este esteja cadastrado no banco de dados.
@@ -41,17 +43,19 @@ public class IgResultadoPesquisaFilme extends JDialog {
 	private JLabel fotoLabel;
 	/**
 	 * Construtor da classe <code>IgResultadoFilme</code>.
+	 * @param componente <code>IgFilmoteca</code> com a referência do método que realizou a chamada a classe.
+	 * @param filme
 	 */
-	public IgResultadoPesquisaFilme(IgFilmoteca filmoteca) {
+	public IgResultadoPesquisaFilme(IgFilmoteca componente, Filme filme) {
 		//Define o tamanho da janela.
 		setSize(841, 556);
 		
-		setLocationRelativeTo(filmoteca);
+		setLocationRelativeTo(componente);
 		
 		getContentPane().setBackground(corBase);
 		
 		//Define o título da janela.
-		setTitle("Filme");
+		setTitle(filme.getTitulo());
 		
 		//Registra o tratador de eventos da janela.
 		addWindowListener(new WindowAdapter() {
@@ -436,6 +440,10 @@ public class IgResultadoPesquisaFilme extends JDialog {
 		return paisLabel;
 	}
 
+	/**
+	 * Obtém a referência do <code>JLabel</code> que exibe a foto.
+	 * @return <code>JLabel</code>
+	 */
 	public JLabel getFotoLabel() {
 		return fotoLabel;
 	}
