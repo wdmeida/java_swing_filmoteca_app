@@ -54,12 +54,15 @@ public class DiretorFilmeDAO {
 			stmt.setInt(1, codigo);
 			ResultSet resultSet = stmt.executeQuery();
 			
-			while(resultSet.next()) codigos.add(resultSet.getInt(1));
-			
+			if(resultSet.next())
+				do{
+					codigos.add(resultSet.getInt(1));
+				}while(resultSet.next()); 
 			resultSet.close();
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
 		return codigos;
 	}//obterFilmesDiretor()
@@ -78,12 +81,16 @@ public class DiretorFilmeDAO {
 			stmt.setInt(1, codigo);
 			ResultSet resultSet = stmt.executeQuery();
 			
-			while(resultSet.next()) codigos.add(resultSet.getInt(1));
+			if(resultSet.next())
+				do{
+					codigos.add(resultSet.getInt(1));
+				}while(resultSet.next()); 
 			
 			resultSet.close();
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
 		return codigos;
 	}//obterFilmesDiretor()

@@ -56,7 +56,9 @@ public class GeneroFilmeDAO {
 			}
 			
 			List<Integer> listCodigosFilme = new ArrayList<>();
-			while(resultSet.next())	listCodigosFilme.add(resultSet.getInt(1));
+			do{
+				listCodigosFilme.add(resultSet.getInt(1));
+			}while(resultSet.next())	;
 			
 			stmt.close();
 			resultSet.close();
@@ -88,7 +90,9 @@ public class GeneroFilmeDAO {
 			}
 			
 			List<Integer> listCodigosFilme = new ArrayList<>();
-			while(resultSet.next())	listCodigosFilme.add(resultSet.getInt(1));
+			do{
+				listCodigosFilme.add(resultSet.getInt(1));
+			}while(resultSet.next());	
 			stmt.close();
 			resultSet.close();
 			

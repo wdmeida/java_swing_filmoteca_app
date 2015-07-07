@@ -65,9 +65,9 @@ public class TratadorEventoPesquisarFilme implements ActionListener {
 		//Configura o nome do filme na tela.
 		igResultadoPesquisaFilme.getNomeFilme().setText(filme.getTitulo());
 		
-		/*//Configura o país.
+		//Configura o país.
 		int codPais = PaisFilmeDAO.obterPaisFilme(filme.getCodigo());
-		igResultadoPesquisaFilme.getPaisLabel().setText("País: " + PaisDAO.pesquisaPais(codPais).getNome());*/
+		if(codPais != 0) igResultadoPesquisaFilme.getPaisLabel().setText("País: " + PaisDAO.pesquisaPais(codPais).getNome());
 		
 		//Configura o ano.
 		igResultadoPesquisaFilme.getAnoLabel().setText("Ano: " + Integer.toString(filme.getAno()));
@@ -79,7 +79,8 @@ public class TratadorEventoPesquisarFilme implements ActionListener {
 		igResultadoPesquisaFilme.getEtariaLabel().setText("Classificação etária: " + filme.getClassificacaoEtaria());
 		
 		//Configura o gênero.
-		igResultadoPesquisaFilme.getGeneroLabel().setText("Gênero: " + PesquisaControle.obterGeneros(filme.getCodigo()));
+		String genero = PesquisaControle.obterGeneros(filme.getCodigo());
+		if(genero != null && !genero.equals(""))igResultadoPesquisaFilme.getGeneroLabel().setText("Gênero: " + genero.substring(0, genero.length() - 2));
 		
 		//Configura a sinopse
 		igResultadoPesquisaFilme.getSinopseTextArea().setText(filme.getSinopse());
@@ -92,9 +93,14 @@ public class TratadorEventoPesquisarFilme implements ActionListener {
 		igResultadoPesquisaFilme.getPessoalTextField().setText(Integer.toString(filme.getClassificacaoPessoal()) + " estrelas");
 		
 		//Configura autor, diretor e elenco.
-		igResultadoPesquisaFilme.getElencoTextArea().setText(PesquisaControle.obterElenco(filme.getCodigo()));
-		igResultadoPesquisaFilme.getAutorTextField().setText(PesquisaControle.obterAutores(filme.getCodigo()));
-		igResultadoPesquisaFilme.getDiretorTextField().setText(PesquisaControle.obterDiretores(filme.getCodigo()));
+		String elenco = PesquisaControle.obterElenco(filme.getCodigo());
+		if(elenco != null && !elenco.equals("")) igResultadoPesquisaFilme.getElencoTextArea().setText(elenco.substring(0, elenco.length() - 2));
+		
+		String autor = PesquisaControle.obterAutores(filme.getCodigo());
+		if(autor != null && !autor.equals(""))igResultadoPesquisaFilme.getAutorTextField().setText(autor.substring(0, autor.length() - 2));
+		
+		String diretor = PesquisaControle.obterDiretores(filme.getCodigo());
+		if(diretor != null && !diretor.equals("")) igResultadoPesquisaFilme.getDiretorTextField().setText(diretor.substring(0, diretor.length() - 2));
 		
 		//Configura a data
 		igResultadoPesquisaFilme.getLancamentoTextField().setText(FuncaoAuxiliar.coverteDataParaString(filme.getDataLancamento(), true));

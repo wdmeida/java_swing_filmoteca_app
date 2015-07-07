@@ -10,6 +10,10 @@ import tsi.lpv.samuelwagner.persistencia.DiretorFilmeDAO;
 import tsi.lpv.samuelwagner.persistencia.ElencoDAO;
 import tsi.lpv.samuelwagner.persistencia.GeneroDAO;
 import tsi.lpv.samuelwagner.persistencia.GeneroFilmeDAO;
+import tsi.lpv.samuelwagner.tipo.Artista;
+import tsi.lpv.samuelwagner.tipo.Autor;
+import tsi.lpv.samuelwagner.tipo.Diretor;
+import tsi.lpv.samuelwagner.tipo.Genero;
 
 /**
  * A classe <code>PesquisaControle</code> possui os métodos responsáveis por realizar as pesquisas nos
@@ -36,7 +40,9 @@ public class PesquisaControle {
 		Iterator<Integer> itElenco = elenco.iterator();
 		while(itElenco.hasNext()){
 			Integer codigo = itElenco.next();
-			atores += ArtistaDAO.pesquisaArtista(codigo).getNome() + ", ";
+			Artista pesquisarArtista = ArtistaDAO.pesquisaArtista(codigo);
+			if(pesquisarArtista != null)
+				atores += pesquisarArtista.getNome() + ", ";
 		}
 		return atores;
 	}
@@ -56,7 +62,9 @@ public class PesquisaControle {
 		Iterator<Integer> itDiretores = diretores.iterator();
 		while(itDiretores.hasNext()){
 			Integer codigo = itDiretores.next();
-			diretor += DiretorDAO.pesquisaDiretor(codigo).getNome() + ", ";
+			Diretor pesquisaDiretor = DiretorDAO.pesquisaDiretor(codigo);
+			if(pesquisaDiretor != null)
+				diretor += pesquisaDiretor.getNome() + ", ";
 		}
 		return diretor;
 	}//obterDiretores
@@ -71,12 +79,12 @@ public class PesquisaControle {
 		
 		String autor = "";
 		
-		if(autores == null) return "";
-		
 		Iterator<Integer> itAutores = autores.iterator();
 		while(itAutores.hasNext()){
 			Integer codigo = itAutores.next();
-			autor += AutorDAO.pesquisaAutor(codigo).getNome() + ", ";
+			Autor pesquisaAutor = AutorDAO.pesquisaAutor(codigo);
+			if(pesquisaAutor != null)
+				autor += pesquisaAutor.getNome() + ", ";
 		}
 		return autor;
 	}//obterAutores
@@ -95,7 +103,9 @@ public class PesquisaControle {
 		Iterator<Integer> itGenero = genero.iterator();
 		while(itGenero.hasNext()){
 			Integer codigo = itGenero.next();
-			generos += GeneroDAO.pesquisaGenero(codigo).getNome() + ", ";
+			Genero pesquisarGenero = GeneroDAO.pesquisaGenero(codigo);
+			if(pesquisarGenero != null)
+				generos += pesquisarGenero.getNome() + ", ";
 		}
 		System.out.println(generos);
 		return generos;

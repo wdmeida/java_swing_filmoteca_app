@@ -53,8 +53,10 @@ public class AutorFilmeDAO {
 			stmt.setInt(1, codigo);
 			ResultSet resultSet = stmt.executeQuery();
 			
-			while(resultSet.next()) codigos.add(resultSet.getInt(1));
-			
+			if(resultSet.next())
+				do{
+					codigos.add(resultSet.getInt(1));
+				}while(resultSet.next()); 
 			resultSet.close();
 			stmt.close();
 		} catch (SQLException e) {
@@ -77,7 +79,10 @@ public class AutorFilmeDAO {
 			stmt.setInt(1, codigo);
 			ResultSet resultSet = stmt.executeQuery();
 			
-			while(resultSet.next()) codigos.add(resultSet.getInt(1));
+			if(resultSet.next())
+				do{
+					 codigos.add(resultSet.getInt(1));
+				}while(resultSet.next());
 			
 			resultSet.close();
 			stmt.close();
