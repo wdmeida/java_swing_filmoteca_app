@@ -3,7 +3,6 @@ package tsi.lpv.samuelwagner.app;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import tsi.lpv.samuelwagner.funcaoauxiliar.MetodosConversaoBanco;
 import tsi.lpv.samuelwagner.gui.IgEsperaInicial;
 import tsi.lpv.samuelwagner.gui.IgFilmoteca;
 
