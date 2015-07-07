@@ -1,7 +1,5 @@
 package tsi.lpv.samuelwagner.tratadorevento;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -71,7 +69,6 @@ public class RespostaEventoPesquisaElemento {
 				
 				//Obtém os filmes nomes dos filmes.
 				String filmes[] = PesquisaControle.obterFilmes(filmesArtista);
-				
 				carregarElementosJList(filmes);
 			}
 		}			
@@ -94,7 +91,7 @@ public class RespostaEventoPesquisaElemento {
 				
 				//Obtém os filmes nomes dos filmes.
 				String filmes[] = PesquisaControle.obterFilmes(filmesAutor);
-				
+		
 				carregarElementosJList(filmes);
 			}
 		}			
@@ -139,8 +136,10 @@ public class RespostaEventoPesquisaElemento {
 				
 				//Obtém os filmes nomes dos filmes.
 				String filmes[] = PesquisaControle.obterFilmes(filmesGenero);
-				
-				carregarElementosJList(filmes);
+				if(filmes != null)
+					carregarElementosJList(filmes);
+				else
+					new IgMensagem(IgFilmoteca, "Não há nenhum filme cadastrado nesse gênero.");
 			}
 		}		
 	}

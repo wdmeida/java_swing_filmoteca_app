@@ -224,6 +224,7 @@ public class IgFilmoteca extends JFrame {
 		
 		//Cria o resultadoJList
 		resultadoJList = new JList<String>();
+		resultadoJList.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		resultadoJList.setBackground(corBase);
 		resultadoJList.setForeground(Color.WHITE);
 		resultadoJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

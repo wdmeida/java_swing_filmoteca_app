@@ -121,6 +121,7 @@ public class PesquisaControle {
 	public static String[] obterFilmes(List<Integer> codigoFilmes) {
 		List<String> nomesFilmes = new ArrayList<String>();
 		
+		if(codigoFilmes == null || codigoFilmes.size() == 0) return null;
 		Iterator<Integer> itCodigoFilmes = codigoFilmes.iterator();
 		while(itCodigoFilmes.hasNext()){
 			Integer codigo = itCodigoFilmes.next();

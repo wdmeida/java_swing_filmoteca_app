@@ -5,7 +5,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import tsi.lpv.samuelwagner.funcaoauxiliar.MetodosConversaoBanco;
 import tsi.lpv.samuelwagner.tipo.Filme;
@@ -22,6 +24,7 @@ public class FilmeDAO {
 			+ "classificacao_etaria,classificacao_imdb,classificacao_pessoal,midia,poster) VALUES (?,?,?,?,?,?,?,?,?,?);";
 	private static final String PESQUISA_FILME_TITULO = "SELECT * FROM filme WHERE UPPER(titulo) = UPPER(?);";
 	private static final String PESQUISA_FILME_CODIGO = "SELECT * FROM filme WHERE codigo_filme = ?;";
+	private static final String PESQUISA_SATISFACAO_DESC ="SELECT * FROM filme ORDER BY classificacao_pessoal DESC ";
 	
 	/**
 	 * Cadastra um filme na tabela filme do banco de dados.
@@ -155,4 +158,53 @@ public class FilmeDAO {
 			return null;
 		}
 	}//pesquisarFilme()
+	
+	/**
+	 * Obtém os dados dos filmes ordenados de forma decrescente pela classificação pessoal.
+	 * @return <code>List</code> com o resultado da pesquisa ou <code>null</code> informando que não encontrou nenhum dado.
+	 */
+	public static List<Filme> pesquisarFilmeCriterio() {
+		
+		List<Filme> filmes = new ArrayList<Filme>();
+		
+		try {
+			Connection conn = ConnectionFactory.getConnection();
+			
+			PreparedStatement stmt = conn.prepareStatement(PESQUISA_SATISFACAO_DESC);
+			
+			ResultSet resultSet = stmt.executeQuery();
+			
+			if(resultSet.next()){
+				do{
+					Filme filme= new Filme();
+					filme.setCodigo(resultSet.getInt(1));
+					filme.setTitulo(resultSet.getString(2));
+					filme.setDuracao(resultSet.getInt(3));
+					filme.setAno(resultSet.getInt(4));
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(resultSet.getDate(5));
+					filme.setDataLancamento(cal);
+					filme.setSinopse(resultSet.getString(6));
+					filme.setClassificacaoEtaria(resultSet.getString(7));
+					filme.setClassificacaoIMDB(resultSet.getInt(8));
+					filme.setClassificacaoPessoal(resultSet.getInt(9));
+					filme.setMidia(resultSet.getString(10));
+					filme.setPoster(MetodosConversaoBanco.reconstroiImagemDoBanco(resultSet.getBytes(11), filme.getTitulo()));
+					filmes.add(filme);
+				}while(resultSet.next());
+				stmt.close();
+				resultSet.close();
+				return filmes;
+			}
+			else
+			{
+				stmt.close();
+				resultSet.close();
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }//FilmeDAO
