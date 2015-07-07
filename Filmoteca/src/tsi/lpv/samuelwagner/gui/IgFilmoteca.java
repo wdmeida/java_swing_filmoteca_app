@@ -138,7 +138,7 @@ public class IgFilmoteca extends JFrame {
 		
 		//Instância o objeto responsável por conter os dados da pesquisa.
 		pesquisarTextField = new JTextField();
-		TratadorEventoPesquisarFilme tratadorPesquisa = new TratadorEventoPesquisarFilme(this);
+		TratadorEventoPesquisarFilme tratadorPesquisa = new TratadorEventoPesquisarFilme(IgFilmoteca.this);
 		//Registra o tratador de eventos do jtextField relativo ao teclado.
 		pesquisarTextField.addMouseListener(new MouseAdapter() {
 			@Override
@@ -149,20 +149,14 @@ public class IgFilmoteca extends JFrame {
 		
 		pesquisarTextField.setText("Pesquisar Filme");
 		pesquisarTextField.setToolTipText("Pesquisar Filme");
-		pesquisarTextField.setBounds(655, 9, 121, 20);
+		pesquisarTextField.setBounds(606, 11, 121, 20);
 		pesquisarPanel.add(pesquisarTextField);
 		pesquisarTextField.setColumns(10);
 		
-		//Cria o botão de pesquisa.
-		JButton pesquisarButton = new JButton("");
-		pesquisarButton.setBounds(786, 4, 43, 30);
-		pesquisarPanel.add(pesquisarButton);
-		pesquisarButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/Film_strip_24.png")));
-		pesquisarButton.setBackground(new Color(124, 61, 139));
-		pesquisarButton.setBorderPainted(false);
-		
-		//Registra o tratador de eventos do botão pesquisa.
-		pesquisarButton.addActionListener(tratadorPesquisa);
+		JButton buscarFilme = new JButton("Buscar");
+		buscarFilme.setBounds(737, 10, 92, 23);
+		pesquisarPanel.add(buscarFilme);
+		buscarFilme.addActionListener(tratadorPesquisa);
 		
 		//Instância o painel de exibição.
 		exibicaoPanel = new JPanel();

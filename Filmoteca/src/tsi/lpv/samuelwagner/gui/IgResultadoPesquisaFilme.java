@@ -1,28 +1,26 @@
 package tsi.lpv.samuelwagner.gui;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JDialog;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.border.TitledBorder;
-import java.awt.Font;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import java.awt.Color;
-import javax.swing.UIManager;
-import java.awt.BorderLayout;
-import javax.swing.JList;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 /**
- * A classe <code>IgResultadoFilme</code> constrói a janela gráfica responsável por exibir os resultados da busca 
+ * A classe <code>IgResultadoPesquisaFilme</code> constrói a janela gráfica responsável por exibir os resultados da busca 
  * por um filme, caso este esteja cadastrado no banco de dados.
  * 
  * @author Wagner Almeida
  * @author Samuel Gonçalves
  */
-public class IgResultadoFilme extends JDialog {
+public class IgResultadoPesquisaFilme extends JDialog {
 	private Color corBase = new Color(17,17,17);
 	private Color corLista = new Color(114,124,115);
 	private JLabel anoLabel;
@@ -39,12 +37,16 @@ public class IgResultadoFilme extends JDialog {
 	private JTextField pessoalTextField;
 	private JTextField midiaTextField;
 	private JTextField lancamentoTextField;
+	private JLabel paisLabel;
+	private JLabel fotoLabel;
 	/**
 	 * Construtor da classe <code>IgResultadoFilme</code>.
 	 */
-	public IgResultadoFilme() {
+	public IgResultadoPesquisaFilme(IgFilmoteca filmoteca) {
 		//Define o tamanho da janela.
-		setSize(781, 529);
+		setSize(841, 556);
+		
+		setLocationRelativeTo(filmoteca);
 		
 		getContentPane().setBackground(corBase);
 		
@@ -55,7 +57,7 @@ public class IgResultadoFilme extends JDialog {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				IgResultadoFilme.this.dispose();
+				IgResultadoPesquisaFilme.this.dispose();
 			}
 		});
 		
@@ -70,8 +72,17 @@ public class IgResultadoFilme extends JDialog {
 		fotoPanel = new JPanel();
 		fotoPanel.setBorder(new TitledBorder(null, "Imagem", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		fotoPanel.setBackground(corBase);
-		fotoPanel.setBounds(10, 11, 135, 200);
+		fotoPanel.setBounds(10, 11, 135, 227);
 		getContentPane().add(fotoPanel);
+		fotoPanel.setLayout(null);
+		
+		JLabel label = new JLabel("New label");
+		label.setBounds(44, 21, 46, 14);
+		fotoPanel.add(label);
+		
+		fotoLabel = new JLabel("New label");
+		fotoLabel.setBounds(10, 21, 115, 195);
+		fotoPanel.add(fotoLabel);
 		
 		//Cria o título.
 		nomeFilme = new JLabel("T\u00EDtulo");
@@ -84,13 +95,13 @@ public class IgResultadoFilme extends JDialog {
 		JPanel adicionalPanel = new JPanel();
 		adicionalPanel.setBackground(corBase);
 		adicionalPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informa\u00E7\u00F5es adicionais", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
-		adicionalPanel.setBounds(10, 222, 755, 268);
+		adicionalPanel.setBounds(10, 249, 815, 268);
 		getContentPane().add(adicionalPanel);
 		adicionalPanel.setLayout(null);
 		
 		//Cria o painel data de lancamento.
 		JPanel dataLancamentoPanel = new JPanel();
-		dataLancamentoPanel.setBounds(10, 31, 735, 28);
+		dataLancamentoPanel.setBounds(10, 31, 795, 28);
 		dataLancamentoPanel.setBackground(corLista);
 		adicionalPanel.add(dataLancamentoPanel);
 		dataLancamentoPanel.setLayout(null);
@@ -113,7 +124,7 @@ public class IgResultadoFilme extends JDialog {
 		//Cria o mídia panel
 		JPanel midiaPanel = new JPanel();
 		midiaPanel.setBackground(corBase);
-		midiaPanel.setBounds(10, 58, 735, 28);
+		midiaPanel.setBounds(10, 58, 795, 28);
 		adicionalPanel.add(midiaPanel);
 		midiaPanel.setLayout(null);
 		
@@ -136,7 +147,7 @@ public class IgResultadoFilme extends JDialog {
 		//Cria o pessoalPanel
 		JPanel pessoalPanel = new JPanel();
 		pessoalPanel.setBackground(corLista);
-		pessoalPanel.setBounds(10, 86, 735, 28);
+		pessoalPanel.setBounds(10, 86, 795, 28);
 		adicionalPanel.add(pessoalPanel);
 		pessoalPanel.setLayout(null);
 		
@@ -159,7 +170,7 @@ public class IgResultadoFilme extends JDialog {
 		//Cria o imdbPanel
 		JPanel imdbPanel = new JPanel();
 		imdbPanel.setBackground(corBase);
-		imdbPanel.setBounds(10, 114, 735, 28);
+		imdbPanel.setBounds(10, 114, 795, 28);
 		adicionalPanel.add(imdbPanel);
 		imdbPanel.setLayout(null);
 		
@@ -182,7 +193,7 @@ public class IgResultadoFilme extends JDialog {
 		//Cria o direcaoPanel
 		JPanel direcaoPanel = new JPanel();
 		direcaoPanel.setBackground(corLista);
-		direcaoPanel.setBounds(10, 142, 735, 28);
+		direcaoPanel.setBounds(10, 142, 795, 28);
 		adicionalPanel.add(direcaoPanel);
 		direcaoPanel.setLayout(null);
 		
@@ -198,14 +209,14 @@ public class IgResultadoFilme extends JDialog {
 		diretorTextField.setBackground(corLista);
 		diretorTextField.setForeground(Color.WHITE);
 		diretorTextField.setEditable(false);
-		diretorTextField.setBounds(123, 4, 595, 20);
+		diretorTextField.setBounds(123, 4, 602, 20);
 		direcaoPanel.add(diretorTextField);
 		diretorTextField.setColumns(10);
 		
 		//Cria o autorPanel
 		JPanel autorPanel = new JPanel();
 		autorPanel.setBackground(corBase);
-		autorPanel.setBounds(10, 170, 735, 28);
+		autorPanel.setBounds(10, 170, 795, 28);
 		adicionalPanel.add(autorPanel);
 		autorPanel.setLayout(null);
 		
@@ -228,7 +239,7 @@ public class IgResultadoFilme extends JDialog {
 		//Cria o elencoPanel
 		JPanel elencoPanel = new JPanel();
 		elencoPanel.setBackground(corLista);
-		elencoPanel.setBounds(10, 199, 735, 58);
+		elencoPanel.setBounds(10, 199, 795, 58);
 		adicionalPanel.add(elencoPanel);
 		elencoPanel.setLayout(null);
 		
@@ -258,14 +269,14 @@ public class IgResultadoFilme extends JDialog {
 		JPanel sinopsePanel = new JPanel();
 		sinopsePanel.setBackground(corBase);
 		sinopsePanel.setBorder(new TitledBorder(null, "Sinopse", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
-		sinopsePanel.setBounds(155, 66, 610, 145);
+		sinopsePanel.setBounds(155, 93, 670, 145);
 		getContentPane().add(sinopsePanel);
 		sinopsePanel.setLayout(null);
 		
 		//Cria o sinopaseScrollPane
 		JScrollPane sinopseScrollPane = new JScrollPane();
 		sinopseScrollPane.setBorder(null);
-		sinopseScrollPane.setBounds(10, 17, 590, 117);
+		sinopseScrollPane.setBounds(10, 17, 650, 117);
 		sinopsePanel.add(sinopseScrollPane);
 		
 		//Cria o sinopseTextArea
@@ -277,30 +288,32 @@ public class IgResultadoFilme extends JDialog {
 		
 		//Cria o anoLabel
 		anoLabel = new JLabel("Ano:");
-		anoLabel.setBounds(155, 41, 46, 14);
+		anoLabel.setBounds(155, 44, 175, 14);
 		getContentPane().add(anoLabel);
 		anoLabel.setForeground(Color.WHITE);
 		
 		//Cria o duraçãoLabel
 		duracaoLabel = new JLabel("Dura\u00E7\u00E3o:");
-		duracaoLabel.setBounds(240, 41, 64, 14);
+		duracaoLabel.setBounds(450, 44, 197, 14);
 		getContentPane().add(duracaoLabel);
 		duracaoLabel.setForeground(Color.WHITE);
 		
 		//Cria o etariaLabel
 		etariaLabel = new JLabel("Classifica\u00E7\u00E3o Et\u00E1ria:");
-		etariaLabel.setBounds(360, 41, 102, 14);
+		etariaLabel.setBounds(155, 69, 256, 14);
 		getContentPane().add(etariaLabel);
 		etariaLabel.setForeground(Color.WHITE);
 		
 		//Cria o generoLabel
 		generoLabel = new JLabel("G\u00EAnero:");
 		generoLabel.setForeground(Color.WHITE);
-		generoLabel.setBounds(573, 41, 46, 14);
+		generoLabel.setBounds(450, 69, 270, 14);
 		getContentPane().add(generoLabel);
 		
-		//Define a janela como visivel.
-		setVisible(true);
+		paisLabel = new JLabel("Pa\u00EDs:");
+		paisLabel.setForeground(Color.WHITE);
+		paisLabel.setBounds(657, 44, 150, 14);
+		getContentPane().add(paisLabel);
 	}//IgResultadoFilme()
 	
 	/**
@@ -413,5 +426,17 @@ public class IgResultadoFilme extends JDialog {
 	 */
 	public JTextField getLancamentoTextField() {
 		return lancamentoTextField;
+	}
+
+	/**
+	 * Obtém a referência do <code>JLabel</code> que exibirá o país do filme.
+	 * @return <code>JLabel</code>
+	 */
+	public JLabel getPaisLabel() {
+		return paisLabel;
+	}
+
+	public JLabel getFotoLabel() {
+		return fotoLabel;
 	}
 }//class IgResultadoFilme

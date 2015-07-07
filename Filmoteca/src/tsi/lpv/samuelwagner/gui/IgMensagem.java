@@ -52,6 +52,7 @@ public class IgMensagem extends JDialog {
 		setModal(true);
 		getContentPane().setLayout(null);
 		
+		//Cria o painel de exibição da mensagem.
 		JPanel mensagemPanel = new JPanel();
 		mensagemPanel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Darth Movie Informa", TitledBorder.CENTER, TitledBorder.TOP, null, Color.WHITE));
 		mensagemPanel.setBackground(corBase);
@@ -59,6 +60,7 @@ public class IgMensagem extends JDialog {
 		getContentPane().add(mensagemPanel);
 		mensagemPanel.setLayout(null);
 		
+		//Cria o botão de confirmação para fechar a caixa de mensagem.
 		JButton btnOk = new JButton("OK");
 		btnOk.setForeground(Color.WHITE);
 		btnOk.setBackground(Color.BLACK);
@@ -75,6 +77,9 @@ public class IgMensagem extends JDialog {
 		mensagemLabel.setForeground(Color.WHITE);
 		mensagemLabel.setBounds(50, 46, 256, 16);
 		mensagemPanel.add(mensagemLabel);
+		
+		//Define o posicionamento da janela.
+		setLocationRelativeTo(componente);
 		
 		//Define a janela como visivel.
 		setVisible(true);

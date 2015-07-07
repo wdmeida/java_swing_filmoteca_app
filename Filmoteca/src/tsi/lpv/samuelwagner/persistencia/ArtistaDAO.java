@@ -33,7 +33,7 @@ public class ArtistaDAO {
 		}
 	}
 	
-	/**Pesquisa a o artista apartir do codigo fornecido.
+	/**Pesquisa a o artista a partir do código fornecido.
 	 * @param nome <code>Int</code>.
 	 * @return um <code>Artista</code>.
 	 */

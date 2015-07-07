@@ -36,11 +36,11 @@ public class GeneroFilmeDAO {
 		}
 	}
 	
-	/**Recupera os codigos do filme em relação ao seu genero.
-	 * @param codigoGenero <code>int</code> código do genero. 
+	/**Recupera os códigos do filme em relação ao seu gênero.
+	 * @param codigoGenero <code>int</code> código do gênero. 
 	 * @return um <code>List</code> com os códigos dos Filmes.
 	 */
-	public static List<Integer> pesquisGeneroFilme(int codigoGenero){
+	public static List<Integer> pesquisaFilmeGenero(int codigoGenero){
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -56,7 +56,6 @@ public class GeneroFilmeDAO {
 			}
 			
 			List<Integer> listCodigosFilme = new ArrayList<>();
-			
 			while(resultSet.next())	listCodigosFilme.add(resultSet.getInt(1));
 			
 			stmt.close();
@@ -70,11 +69,11 @@ public class GeneroFilmeDAO {
 		
 	}
 	
-	/**Recupera o codigo dos genero referente ao filme informado.
+	/**Recupera os gênero referentes ao filme informado.
 	 * @param codigoFilme <code>int</code> código do filme. 
 	 * @return um <code>int</code> com o código do genero.
 	 */
-	public static int pesquisElencoArtista(int codigoFilme){
+	public static List<Integer> pesquisaGeneroFilme(int codigoFilme){
 		Connection conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -82,20 +81,21 @@ public class GeneroFilmeDAO {
 			stmt.setInt(1, codigoFilme);
 			
 			ResultSet resultSet = stmt.executeQuery();
-			int codigoGenero;
+			if(!resultSet.next()){
+				stmt.close();
+				resultSet.close();
+				return null;
+			}
 			
-			if(resultSet.next())
-				codigoGenero = resultSet.getInt(1);
-			else
-				codigoGenero = -1;
-
+			List<Integer> listCodigosFilme = new ArrayList<>();
+			while(resultSet.next())	listCodigosFilme.add(resultSet.getInt(1));
 			stmt.close();
 			resultSet.close();
 			
-			return codigoGenero;
+			return listCodigosFilme;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return -1;
+			return null;
 		}
 	}
 }
