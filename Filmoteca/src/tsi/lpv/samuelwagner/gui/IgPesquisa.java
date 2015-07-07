@@ -17,6 +17,10 @@ import javax.swing.JButton;
 import javax.swing.JSeparator;
 
 import tsi.lpv.samuelwagner.tratadorevento.RespostaEventoPesquisaElemento;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 /**
  * A classe <code>IgPesquisa</code> é responsável por construir a interface gráfica de pesquisa do aplicativo
  * Filmoteca.
@@ -36,7 +40,8 @@ public class IgPesquisa extends JDialog {
 	 * @param botaoChamada <code>JButton</code> com a referência do botão que disparou o evento.
 	 */
 	public IgPesquisa(String tipoPesquisa, String mensagem, IgFilmoteca igFilmoteca, JButton botaoChamada) {
-		setSize(443,205);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(IgPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema-icon.png")));
+		setSize(443,222);
 		setTitle(tipoPesquisa);
 		
 		setResizable(false);
@@ -49,26 +54,32 @@ public class IgPesquisa extends JDialog {
 		JPanel pesquisaPanel = new JPanel();
 		pesquisaPanel.setBackground(corBase);
 		pesquisaPanel.setBorder(new TitledBorder(null, tipoPesquisa, TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
-		pesquisaPanel.setBounds(10, 11, 418, 155);
+		pesquisaPanel.setBounds(10, 11, 418, 172);
 		getContentPane().add(pesquisaPanel);
 		pesquisaPanel.setLayout(null);
 		
 		//Cria o rótulo da pesquisa.
 		JLabel pesquisaLabel = new JLabel(mensagem);
+		pesquisaLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		pesquisaLabel.setForeground(Color.WHITE);
-		pesquisaLabel.setBounds(10, 50, 99, 14);
+		pesquisaLabel.setBounds(10, 63, 120, 14);
 		pesquisaPanel.add(pesquisaLabel);
 		
 		setModal(true);
 		
 		//Cria o campo de texto para realizar a pesquisa.
 		pesquisaTextField = new JTextField();
-		pesquisaTextField.setBounds(127, 47, 267, 20);
+		pesquisaTextField.setBounds(140, 60, 268, 20);
 		pesquisaPanel.add(pesquisaTextField);
 		pesquisaTextField.setColumns(10);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
-		btnPesquisar.setBounds(206, 110, 89, 23);
+		btnPesquisar.setMnemonic(KeyEvent.VK_P);
+		btnPesquisar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnPesquisar.setIcon(new ImageIcon(IgPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Watching_a_video_on_a_tablet_16.png")));
+		btnPesquisar.setForeground(Color.BLACK);
+		btnPesquisar.setBackground(Color.WHITE);
+		btnPesquisar.setBounds(178, 123, 110, 38);
 		pesquisaPanel.add(btnPesquisar);
 		
 		//Registra o tratador de eventos do botão pesquisar.
@@ -82,7 +93,10 @@ public class IgPesquisa extends JDialog {
 		});
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(305, 110, 89, 23);
+		btnCancelar.setMnemonic(KeyEvent.VK_C);
+		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnCancelar.setIcon(new ImageIcon(IgPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Film_reel_circular_shape_16.png")));
+		btnCancelar.setBounds(298, 123, 110, 38);
 		pesquisaPanel.add(btnCancelar);
 		
 		//Registra o tratador de eventos do botão pesquisar.
@@ -95,8 +109,24 @@ public class IgPesquisa extends JDialog {
 		});
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 97, 398, 2);
+		separator.setBounds(10, 110, 398, 2);
 		pesquisaPanel.add(separator);
+		
+		JLabel popLabel = new JLabel("");
+		popLabel.setIcon(new ImageIcon(IgPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Popcorn_from_cinema_24.png")));
+		popLabel.setBounds(360, 11, 48, 38);
+		pesquisaPanel.add(popLabel);
+		
+		JLabel cineLabel = new JLabel("");
+		cineLabel.setIcon(new ImageIcon(IgPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/3d_boy.png")));
+		cineLabel.setBounds(10, 128, 39, 33);
+		pesquisaPanel.add(cineLabel);
+		
+		JLabel ticketLabel = new JLabel("");
+		ticketLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		ticketLabel.setIcon(new ImageIcon(IgPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema_date_day_calendar_page_24.png")));
+		ticketLabel.setBounds(10, 11, 32, 41);
+		pesquisaPanel.add(ticketLabel);
 		
 		//Registra o tratador de eventos da janela de pesquisa.
 		addWindowListener(new WindowAdapter() {

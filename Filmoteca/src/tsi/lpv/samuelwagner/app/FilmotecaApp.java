@@ -5,10 +5,11 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import tsi.lpv.samuelwagner.gui.IgEsperaInicial;
 import tsi.lpv.samuelwagner.gui.IgFilmoteca;
+import tsi.lpv.samuelwagner.persistencia.ConnectionFactory;
 
 /**Classe <code>FilmotecaApp</code> responsavel por inicar a execução do Aplicativo Darth Movie.
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class FilmotecaApp {
 
@@ -25,6 +26,9 @@ public class FilmotecaApp {
 		}
 		IgFilmoteca filmoteca = new IgFilmoteca();
 		new ThreadIniciaAplicativo(new IgEsperaInicial(),filmoteca).start();
+		
+		//Encerra a conexão com o banco de dados.
+		ConnectionFactory.closeConnection();
 	}//testa
 
 	//Classe Responsavel por Gerar o pequeno Atraso para abrir a conexão com o banco.

@@ -14,6 +14,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 /**
  * A classe <code>IgMensagem</code> constrói a janela gráfica responsável por exibir mensagens do usuário.
  * 
@@ -28,6 +33,7 @@ public class IgMensagem extends JDialog {
 	 * @param mensagem <code>String</code> com a mensagem a ser exibida.
 	 */
 	public IgMensagem(Component componente, String mensagem) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(IgMensagem.class.getResource("/tsi/lpv/samuelwagner/imagens/Darth_Vader_Mask_64.png")));
 		//Define o tamanho da janela.
 		setSize(385, 186);
 		
@@ -35,7 +41,7 @@ public class IgMensagem extends JDialog {
 		getContentPane().setBackground(corBase);
 		
 		//Define o título da janela.
-		setTitle("Filme");
+		setTitle("Darth Movie");
 		
 		//Registra o tratador de eventos da janela.
 		addWindowListener(new WindowAdapter() {
@@ -62,21 +68,45 @@ public class IgMensagem extends JDialog {
 		
 		//Cria o botão de confirmação para fechar a caixa de mensagem.
 		JButton btnOk = new JButton("OK");
-		btnOk.setForeground(Color.WHITE);
-		btnOk.setBackground(Color.BLACK);
+		btnOk.setMnemonic(KeyEvent.VK_O);
+		btnOk.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/samuelwagner/imagens/video.png")));
+		btnOk.setForeground(Color.BLACK);
+		btnOk.setBackground(Color.WHITE);
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				IgMensagem.this.dispose();
 			}
 		});
 		
-		btnOk.setBounds(135, 105, 89, 23);
+		btnOk.setBounds(122, 96, 114, 32);
 		mensagemPanel.add(btnOk);
 		
 		JLabel mensagemLabel = new JLabel(mensagem);
+		mensagemLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+		mensagemLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		mensagemLabel.setForeground(Color.WHITE);
-		mensagemLabel.setBounds(50, 46, 256, 16);
+		mensagemLabel.setBounds(10, 57, 339, 16);
 		mensagemPanel.add(mensagemLabel);
+		
+		JLabel dartMalLabel = new JLabel("");
+		dartMalLabel.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema-icon.png")));
+		dartMalLabel.setBounds(10, 11, 38, 40);
+		mensagemPanel.add(dartMalLabel);
+		
+		JLabel batmanLabel = new JLabel("");
+		batmanLabel.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/samuelwagner/imagens/Film_strip_24.png")));
+		batmanLabel.setBounds(318, 11, 31, 23);
+		mensagemPanel.add(batmanLabel);
+		
+		JLabel iconFoto = new JLabel("");
+		iconFoto.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/samuelwagner/imagens/keditbookmarks.png")));
+		iconFoto.setBounds(37, 84, 38, 32);
+		mensagemPanel.add(iconFoto);
+		
+		JLabel fotoLabel = new JLabel("");
+		fotoLabel.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/samuelwagner/imagens/Theater_ticket_24.png")));
+		fotoLabel.setBounds(287, 96, 38, 20);
+		mensagemPanel.add(fotoLabel);
 		
 		//Define o posicionamento da janela.
 		setLocationRelativeTo(componente);

@@ -1,24 +1,23 @@
 package tsi.lpv.samuelwagner.gui;
 
 import java.awt.Color;
-import java.awt.Component;
 
-import javax.swing.JDialog;
-import javax.swing.JProgressBar;
-import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 
 /**Classe <code>IgEsperaInicial</code> reponsavel pela criação da Tela inicial do Darth Movie.
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class IgEsperaInicial extends JDialog {
 	private Color corBase =  new Color(17, 17, 17);
 	private JProgressBar progressBar;
 	
 	/**
-	 * Construtor Default da Classe.
+	 * Construtor Default da classe <code>IgEsperaInicial</code>.
 	 */
 	public IgEsperaInicial() {
 		setUndecorated(true);
@@ -55,5 +54,4 @@ public class IgEsperaInicial extends JDialog {
 	public JProgressBar getProgressBar() {
 		return progressBar;
 	}
-
 }

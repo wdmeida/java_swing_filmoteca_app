@@ -231,7 +231,7 @@ public class IgCadastrarFilme extends JDialog {
 			generos = new String[]{"Novo Genero..."};
 		}
 		
-		generoComboBox = new JComboBox(generos);
+		generoComboBox = new JComboBox<String>(generos);
 		generoComboBox.setSize(195, 21);
 		generoComboBox.setLocation(10, 18);
 		generoComboBox.setSelectedIndex(0);
@@ -291,7 +291,7 @@ public class IgCadastrarFilme extends JDialog {
 		filmePanel1.add(faixaEtariaPanel);
 		faixaEtariaPanel.setLayout(null);
 		
-		faixaEtariaComboBox = new JComboBox(new String[] {"Livre", " inadequado para menores de 10", " inadequado para menores de 12", " inadequado para menores de 14", " inadequado para menores de 16", " inadequado para menores de 18"});
+		faixaEtariaComboBox = new JComboBox<String>(new String[] {"Livre", " inadequado para menores de 10", " inadequado para menores de 12", " inadequado para menores de 14", " inadequado para menores de 16", " inadequado para menores de 18"});
 		faixaEtariaComboBox.setSelectedIndex(0);
 		faixaEtariaComboBox.setBounds(10, 21, 195, 22);
 		faixaEtariaPanel.add(faixaEtariaComboBox);

@@ -15,6 +15,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import tsi.lpv.samuelwagner.tipo.Filme;
+import java.awt.Toolkit;
 /**
  * A classe <code>IgResultadoPesquisaFilme</code> constrói a janela gráfica responsável por exibir os resultados da busca 
  * por um filme, caso este esteja cadastrado no banco de dados.
@@ -47,6 +48,7 @@ public class IgResultadoPesquisaFilme extends JDialog {
 	 * @param filme
 	 */
 	public IgResultadoPesquisaFilme(IgFilmoteca componente, Filme filme) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(IgResultadoPesquisaFilme.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema-Batman-Old-icon.png")));
 		//Define o tamanho da janela.
 		setSize(841, 607);
 		
@@ -289,18 +291,21 @@ public class IgResultadoPesquisaFilme extends JDialog {
 		
 		//Cria o anoLabel
 		anoLabel = new JLabel("Ano:");
+		anoLabel.setBounds(690, 17, 135, 14);
 		anoLabel.setBounds(265, 44, 111, 14);
 		getContentPane().add(anoLabel);
 		anoLabel.setForeground(Color.WHITE);
 		
 		//Cria o duraçãoLabel
 		duracaoLabel = new JLabel("Dura\u00E7\u00E3o:");
+		duracaoLabel.setBounds(155, 44, 197, 14);
 		duracaoLabel.setBounds(386, 44, 197, 14);
 		getContentPane().add(duracaoLabel);
 		duracaoLabel.setForeground(Color.WHITE);
 		
 		//Cria o etariaLabel
 		etariaLabel = new JLabel("Classifica\u00E7\u00E3o Et\u00E1ria:");
+		etariaLabel.setBounds(155, 69, 326, 14);
 		etariaLabel.setBounds(265, 69, 280, 14);
 		getContentPane().add(etariaLabel);
 		etariaLabel.setForeground(Color.WHITE);
@@ -308,11 +313,13 @@ public class IgResultadoPesquisaFilme extends JDialog {
 		//Cria o generoLabel
 		generoLabel = new JLabel("G\u00EAnero:");
 		generoLabel.setForeground(Color.WHITE);
+		generoLabel.setBounds(491, 69, 334, 14);
 		generoLabel.setBounds(590, 69, 235, 14);
 		getContentPane().add(generoLabel);
 		
 		paisLabel = new JLabel("Pa\u00EDs:");
 		paisLabel.setForeground(Color.WHITE);
+		paisLabel.setBounds(491, 44, 150, 14);
 		paisLabel.setBounds(590, 44, 235, 14);
 		getContentPane().add(paisLabel);
 	}//IgResultadoFilme()

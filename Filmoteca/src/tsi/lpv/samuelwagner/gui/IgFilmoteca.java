@@ -1,7 +1,7 @@
 package tsi.lpv.samuelwagner.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -17,6 +17,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -24,16 +25,16 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
-import javax.swing.border.LineBorder;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 
-import tsi.lpv.samuelwagner.funcaoauxiliar.Validador;
 import tsi.lpv.samuelwagner.persistencia.FilmeDAO;
 import tsi.lpv.samuelwagner.tipo.Filme;
 import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoPesquisarFilme;
-
-import javax.swing.border.TitledBorder;
-import javax.swing.UIManager;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 /**
  * A classe <code>IgFilmoteca</code> é a responsável por construir a janela gráfica principal.
  * @author Wagner Almeida
@@ -45,6 +46,7 @@ public class IgFilmoteca extends JFrame {
 	private Color corFonte = new Color(237,255,40);
 	private Color corMenu = new Color(148,151,151);
 	private Color corSubMenu = new Color(124,61,139);
+	private Color corLista = new Color(114,124,115);
 	private JTextField pesquisarTextField;
 	private static JButton buscarFilmeButton;
 	private JPanel exibicaoPanel;
@@ -57,8 +59,9 @@ public class IgFilmoteca extends JFrame {
 	private JButton rankingButton;
 	
 	/**
-	 * Construtor da classe IgFilmoteca.
+	 * Construtor da classe <code>IgFilmoteca</code> responsável pela interface gráfica do aplicativo Filmoteca.
 	 */
+	@SuppressWarnings("unchecked")
 	public IgFilmoteca() {
 		//Define o nome do app
 		setTitle("Darth Movies");
@@ -86,17 +89,17 @@ public class IgFilmoteca extends JFrame {
 		
 		//Cria o botão de cadastrar filme.
 		JButton cadastrarFilmeButton = new JButton("Cadastrar Filme");
+		cadastrarFilmeButton.setMnemonic(KeyEvent.VK_C);
 		cadastrarFilmeButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/video.png")));
 		cadastrarFilmeButton.setBackground(Color.BLACK);
 		cadastrarFilmeButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		cadastrarFilmeButton.setForeground(Color.WHITE);
+		cadastrarFilmeButton.setForeground(corSubMenu);
 		cadastrarFilmeButton.setToolTipText("Cadastrar Filmes");
 		cadastrarFilmeButton.setBounds(0, 11, 153, 38);
 		panel.add(cadastrarFilmeButton);
 		
 		//Registra o tratador de eventos do botão cadastrar filme.
 		cadastrarFilmeButton.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				new IgCadastrarFilme(IgFilmoteca.this);
@@ -105,12 +108,15 @@ public class IgFilmoteca extends JFrame {
 		
 		//Cria o botão de procurar diretor.
 		diretorButton = new JButton("Buscar Diretor");
+		diretorButton.setMnemonic(KeyEvent.VK_D);
 		diretorButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/director_sit.png")));
 		diretorButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		diretorButton.setForeground(Color.WHITE);
+		diretorButton.setForeground(corSubMenu);
 		diretorButton.setBackground(Color.BLACK);
 		diretorButton.setBounds(0, 158, 153, 38);
 		panel.add(diretorButton);
+		
+		//Registra o tratador de eventos do botão do diretor.
 		diretorButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -119,15 +125,16 @@ public class IgFilmoteca extends JFrame {
 		});
 		
 		//Cria o botão de buscar por ator.
-		atorButton = new JButton("Buscar Ator");
+		atorButton = new JButton("Buscar Ator");		
+		atorButton.setMnemonic(KeyEvent.VK_A);
 		atorButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/actordark.png")));
 		atorButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		atorButton.setBackground(Color.BLACK);
-		atorButton.setForeground(Color.WHITE);
+		atorButton.setForeground(corSubMenu);
 		atorButton.setBounds(0, 60, 153, 38);
 		panel.add(atorButton);
 		
-		//Registra o tratador de eventos do artista
+		//Registra o tratador de eventos do artista.
 		atorButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -137,12 +144,14 @@ public class IgFilmoteca extends JFrame {
 		
 		//Cria botão de busca por autor.
 		autorButton = new JButton("Buscar Autor");
+		autorButton.setMnemonic(KeyEvent.VK_B);
 		autorButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/author.png")));
 		autorButton.setBackground(Color.BLACK);
-		autorButton.setForeground(Color.WHITE);
+		autorButton.setForeground(corSubMenu);
 		autorButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		autorButton.setBounds(0, 109, 153, 38);
 		panel.add(autorButton);
+		
 		//Registra o tratador de eventos do autor.
 		autorButton.addActionListener(new ActionListener() {
 			@Override
@@ -153,14 +162,16 @@ public class IgFilmoteca extends JFrame {
 		
 		//Criar botão de busca por genêro.
 		generoButton = new JButton("Filmes G\u00EAnero");
+		generoButton.setMnemonic(KeyEvent.VK_G);
 		generoButton.setBounds(0, 207, 153, 38);
 		panel.add(generoButton);
 		generoButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/Hollywood_sign_24.png")));
 		generoButton.setBackground(Color.BLACK);
 		generoButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		generoButton.setForeground(Color.WHITE);
+		generoButton.setForeground(corSubMenu);
 		generoButton.setToolTipText("Pesquisar por g\u00EAneros");
 		
+		//Registra o tratador de eventos do botão de busca de gêneros de filmes.
 		generoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -170,30 +181,39 @@ public class IgFilmoteca extends JFrame {
 		
 		//Criar botão de exibir por filmes melhor classificados.
 		rankingButton = new JButton("Ver Preferidos");
+		rankingButton.setMnemonic(KeyEvent.VK_V);
 		rankingButton.setBounds(0, 256, 153, 38);
 		panel.add(rankingButton);
 		rankingButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/keditbookmarks.png")));
 		rankingButton.setBackground(Color.BLACK);
 		rankingButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		rankingButton.setForeground(Color.WHITE);
+		rankingButton.setForeground(corSubMenu);
 		rankingButton.setToolTipText("Visualizar filmes na ordem de prefer\u00EAncia.");
+
+		//Registra o tratador de eventos do botão de exibição de classificação.
 		rankingButton.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				exibirClassificacao();				
+					exibirClassificacao();		
 			}
 		});
 		
 		//Cria o painel pra barra de pesquisa.
 		JPanel pesquisarPanel = new JPanel();
 		pesquisarPanel.setBackground(corSubMenu);
-		pesquisarPanel.setBounds(0, 21, 839, 38);
+		pesquisarPanel.setBounds(0, 11, 839, 48);
 		getContentPane().add(pesquisarPanel);
 		pesquisarPanel.setLayout(null);
 		
 		//Instância o objeto responsável por conter os dados da pesquisa.
 		pesquisarTextField = new JTextField();
+		pesquisarTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				if(arg0.getKeyCode() == KeyEvent.VK_ENTER)
+					new TratadorEventoPesquisarFilme(IgFilmoteca.this, pesquisarTextField.getText()).pesquisarFilme();
+			}
+		});
 		
 		//Registra o tratador de eventos do jtextField relativo ao teclado.
 		pesquisarTextField.addMouseListener(new MouseAdapter() {
@@ -203,14 +223,22 @@ public class IgFilmoteca extends JFrame {
 			}
 		});
 		
+		//Cria o campo de pesquisa de texto.
 		pesquisarTextField.setText("Pesquisar Filme");
 		pesquisarTextField.setToolTipText("Pesquisar Filme");
-		pesquisarTextField.setBounds(606, 11, 121, 20);
+		pesquisarTextField.setBounds(573, 11, 121, 26);
 		pesquisarPanel.add(pesquisarTextField);
 		pesquisarTextField.setColumns(10);
 		
+		//Cria o botão de procura de filme.
 		buscarFilmeButton = new JButton("Buscar");
-		buscarFilmeButton.setBounds(737, 10, 92, 23);
+		buscarFilmeButton.setMnemonic(KeyEvent.VK_U);
+		buscarFilmeButton.setOpaque(false);
+		buscarFilmeButton.setBorder(null);
+		buscarFilmeButton.setForeground(corSubMenu);
+		buscarFilmeButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/search.png")));
+		buscarFilmeButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		buscarFilmeButton.setBounds(708, 9, 121, 30);
 		pesquisarPanel.add(buscarFilmeButton);
 		
 		//Registra o tratador de eventos da pesquisa.
@@ -229,30 +257,36 @@ public class IgFilmoteca extends JFrame {
 		getContentPane().add(exibicaoPanel);
 		exibicaoPanel.setLayout(null);
 		
-		//Cria o resultado ScroopPane
+		//Cria o resultado ScroopPane.
 		resultadoScrollPane = new JScrollPane();
 		resultadoScrollPane.setBounds(10, 37, 648, 295);
 		exibicaoPanel.add(resultadoScrollPane);
 		
-		//Cria o resultadoJList
+		//Cria o resultadoJList.
 		resultadoJList = new JList<String>();
-		resultadoJList.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		resultadoJList.setCellRenderer(new Cores());
+		resultadoJList.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		resultadoJList.setBackground(corBase);
 		resultadoJList.setForeground(Color.WHITE);
 		resultadoJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		resultadoScrollPane.setViewportView(resultadoJList);
 		
+		//Cria o botão detalhes do filme.
 		JButton detalhesButton = new JButton("Detalhes");
+		detalhesButton.setMnemonic(KeyEvent.VK_E);
+		detalhesButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/movie47.png")));
+		detalhesButton.setBackground(Color.BLACK);
+		detalhesButton.setForeground(corSubMenu);
+		detalhesButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		//Registra o tratador de eventos do botão de detalhes
 		detalhesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(resultadoJList.getSelectedIndex() == -1) new IgMensagem(IgFilmoteca.this, "Você deve selecionar um item retornado da pesquisa");
-				else new TratadorEventoPesquisarFilme(IgFilmoteca.this, resultadoJList.getSelectedValue()).pesquisarFilme();
+				exibirDetalhes();
 			}
 		});
 		detalhesButton.setToolTipText("Selecione um filme da pesquisa e clique em detalhes para ver mais informa\u00F5es do filme.");
-		detalhesButton.setBounds(569, 353, 89, 23);
+		detalhesButton.setBounds(520, 340, 138, 36);
 		exibicaoPanel.add(detalhesButton);
 		
 		//Define a tela como não redimensionável.
@@ -285,6 +319,9 @@ public class IgFilmoteca extends JFrame {
 		setVisible(false);
 	}//IgFilmoteca
 	
+	/**
+	 * Exibe os filmes em ordem descrescente.
+	 */
 	private void exibirClassificacao() {
 		//Obtém os filmes
 		List<Filme> filmes = FilmeDAO.pesquisarFilmeCriterio();
@@ -296,13 +333,11 @@ public class IgFilmoteca extends JFrame {
 			Iterator<Filme> it = filmes.iterator();
 			while(it.hasNext()){
 				Filme filme = it.next();
-				dadosFilmes.add(filme.getTitulo() + "     Duração: " + filme.getDuracao() + "     Classificação Pessoal: " + filme.getClassificacaoPessoal());
+				dadosFilmes.add(String.format("Título: %-45s Classificação Pessoal: %-30s Classificação IMDB: %-30s", filme.getTitulo(),filme.getClassificacaoPessoal(),filme.getClassificacaoIMDB()));
 			}
 			new IgClassificacaoPessoalFilmes(this, dadosFilmes.toArray(new String[0]));
 		}
-		
 	}
-	
 	/**
 	 * Obtém a referência da caixa de texto de pesquisa.
 	 * @return <code>JTextField</code>
@@ -343,23 +378,67 @@ public class IgFilmoteca extends JFrame {
 		return resultadoScrollPane;
 	}
 
+	/**
+	 * Obtém a referência do botão de pesquisar ator da tela principal.
+	 * @return <code>JButton</code>
+	 */
 	public JButton getAtorButton() {
 		return atorButton;
 	}
 
+	/**
+	 * Obtém a referência do botão de pesquisar autor da tela principal.
+	 * @return <code>JButton</code>
+	 */
 	public JButton getAutorButton() {
 		return autorButton;
 	}
 
+	/**
+	 * Obtém a referência do botão de pesquisar diretor da tela principal.
+	 * @return <code>JButton</code>
+	 */
 	public JButton getDiretorButton() {
 		return diretorButton;
 	}
 
-	public JButton getBtnGenro() {
+	/**
+	 * Obtém a referência do botão de pesquisar genero da tela principal.
+	 * @return <code>JButton</code>
+	 */
+	public JButton getGeneroButtono() {
 		return generoButton;
 	}
+	
+	@SuppressWarnings("rawtypes")
+	public class Cores extends JLabel implements ListCellRenderer{
+		  public Cores(){
+		    setOpaque(true);
+		  }
+		  
+		  //Obtém a referência do objeto a ser modificado.
+		  public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus){
+		     
+		    setText(value.toString());
+		    setForeground(Color.WHITE);
+		    resultadoJList.setFont(new Font("Tahoma", Font.BOLD, 14));
+		    if(!isSelected){
+		      if(index % 2 == 0)
+		        setBackground(corLista);
+		      else
+		        setBackground(corBase);
+		    }
+		    else
+		      setBackground(list.getSelectionBackground());
 
-	public JButton getRankingButton() {
-		return rankingButton;
+		    return this;
+		  } 
+	}
+	
+	private void exibirDetalhes(){
+		if(resultadoJList.getSelectedIndex() == -1) new IgMensagem(IgFilmoteca.this, "Você deve selecionar um item retornado da pesquisa");
+		else{
+			new TratadorEventoPesquisarFilme(IgFilmoteca.this, resultadoJList.getSelectedValue()).pesquisarFilme();
+		}
 	}
 }//class IgFilmoteca
