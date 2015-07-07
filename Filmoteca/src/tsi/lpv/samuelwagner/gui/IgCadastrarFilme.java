@@ -33,6 +33,7 @@ import javax.swing.border.TitledBorder;
 
 import tsi.lpv.samuelwagner.funcaoauxiliar.FuncaoAuxiliar;
 import tsi.lpv.samuelwagner.persistencia.GeneroDAO;
+import tsi.lpv.samuelwagner.tipo.Filme;
 import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoCadastraFilme;
 import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoInsereAtor;
 import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoInsereAutor;
@@ -84,11 +85,10 @@ public class IgCadastrarFilme extends JDialog {
 	private JLabel erroDiretorlabel;
 	private JLabel erroAutorlabel;
 	private JLabel erroAtorlabel;
-
 	/**Construtor Sobre Carregado da classe <code>IgCadastrarFilme</code>.
 	 * @param igFilmoteca <code>IgFilmoteca</code>.
 	 */
-	public IgCadastrarFilme(IgFilmoteca igFilmoteca) {
+	public IgCadastrarFilme(IgFilmoteca igFilmoteca, boolean cadastraAtivo) {
 		//Define a proriedades da Janela.
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IgCadastrarFilme.class.getResource("/tsi/lpv/samuelwagner/imagens/movie61.png")));
 		getContentPane().setBackground(new Color(87, 87, 87));
@@ -153,7 +153,7 @@ public class IgCadastrarFilme extends JDialog {
 		tabbedPane.setMnemonicAt(4, 84);
 		
 		//Cria e difine o tratador do Botao cadastrar e cancelar.
-		TratadorEventoCadastraFilme eventoCadastraFilme = new TratadorEventoCadastraFilme(this);
+		TratadorEventoCadastraFilme eventoCadastraFilme = new TratadorEventoCadastraFilme(this,cadastraAtivo);
 		cadastrarButton.addActionListener(eventoCadastraFilme);
 		cancelarButton.addActionListener(eventoCadastraFilme);
 		
@@ -169,7 +169,8 @@ public class IgCadastrarFilme extends JDialog {
 		setLocationRelativeTo(igFilmoteca);
 		setResizable(false);
 		setModal(true);
-		setVisible(true);
+		if(cadastraAtivo)
+			setVisible(true);
 	}//IgCadastrarFilme()
 	
 	//Cria a Aba Filme.
@@ -231,7 +232,7 @@ public class IgCadastrarFilme extends JDialog {
 			generos = new String[]{"Novo Genero..."};
 		}
 		
-		generoComboBox = new JComboBox<String>(generos);
+		generoComboBox = new JComboBox(generos);
 		generoComboBox.setSize(195, 21);
 		generoComboBox.setLocation(10, 18);
 		generoComboBox.setSelectedIndex(0);
@@ -291,7 +292,7 @@ public class IgCadastrarFilme extends JDialog {
 		filmePanel1.add(faixaEtariaPanel);
 		faixaEtariaPanel.setLayout(null);
 		
-		faixaEtariaComboBox = new JComboBox<String>(new String[] {"Livre", " inadequado para menores de 10", " inadequado para menores de 12", " inadequado para menores de 14", " inadequado para menores de 16", " inadequado para menores de 18"});
+		faixaEtariaComboBox = new JComboBox(new String[] {"Livre", " inadequado para menores de 10", " inadequado para menores de 12", " inadequado para menores de 14", " inadequado para menores de 16", " inadequado para menores de 18"});
 		faixaEtariaComboBox.setSelectedIndex(0);
 		faixaEtariaComboBox.setBounds(10, 21, 195, 22);
 		faixaEtariaPanel.add(faixaEtariaComboBox);

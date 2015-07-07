@@ -23,6 +23,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
@@ -33,6 +34,7 @@ import javax.swing.border.TitledBorder;
 import tsi.lpv.samuelwagner.persistencia.FilmeDAO;
 import tsi.lpv.samuelwagner.tipo.Filme;
 import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoPesquisarFilme;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 /**
@@ -102,7 +104,7 @@ public class IgFilmoteca extends JFrame {
 		cadastrarFilmeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new IgCadastrarFilme(IgFilmoteca.this);
+				new IgCadastrarFilme(IgFilmoteca.this,true);
 			}
 		});
 		
@@ -313,6 +315,28 @@ public class IgFilmoteca extends JFrame {
 		apagarMenuItem.setForeground(Color.WHITE);
 		apagarMenuItem.setBackground(corBase);
 		arquivoMenu.add(apagarMenuItem);
+		
+		JPopupMenu jPopupMenu = new JPopupMenu();
+		JMenuItem menuItem = new JMenuItem("Atualiza Filme");
+		menuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new IgCadastraAtorAutorDiretor(IgFilmoteca.this);
+			}
+		});
+		
+		
+		getContentPane().addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			if(e.getButton() == MouseEvent.BUTTON3)
+				jPopupMenu.show(getContentPane(), e.getX(), e.getY());
+			}
+		});
+		
+		getContentPane().add(jPopupMenu);
+		exibicaoPanel.add(jPopupMenu);
+		jPopupMenu.add(menuItem);
 		
 		//Define a tela como vísivel.
 		setLocationRelativeTo(null);

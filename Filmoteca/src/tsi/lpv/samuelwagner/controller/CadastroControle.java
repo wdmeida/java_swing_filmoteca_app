@@ -156,4 +156,49 @@ public class CadastroControle {
 	private static void cadastraAutorFilme(int codigoFilme, int codigoAutor){
 		AutorFilmeDAO.cadastrarAutorFilme(codigoFilme, codigoAutor);
 	}
+	
+	public static void cadastraAutorAtorDiretor(Filme filme, Diretor[] diretores, Autor[] autores, Artista[] artistas ){
+		int codigoArtista, codigoDiretor, codigoAutor, codigoFilme = filme.getCodigo();	
+		//Percorre o array de artista
+		for(Artista artista : artistas){
+			/*Verifica se o artista já esta cadastrado, caso 
+			 * Cadastrado obtem o codigo dele e salva na Tabela Elenco, se
+			 * não salva no banco e obtem o arquivo e salva no elenco.
+			 */
+			Artista igual = ArtistaDAO.pesquisaArtista(artista.getNome());
+			if(igual == null)
+				codigoArtista = cadastraArtista(artista);
+			else
+				codigoArtista = igual.getCodigo();
+			cadastraEleco(codigoFilme, codigoArtista);
+		}
+		
+		//Percorre o array de diretores
+		for(Diretor diretor : diretores){
+			/*Verifica se o diretor já esta cadastrado, caso 
+			 * Cadastrado obtem o codigo dele e salva na Tabela diretorfilme, se
+			 * não salva no banco e obtem o arquivo e salva no diretorfilme.
+			 */
+			Diretor igual = DiretorDAO.pesquisaDiretor(diretor.getNome());
+			if(igual == null)
+				codigoDiretor = cadastraDiretor(diretor);
+			else
+				codigoDiretor = igual.getCodigo();
+			cadastraDiretorFilme(codigoFilme, codigoDiretor);
+		}
+		
+		//Percorre o array de autores.
+		for(Autor autor : autores){
+			/*Verifica se o autor já esta cadastrado, caso 
+			 * Cadastrado obtem o codigo dele e salva na Tabela autorfilme, se
+			 * não salva no banco e obtem o arquivo e salva no autorfilme.
+			 */
+			Autor igual = AutorDAO.pesquisaAutor(autor.getNome());
+			if(igual == null)
+				codigoAutor = cadastraAutor(autor);
+			else
+				codigoAutor = igual.getCodigo();
+			cadastraAutorFilme(codigoFilme, codigoAutor);
+		}
+	}
 }

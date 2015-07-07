@@ -6,6 +6,11 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.LinkedList;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
 import tsi.lpv.samuelwagner.controller.CadastroControle;
@@ -31,16 +36,26 @@ import tsi.lpv.samuelwagner.tipo.Pais;
  */
 public class TratadorEventoCadastraFilme implements ActionListener {
 	private IgCadastrarFilme igCadastrarFilme;
-	
+	private boolean cadastroAtivo;
+	private static Filme filme;
 	/**Construtor Sobrecarregado da classe <code>TratadorEventoCadastraFilme</code>.
 	 * @param igCadastrarFilme referencia da Classe <code>IgCadastrarFilme</code>.
 	 */
-	public TratadorEventoCadastraFilme(IgCadastrarFilme igCadastrarFilme) {
+	public TratadorEventoCadastraFilme(IgCadastrarFilme igCadastrarFilme, boolean cadastroAtivo) {
 		this.igCadastrarFilme = igCadastrarFilme;
+		this.cadastroAtivo = cadastroAtivo;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
+		if(!cadastroAtivo){
+			if(validaCadastroEAvisaUsuario(true,true,true,validaNomesAtor(),
+					validaNomesAutor(),validaNomesDiretor())){
+				cadastraAutorAtorDiretor();
+				igCadastrarFilme.dispose();
+			}
+			
+		}
 		//Verifica qual botao foi clicado pelo usuario.
 		if(igCadastrarFilme.getCadastrarButton() == event.getSource()){
 			validaCadastro();
@@ -49,6 +64,15 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 				igCadastrarFilme.dispose();
 	}
 	
+	private void cadastraAutorAtorDiretor() {
+		System.out.println("Kkkk");
+		Artista artistas[] = obtemArtistas();
+		Diretor diretores[] = obtemDiretores();
+		Autor autores[] = obtemAutores();
+		CadastroControle.cadastraAutorAtorDiretor(filme, diretores, autores, artistas);
+		new ThreadMensagem().start();
+	}
+
 	private void validaCadastro(){
 		//Valida se o usuario forneceu os dados correto para o cadastro do Filme.
 		if(validaCadastroEAvisaUsuario(validaNomeFilme(),validaNomePais(),validaDuracao(),validaNomesAtor(),
@@ -221,7 +245,28 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 	private class ThreadMensagem extends Thread{
 		@Override
 		public void run() {
+			 Clip clip = null;
+				try {  
+				    File soundFile = new File("src\\tsi\\lpv\\samuelwagner\\som\\StarWarsDarthVaderTheme.wav");  
+				    AudioInputStream sound = AudioSystem.getAudioInputStream(soundFile);  
+				    DataLine.Info info = new DataLine.Info(Clip.class, sound.getFormat());  
+				    clip = (Clip) AudioSystem.getLine(info);  
+				    clip.open(sound);  
+				    clip.start();  
+				} catch (Exception e) {  
+				    JOptionPane.showMessageDialog(null, e);  
+				}  
 			new IgMensagem(igCadastrarFilme, "Salvando o Filme no Banco de Dados.");
+			clip.close();
 		}
 	}
+
+	public static void setFilme(Filme filme) {
+		TratadorEventoCadastraFilme.filme = filme;
+	}
+	
+	public void defineFilmeParaSalvar(Filme filme){
+		setFilme(filme);
+	}
+	
 }

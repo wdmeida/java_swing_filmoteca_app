@@ -1,15 +1,28 @@
 package tsi.lpv.samuelwagner.app;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.Control;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineListener;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.Control.Type;
+import javax.sound.sampled.Line.Info;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import tsi.lpv.samuelwagner.gui.IgEsperaInicial;
 import tsi.lpv.samuelwagner.gui.IgFilmoteca;
-import tsi.lpv.samuelwagner.persistencia.ConnectionFactory;
 
 /**Classe <code>FilmotecaApp</code> responsavel por inicar a execução do Aplicativo Darth Movie.
- * @author Samuel Gonçalves
- * @author Wagner Almeida
+ * @author Samuel
+ * @author Wagner
  */
 public class FilmotecaApp {
 
@@ -26,9 +39,6 @@ public class FilmotecaApp {
 		}
 		IgFilmoteca filmoteca = new IgFilmoteca();
 		new ThreadIniciaAplicativo(new IgEsperaInicial(),filmoteca).start();
-		
-		//Encerra a conexão com o banco de dados.
-		ConnectionFactory.closeConnection();
 	}//testa
 
 	//Classe Responsavel por Gerar o pequeno Atraso para abrir a conexão com o banco.
@@ -44,17 +54,29 @@ public class FilmotecaApp {
 
 		@Override
 		public void run() {
+			 Clip clip = null;
+			try {  
+			    File soundFile = new File("src\\tsi\\lpv\\samuelwagner\\som\\StarWarsDarthVaderTheme.wav");  
+			    AudioInputStream sound = AudioSystem.getAudioInputStream(soundFile);  
+			    DataLine.Info info = new DataLine.Info(Clip.class, sound.getFormat());  
+			    clip = (Clip) AudioSystem.getLine(info);  
+			    clip.open(sound);  
+			    clip.start();  
+			} catch (Exception e) {  
+			    JOptionPane.showMessageDialog(null, e);  
+			}  
 			//Loop para fazer o ProgressBar avançar.
 			for(int i = 0; i<= 100; i++){
 				try {
 					;;//Seta o valor do ProgressBar
 					igEspera.getProgressBar().setValue(i);
 					//Provaca o Atraso.
-					sleep(20);
+					sleep(50);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
+			clip.stop();
 			//Fecha a Janela igEspera
 			igEspera.dispose();
 			//Ativa a janela IgFilmoteca.
