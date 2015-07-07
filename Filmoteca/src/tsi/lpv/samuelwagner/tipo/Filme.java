@@ -1,6 +1,5 @@
 package tsi.lpv.samuelwagner.tipo;
 
-import java.io.File;
 import java.util.Calendar;
 
 /**
@@ -21,7 +20,7 @@ public class Filme {
 				   classificacaoEtaria,
 				   midia;
 	private Calendar dataLancamento;
-	private File poster;
+	private byte[] poster;
 	
 	/**
 	 * Construtor default da classe Filme.
@@ -46,7 +45,7 @@ public class Filme {
 	public Filme(int codigo, int duracao, int ano, int classificacaoIMDB,
 			int classificacaoPessoal, String titulo, String sinopse,
 			String classificacaoEtaria, String midia, Calendar dataLancamento,
-			File poster) {
+			byte[] poster) {
 		this.codigo = codigo;
 		this.duracao = duracao;
 		this.ano = ano;
@@ -226,7 +225,7 @@ public class Filme {
 	 * Obtém a imagem usada como pôster do filme.
 	 * @return <code>File</code>
 	 */
-	public File getPoster() {
+	public byte[] getPoster() {
 		return poster;
 	}//getPoster()
 	
@@ -234,7 +233,7 @@ public class Filme {
 	 * Atribui a imagem a ser utilizada como pôster do filme.
 	 * @param poster <code>File</code> com o pôster.
 	 */
-	public void setPoster(File poster) {
+	public void setPoster(byte[] poster) {
 		this.poster = poster;
 	}//setPoster()
 }//class Filme

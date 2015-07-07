@@ -48,7 +48,7 @@ public class IgResultadoPesquisaFilme extends JDialog {
 	 */
 	public IgResultadoPesquisaFilme(IgFilmoteca componente, Filme filme) {
 		//Define o tamanho da janela.
-		setSize(841, 556);
+		setSize(841, 607);
 		
 		setLocationRelativeTo(componente);
 		
@@ -76,26 +76,26 @@ public class IgResultadoPesquisaFilme extends JDialog {
 		fotoPanel = new JPanel();
 		fotoPanel.setBorder(new TitledBorder(null, "Imagem", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		fotoPanel.setBackground(corBase);
-		fotoPanel.setBounds(10, 11, 135, 227);
+		fotoPanel.setBounds(10, 11, 235, 286);
 		getContentPane().add(fotoPanel);
 		fotoPanel.setLayout(null);
 
 		fotoLabel = new JLabel("Não há Foto.");
-		fotoLabel.setBounds(10, 21, 115, 195);
+		fotoLabel.setBounds(10, 21, 215, 254);
 		fotoPanel.add(fotoLabel);
 		
 		//Cria o título.
 		nomeFilme = new JLabel("T\u00EDtulo");
 		nomeFilme.setForeground(Color.WHITE);
 		nomeFilme.setFont(new Font("Tahoma", Font.BOLD, 14));
-		nomeFilme.setBounds(155, 11, 175, 22);
+		nomeFilme.setBounds(265, 11, 560, 22);
 		getContentPane().add(nomeFilme);
 		
 		//Cria o painel adicional
 		JPanel adicionalPanel = new JPanel();
 		adicionalPanel.setBackground(corBase);
 		adicionalPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informa\u00E7\u00F5es adicionais", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
-		adicionalPanel.setBounds(10, 249, 815, 268);
+		adicionalPanel.setBounds(10, 308, 815, 268);
 		getContentPane().add(adicionalPanel);
 		adicionalPanel.setLayout(null);
 		
@@ -269,14 +269,14 @@ public class IgResultadoPesquisaFilme extends JDialog {
 		JPanel sinopsePanel = new JPanel();
 		sinopsePanel.setBackground(corBase);
 		sinopsePanel.setBorder(new TitledBorder(null, "Sinopse", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
-		sinopsePanel.setBounds(155, 93, 670, 145);
+		sinopsePanel.setBounds(265, 93, 560, 204);
 		getContentPane().add(sinopsePanel);
 		sinopsePanel.setLayout(null);
 		
 		//Cria o sinopaseScrollPane
 		JScrollPane sinopseScrollPane = new JScrollPane();
 		sinopseScrollPane.setBorder(null);
-		sinopseScrollPane.setBounds(10, 17, 650, 117);
+		sinopseScrollPane.setBounds(10, 17, 540, 151);
 		sinopsePanel.add(sinopseScrollPane);
 		
 		//Cria o sinopseTextArea
@@ -284,35 +284,36 @@ public class IgResultadoPesquisaFilme extends JDialog {
 		sinopseTextArea.setForeground(Color.WHITE);
 		sinopseTextArea.setBackground(corBase);
 		sinopseTextArea.setEditable(false);
+		sinopseTextArea.setLineWrap(true);
 		sinopseScrollPane.setViewportView(sinopseTextArea);
 		
 		//Cria o anoLabel
 		anoLabel = new JLabel("Ano:");
-		anoLabel.setBounds(155, 44, 175, 14);
+		anoLabel.setBounds(265, 44, 111, 14);
 		getContentPane().add(anoLabel);
 		anoLabel.setForeground(Color.WHITE);
 		
 		//Cria o duraçãoLabel
 		duracaoLabel = new JLabel("Dura\u00E7\u00E3o:");
-		duracaoLabel.setBounds(450, 44, 197, 14);
+		duracaoLabel.setBounds(386, 44, 197, 14);
 		getContentPane().add(duracaoLabel);
 		duracaoLabel.setForeground(Color.WHITE);
 		
 		//Cria o etariaLabel
 		etariaLabel = new JLabel("Classifica\u00E7\u00E3o Et\u00E1ria:");
-		etariaLabel.setBounds(155, 69, 256, 14);
+		etariaLabel.setBounds(265, 69, 280, 14);
 		getContentPane().add(etariaLabel);
 		etariaLabel.setForeground(Color.WHITE);
 		
 		//Cria o generoLabel
 		generoLabel = new JLabel("G\u00EAnero:");
 		generoLabel.setForeground(Color.WHITE);
-		generoLabel.setBounds(450, 69, 270, 14);
+		generoLabel.setBounds(590, 69, 235, 14);
 		getContentPane().add(generoLabel);
 		
 		paisLabel = new JLabel("Pa\u00EDs:");
 		paisLabel.setForeground(Color.WHITE);
-		paisLabel.setBounds(657, 44, 150, 14);
+		paisLabel.setBounds(590, 44, 235, 14);
 		getContentPane().add(paisLabel);
 	}//IgResultadoFilme()
 	

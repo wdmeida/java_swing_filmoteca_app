@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import tsi.lpv.samuelwagner.funcaoauxiliar.MetodosConversaoBanco;
 import tsi.lpv.samuelwagner.tipo.Filme;
 
 /**
@@ -46,7 +45,7 @@ public class FilmeDAO {
 			stmt.setInt(7, filme.getClassificacaoIMDB());
 			stmt.setInt(8, filme.getClassificacaoPessoal());
 			stmt.setString(9, filme.getMidia());
-			stmt.setBytes(10, MetodosConversaoBanco.preparaImagemParaBanco(filme.getPoster()));
+			stmt.setBytes(10, filme.getPoster());
 			stmt.executeUpdate();
 			stmt.close();
 			
@@ -105,7 +104,7 @@ public class FilmeDAO {
 				filme.setClassificacaoIMDB(resultSet.getInt(8));
 				filme.setClassificacaoPessoal(resultSet.getInt(9));
 				filme.setMidia(resultSet.getString(10));
-				filme.setPoster(MetodosConversaoBanco.reconstroiImagemDoBanco(resultSet.getBytes(11), filme.getTitulo()));
+				filme.setPoster(resultSet.getBytes(11));
 				stmt.close();
 			return filme;
 			}else{
@@ -146,7 +145,7 @@ public class FilmeDAO {
 				filme.setClassificacaoIMDB(resultSet.getInt(8));
 				filme.setClassificacaoPessoal(resultSet.getInt(9));
 				filme.setMidia(resultSet.getString(10));
-				filme.setPoster(MetodosConversaoBanco.reconstroiImagemDoBanco(resultSet.getBytes(11), filme.getTitulo()));
+				filme.setPoster(resultSet.getBytes(11));
 				stmt.close();
 			return filme;
 			}else{
@@ -189,7 +188,7 @@ public class FilmeDAO {
 					filme.setClassificacaoIMDB(resultSet.getInt(8));
 					filme.setClassificacaoPessoal(resultSet.getInt(9));
 					filme.setMidia(resultSet.getString(10));
-					filme.setPoster(MetodosConversaoBanco.reconstroiImagemDoBanco(resultSet.getBytes(11), filme.getTitulo()));
+					filme.setPoster(resultSet.getBytes(11));
 					filmes.add(filme);
 				}while(resultSet.next());
 				stmt.close();
@@ -207,4 +206,5 @@ public class FilmeDAO {
 			return null;
 		}
 	}
+	
 }//FilmeDAO

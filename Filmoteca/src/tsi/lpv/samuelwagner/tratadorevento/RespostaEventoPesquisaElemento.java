@@ -9,7 +9,6 @@ import tsi.lpv.samuelwagner.controller.PesquisaControle;
 import tsi.lpv.samuelwagner.funcaoauxiliar.Validador;
 import tsi.lpv.samuelwagner.gui.IgFilmoteca;
 import tsi.lpv.samuelwagner.gui.IgMensagem;
-import tsi.lpv.samuelwagner.gui.IgPesquisa;
 import tsi.lpv.samuelwagner.persistencia.ArtistaDAO;
 import tsi.lpv.samuelwagner.persistencia.AutorDAO;
 import tsi.lpv.samuelwagner.persistencia.AutorFilmeDAO;

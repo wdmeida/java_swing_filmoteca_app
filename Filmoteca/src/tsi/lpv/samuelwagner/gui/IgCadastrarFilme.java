@@ -336,13 +336,13 @@ public class IgCadastrarFilme extends JDialog {
 		
 		informaLabel = new JLabel("");
 		informaLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		informaLabel.setBounds(4, 272, 447, 30);
+		informaLabel.setBounds(4, 287, 447, 30);
 		informaLabel.setForeground(new Color(255, 102, 0));
 		filmePanel1.add(informaLabel);
 		
 		inforFilmeRepitido = new JLabel("");
 		inforFilmeRepitido.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		inforFilmeRepitido.setBounds(14, 313, 347, 30);
+		inforFilmeRepitido.setBounds(4, 313, 447, 30);
 		inforFilmeRepitido.setForeground(new Color(255, 102, 0));
 		filmePanel1.add(inforFilmeRepitido);
 		

@@ -109,8 +109,10 @@ public class TratadorEventoPesquisarFilme implements ActionListener {
 		igResultadoPesquisaFilme.getLancamentoTextField().setText(FuncaoAuxiliar.coverteDataParaString(filme.getDataLancamento(), true));
 		
 		//Configura a foto
-		ImageIcon icon = new ImageIcon(filme.getPoster().getAbsolutePath());
-		igResultadoPesquisaFilme.getFotoLabel().setIcon(icon);
+		if(filme.getPoster() != null){
+			ImageIcon icon = new ImageIcon(filme.getPoster());
+			igResultadoPesquisaFilme.getFotoLabel().setIcon(icon);
+		}
 		
 		//Exibe a tela para o usuário.
 		igResultadoPesquisaFilme.setVisible(true);

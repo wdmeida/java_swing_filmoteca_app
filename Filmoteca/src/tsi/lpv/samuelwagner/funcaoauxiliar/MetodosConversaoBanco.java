@@ -3,8 +3,6 @@ package tsi.lpv.samuelwagner.funcaoauxiliar;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -49,29 +47,6 @@ public class MetodosConversaoBanco {
 	}//preparaImagemParaBanco()
 	
 	/**
-	 * Reconstrói os dados em bytes recebidos para um diretório temporário na pasta do arquivo.
-	 * @param bytes <code>byte[]</code> com os dados a serem reconstruídos.
-	 * @param nome <code>String</code> com o nome do arquivo.
-	 * @return <code>File</code> com o endereço do arquivo reconstruído.
-	 */
-	public static File reconstroiImagemDoBanco(byte[] bytes, String nome){
-		File f = new File(DIR_TEMP + File.separator + nome);
-		 
-		try {
-			if(bytes != null){
-				FileOutputStream fos = new FileOutputStream(f);
-				fos.write(bytes);
-				fos.close();
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return f;
-	}//reconstroiImagemDoBanco()
-	
-	/**
 	 * Redimenciona uma imagem para um tamanho específico para que possa ser salva no banco.
 	 * @param file <code>File</code> com a imagem a ser redimensionada.
 	 * @param width <code>int</code> com a largura da imagem.
@@ -90,10 +65,9 @@ public class MetodosConversaoBanco {
 			
 			//Redimensiona a imagem original na imagem redimensionada.
 			redimensionada.getGraphics().drawImage(original, 0, 0, width, heigth, null);
-			new File(DIR_TEMP + File.separator).mkdirs();
 			//Salva a imagem em um arquivo.
-			ImageIO.write(redimensionada, formato, new File(DIR_TEMP + File.separator + file.getName()));
-			return new File(DIR_TEMP + File.separator + file.getName());
+			ImageIO.write(redimensionada, formato, file);
+			return file;
 			
 		} catch (IOException e) {
 			e.printStackTrace();

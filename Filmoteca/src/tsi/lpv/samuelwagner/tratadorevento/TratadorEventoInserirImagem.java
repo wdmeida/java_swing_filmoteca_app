@@ -67,18 +67,19 @@ public class TratadorEventoInserirImagem implements ActionListener {
 		  else
 			  // Obtém o nome do arquivo selecionado pelo usuário no diálogo.
 			  if (opcao == JFileChooser.APPROVE_OPTION){ 
-				 String caminhoImagem = dialogoAbrir.getSelectedFile().getPath();
-				 File file = new File(caminhoImagem);
-				 
-					 File fileNovo = MetodosConversaoBanco.redimensionarImagem(file,igCadastraFilme.getPosterLabel().getWidth(),
-							 igCadastraFilme.getPosterLabel().getHeight(), obtemExtensao(file.getName()));
-					 if(fileNovo != null){
-						 ImageIcon icon = new ImageIcon(fileNovo.getAbsolutePath());
-						 igCadastraFilme.getPosterLabel().setIcon(icon);
-						 igCadastraFilme.getFotoField().setText(fileNovo.getAbsolutePath());
-					 }else{
-						 FuncaoAuxiliar.exibirMensagemErro(igCadastraFilme, "Imagem Não suportada.", "Inserir Imagem");
-					 }
+				  String caminhoImagem = dialogoAbrir.getSelectedFile().getPath();
+					 File file = new File(caminhoImagem);
+					 
+						byte[] fileNovo = MetodosConversaoBanco.preparaImagemParaBanco(MetodosConversaoBanco.redimensionarImagem(file,115, 195
+								 ,obtemExtensao(file.getName())));
+						 if(fileNovo != null){
+							 ImageIcon icon = new ImageIcon(fileNovo);
+							 igCadastraFilme.getPosterLabel().setIcon(icon);
+							 igCadastraFilme.getFotoField().setText(file.getAbsolutePath());
+							 igCadastraFilme.getPosterLabel().repaint();
+						 }else{
+							 FuncaoAuxiliar.exibirMensagemErro(igCadastraFilme, "Imagem Não suportada.", "Inserir Imagem");
+						 }
 			}else 
 				  return;
 		} // dialogoAbrirArquivo()
