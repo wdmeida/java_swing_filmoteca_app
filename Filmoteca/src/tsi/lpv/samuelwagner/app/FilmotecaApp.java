@@ -38,7 +38,6 @@ public class FilmotecaApp {
 			this.igFilmoteca = igFilmoteca;
 		}
 
-
 		@Override
 		public void run() {
 			//Loop para fazer o ProgressBar avançar.

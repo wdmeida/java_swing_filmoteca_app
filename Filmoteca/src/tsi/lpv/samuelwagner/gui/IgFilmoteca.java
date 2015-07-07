@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,6 +28,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
 
 import tsi.lpv.samuelwagner.funcaoauxiliar.Validador;
+import tsi.lpv.samuelwagner.persistencia.FilmeDAO;
+import tsi.lpv.samuelwagner.tipo.Filme;
 import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoPesquisarFilme;
 
 import javax.swing.border.TitledBorder;
@@ -172,6 +177,13 @@ public class IgFilmoteca extends JFrame {
 		rankingButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		rankingButton.setForeground(Color.WHITE);
 		rankingButton.setToolTipText("Visualizar filmes na ordem de prefer\u00EAncia.");
+		rankingButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				exibirClassificacao();				
+			}
+		});
 		
 		//Cria o painel pra barra de pesquisa.
 		JPanel pesquisarPanel = new JPanel();
@@ -272,7 +284,25 @@ public class IgFilmoteca extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(false);
 	}//IgFilmoteca
-
+	
+	private void exibirClassificacao() {
+		//Obtém os filmes
+		List<Filme> filmes = FilmeDAO.pesquisarFilmeCriterio();
+		
+		//Verifica se existem filmes.
+		if(filmes == null) {new IgMensagem(this, "Não há filmes cadastrados");}
+		else{
+			List<String> dadosFilmes = new ArrayList<String>();
+			Iterator<Filme> it = filmes.iterator();
+			while(it.hasNext()){
+				Filme filme = it.next();
+				dadosFilmes.add(filme.getTitulo() + "     Duração: " + filme.getDuracao() + "     Classificação Pessoal: " + filme.getClassificacaoPessoal());
+			}
+			new IgClassificacaoPessoalFilmes(this, dadosFilmes.toArray(new String[0]));
+		}
+		
+	}
+	
 	/**
 	 * Obtém a referência da caixa de texto de pesquisa.
 	 * @return <code>JTextField</code>
