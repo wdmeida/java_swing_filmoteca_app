@@ -13,8 +13,8 @@ import tsi.lpv.samuelwagner.tipo.Artista;
  */
 public class ArtistaDAO {
 	private static final String INSERT_ARTISTA = "INSERT INTO artista (nome) VALUES (?);";
-	private static final String SELECT_ARTISTA_CODIGO = "SELECT * FROM artista WHERE codigo_artista = ?;";
-	private static final String SELECT_ARTISTA_NOME = "SELECT * FROM artista WHERE nome ~* (?);";
+	private static final String SELECT_ARTISTA_CODIGO = "SELECT * FROM artista WHERE codigo_artista = (?);";
+	private static final String SELECT_ARTISTA_NOME = "SELECT * FROM artista WHERE UPPER(nome) = UPPER(?);";
 	
 	/**Cadastra o Objeto <code>Artista</code> no Banco de Dados.
 	 * @param artista <code>Artista</code>.

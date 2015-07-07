@@ -14,7 +14,7 @@ import tsi.lpv.samuelwagner.tipo.Autor;
 public class AutorDAO {
 	private static final String INSERT_AUTOR = "INSERT INTO autor (nome) VALUES (?);";
 	private static final String SELECT_AUTOR_CODIDO = "SELECT * FROM autor WHERE codigo_autor = ?";
-	private static final String SELECT_AUTOR_NOME = "SELECT * FROM autor WHERE nome ~* (?)";
+	private static final String SELECT_AUTOR_NOME = "SELECT * FROM autor WHERE UPPER(nome) = UPPER(?)";
 	
 	/** Cadastra <code>Autor</code> no Banco de Dados.
 	 * @param autor <code>Autor</code>.

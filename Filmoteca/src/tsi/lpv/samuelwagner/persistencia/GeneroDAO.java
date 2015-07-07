@@ -15,7 +15,7 @@ import tsi.lpv.samuelwagner.tipo.Genero;
 public class GeneroDAO {
 	private static final String INSERT_GENERO = "INSERT INTO genero (descricao) VALUES (?);";
 	private static final String SELECT_GENERO_CODIGO = "SELECT * FROM genero WHERE codigo_genero = ?;";
-	private static final String SELECT_GENERO_DESCRICAO = "SELECT * FROM genero WHERE descricao = (?);";
+	private static final String SELECT_GENERO_DESCRICAO = "SELECT * FROM genero WHERE UPPER(descricao) = UPPER(?);";
 	private static final String SELECT_GENERO = "SELECT descricao FROM genero";
 	/**Cadastra <code>Genero</code> no Banco de Dados.
 	 * @param genero <code>Genero</code>.

@@ -20,7 +20,7 @@ import tsi.lpv.samuelwagner.tipo.Filme;
 public class FilmeDAO {
 	private static final String INSERT_FILME = "INSERT INTO filme (titulo,duracao,ano,data_lancamento,sinopse,"
 			+ "classificacao_etaria,classificacao_imdb,classificacao_pessoal,midia,poster) VALUES (?,?,?,?,?,?,?,?,?,?);";
-	private static final String PESQUISA_FILME_TITULO = "SELECT * FROM filme WHERE titulo ~* (?);";
+	private static final String PESQUISA_FILME_TITULO = "SELECT * FROM filme WHERE UPPER(titulo) = UPPER(?);";
 	private static final String PESQUISA_FILME_CODIGO = "SELECT * FROM filme WHERE codigo_filme = ?;";
 	
 	/**

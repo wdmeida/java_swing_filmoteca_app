@@ -14,7 +14,7 @@ import tsi.lpv.samuelwagner.tipo.Pais;
 public class PaisDAO {
 	private static final String INSERT_PAIS = "INSERT INTO pais (nome) VALUES (?);";
 	private static final String SELECT_PAIS_CODIGO = "SELECT * FROM pais WHERE codigo_pais = ?;";
-	private static final String SELECT_PAIS_NOME = "SELECT * FROM pais WHERE nome ~* (?);";
+	private static final String SELECT_PAIS_NOME = "SELECT * FROM pais WHERE UPPER(nome) = UPPER(?);";
 	
 	/**Cadastra <code>Pais</code> no Banco de Dados.
 	 * @param pais <code>Pais</code>.
