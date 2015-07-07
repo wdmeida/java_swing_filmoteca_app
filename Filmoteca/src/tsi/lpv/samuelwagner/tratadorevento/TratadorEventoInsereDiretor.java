@@ -3,6 +3,8 @@ package tsi.lpv.samuelwagner.tratadorevento;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
+
 import tsi.lpv.samuelwagner.funcaoauxiliar.FuncaoAuxiliar;
 import tsi.lpv.samuelwagner.funcaoauxiliar.Validador;
 import tsi.lpv.samuelwagner.gui.IgCadastrarFilme;
@@ -39,28 +41,33 @@ public class TratadorEventoInsereDiretor implements ActionListener {
 		 */
 		if(!Validador.validaCampoVazio(igCadastraFilme.getDiretorField().getText())){
 			//se o diretorArea está vazio quaso não esteja verifica se o diretor se encotra lá.
-			if(!igCadastraFilme.getDiretorArea().getText().equals(""))
+			if(igCadastraFilme.getDiretorArea().getModel().getSize() >= 1)
 				//Verifica se o diretor se encontra caso encontra informa ao usuario que ele está la.
 				if(Validador.procuraIgualdede(igCadastraFilme.getDiretorField().getText(), FuncaoAuxiliar.obtemPalavras(
-						igCadastraFilme.getDiretorArea().getText()))){
+						igCadastraFilme.getDiretorArea()))){
 					FuncaoAuxiliar.exibirMensagemErro(igCadastraFilme, "Diretor já Informado.", "Cadastra Filme.");
 					igCadastraFilme.getDiretorField().setText("");
 					return;
 				}
-				//Adiciona o diretor ao diretorArea.
-				String texto = igCadastraFilme.getDiretorArea().getText();
-				texto += igCadastraFilme.getDiretorField().getText() + "\n";
-				igCadastraFilme.getDiretorArea().setText(texto);
+			try{
+				DefaultListModel<String> listModel = (DefaultListModel<String>)igCadastraFilme.getDiretorArea().getModel();
+				listModel.addElement(igCadastraFilme.getDiretorField().getText());
 				igCadastraFilme.getDiretorField().setText("");
+			}catch(ClassCastException e){
+				e.printStackTrace();
+			}
 		}
 	}
 	
-	//Limpa o ultimo diretor cadastrado.
-	private void limparDiretor() {
-		//Verifica se diretorArea esta vazio caso esteja apaga o ultimo diretor.
-		if(!igCadastraFilme.getDiretorArea().getText().equals("")){
-			String[] texto = FuncaoAuxiliar.obtemPalavras(igCadastraFilme.getDiretorArea().getText());
-			igCadastraFilme.getDiretorArea().setText(FuncaoAuxiliar.juntaPalavra(texto, texto.length-1));
+	//Limpa o ultimo Diretor cadastrado.
+		private void limparDiretor() {
+			if(igCadastraFilme.getDiretorArea().getModel().getSize() >= 1){
+				try{
+					DefaultListModel<String> listModel = (DefaultListModel<String>)igCadastraFilme.getDiretorArea().getModel();
+					listModel.remove(listModel.getSize() - 1);
+				}catch(ClassCastException e){
+					e.printStackTrace();
+				}
+			}
 		}
-	}
 }

@@ -3,6 +3,8 @@ package tsi.lpv.samuelwagner.tratadorevento;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
+
 import tsi.lpv.samuelwagner.funcaoauxiliar.FuncaoAuxiliar;
 import tsi.lpv.samuelwagner.funcaoauxiliar.Validador;
 import tsi.lpv.samuelwagner.gui.IgCadastrarFilme;
@@ -38,27 +40,34 @@ public class TratadorEventoInsereAutor implements ActionListener{
 		 */
 		if(!Validador.validaCampoVazio(igCadastraFilme.getAutorField().getText())){
 			//se o autorArea está vazio quaso não esteja verifica se o autor se encotra lá.
-			if(!igCadastraFilme.getAutorArea().getText().equals(""))
+			if(igCadastraFilme.getAutorArea().getModel().getSize() >= 1)
 				//Verifica se o autor se encontra caso encontra informa ao usuario que ele está la.
 				if(Validador.procuraIgualdede(igCadastraFilme.getAutorField().getText(), FuncaoAuxiliar.obtemPalavras(
-						igCadastraFilme.getAutorArea().getText()))){
+						igCadastraFilme.getAutorArea()))){
 					FuncaoAuxiliar.exibirMensagemErro(igCadastraFilme, "Autor já Informado.", "Cadastra Filme.");
 					igCadastraFilme.getAutorField().setText("");
 					return;
 				}
-			//Adiciona o autor ao diretorArea.
-			String texto = igCadastraFilme.getAutorArea().getText();
-			texto += igCadastraFilme.getAutorField().getText() + "\n";
-			igCadastraFilme.getAutorArea().setText(texto);
-			igCadastraFilme.getAutorField().setText("");
+			//Adiciona o autor ao autorArea.
+			try{
+				DefaultListModel<String> listModel = (DefaultListModel<String>)igCadastraFilme.getAutorArea().getModel();
+				listModel.addElement(igCadastraFilme.getAutorField().getText());
+				igCadastraFilme.getAutorField().setText("");
+			}catch(ClassCastException e){
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	//Limpa o ultimo Autor cadastrado.
 	private void limparAutor() {
-		if(!igCadastraFilme.getAutorArea().getText().equals("")){
-			String[] texto = FuncaoAuxiliar.obtemPalavras(igCadastraFilme.getAutorArea().getText());
-			igCadastraFilme.getAutorArea().setText(FuncaoAuxiliar.juntaPalavra(texto, texto.length-1));
+		if(igCadastraFilme.getAutorArea().getModel().getSize() >= 1){
+			try{
+				DefaultListModel<String> listModel = (DefaultListModel<String>)igCadastraFilme.getAutorArea().getModel();
+				listModel.remove(listModel.getSize() - 1);
+			}catch(ClassCastException e){
+				e.printStackTrace();
+			}
 		}
 	}
 }

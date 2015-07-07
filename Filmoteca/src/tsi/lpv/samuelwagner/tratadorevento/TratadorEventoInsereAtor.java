@@ -3,6 +3,8 @@ package tsi.lpv.samuelwagner.tratadorevento;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
+
 import tsi.lpv.samuelwagner.funcaoauxiliar.FuncaoAuxiliar;
 import tsi.lpv.samuelwagner.funcaoauxiliar.Validador;
 import tsi.lpv.samuelwagner.gui.IgCadastrarFilme;
@@ -40,28 +42,35 @@ private IgCadastrarFilme igCadastrarFilme;
 		 */
 		if(!Validador.validaCampoVazio(igCadastrarFilme.getAtorField().getText())){
 			//se o atorArea está vazio quaso não esteja verifica se o ator se encotra lá.
-			if(!igCadastrarFilme.getAtorArea().getText().equals(""))
+			if(igCadastrarFilme.getAtorArea().getModel().getSize() >= 1)
 				//Verifica se o ator se encontra caso encontra informa ao usuario que ele está la.
 				if(Validador.procuraIgualdede(igCadastrarFilme.getAtorField().getText(), FuncaoAuxiliar.obtemPalavras(
-						igCadastrarFilme.getAtorArea().getText()))){
+						igCadastrarFilme.getAtorArea()))){
 					FuncaoAuxiliar.exibirMensagemErro(igCadastrarFilme, "Ator já Informado.", "Cadastra Filme.");
 					igCadastrarFilme.getAtorField().setText("");
 					return;
 				}
-			//Adiciona o diretor ao diretorArea.
-			String texto = igCadastrarFilme.getAtorArea().getText();
-			texto += igCadastrarFilme.getAtorField().getText() + "\n";
-			igCadastrarFilme.getAtorArea().setText(texto);
-			igCadastrarFilme.getAtorField().setText("");
+			//Adiciona o diretor ao atorArea.
+			try{
+				DefaultListModel<String> listModel = (DefaultListModel<String>)igCadastrarFilme.getAtorArea().getModel();
+				listModel.addElement(igCadastrarFilme.getAtorField().getText());
+				igCadastrarFilme.getAtorField().setText("");
+			}catch(ClassCastException e){
+				e.printStackTrace();
+			}
 		}
 	}
 	
-	//Limpa o ultimo diretor cadastrado.
-	private void limparAtor() {
-		if(!igCadastrarFilme.getAtorArea().getText().equals("")){
-			String[] texto = FuncaoAuxiliar.obtemPalavras(igCadastrarFilme.getAtorArea().getText());
-			igCadastrarFilme.getAtorArea().setText(FuncaoAuxiliar.juntaPalavra(texto, texto.length-1));
+	//Limpa o ultimo Ator cadastrado.
+		private void limparAtor() {
+			if(igCadastrarFilme.getAtorArea().getModel().getSize() >= 1){
+				try{
+					DefaultListModel<String> listModel = (DefaultListModel<String>)igCadastrarFilme.getAtorArea().getModel();
+					listModel.remove(listModel.getSize() - 1);
+				}catch(ClassCastException e){
+					e.printStackTrace();
+				}
+			}
 		}
-	}
 
 }

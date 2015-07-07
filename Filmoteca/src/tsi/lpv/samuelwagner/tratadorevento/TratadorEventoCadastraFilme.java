@@ -1,9 +1,12 @@
 package tsi.lpv.samuelwagner.tratadorevento;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.LinkedList;
+
+import javax.swing.border.LineBorder;
 
 import tsi.lpv.samuelwagner.controller.CadastroControle;
 import tsi.lpv.samuelwagner.funcaoauxiliar.FuncaoAuxiliar;
@@ -46,67 +49,100 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 	
 	private void validaCadastro(){
 		//Valida se o usuario forneceu os dados correto para o cadastro do Filme.
-		if(validaNomeFilme() && validaNomePais() && validaSinopse() && validaNomesAtor() && validaNomesAutor()
-				&& validaNomesDiretor() && validaDuracao()){
-			cadastraFilme();
-			FuncaoAuxiliar.exibirMensagem(igCadastrarFilme, "Filme Cadastrado Com sucesso.", "Cadastra Filme.");
-			igCadastrarFilme.dispose();
-		}else
-			FuncaoAuxiliar.exibirMensagemErro(igCadastrarFilme, "Erro", "Cadastra Filme");
+		if(validaCadastroEAvisaUsuario(validaNomeFilme(),validaNomePais(),validaDuracao(),validaNomesAtor(),
+				validaNomesAutor(),validaNomesDiretor())){
+				cadastraFilme();
+				FuncaoAuxiliar.exibirMensagem(igCadastrarFilme, "Filme Cadastrado Com sucesso.", "Cadastra Filme.");
+					igCadastrarFilme.dispose();
+				}else{
+					igCadastrarFilme.getInformaLabel().setText("Os Campos em Vermelho são de Preenchimento Obrigatorio.");
+				}
 	}
-	
 	//Valida o nome do filme.
 	private boolean validaNomeFilme(){
 		if(!Validador.validaCampoVazio(igCadastrarFilme.getTituloField().getText()))
 			//Verifica se o filme ja está Cadastrado no Banco de Dados.
-			if(FilmeDAO.pesquisarFilme(igCadastrarFilme.getTituloField().getText()) == null)
+			if(FilmeDAO.pesquisarFilme(igCadastrarFilme.getTituloField().getText()) == null){
 				return true;
-			else return false;
-		else return false;
+			}else{
+				igCadastrarFilme.getInforFilmeRepitido().setText("O Filme já consta no seu acervo de filmes.");
+				return false;
+			}
+		else{
+			return false;
+		}
+	
 	}
 	
 	//Valida o Nome do Pais.
 	private boolean validaNomePais(){
-		if(!Validador.validaCampoVazio(igCadastrarFilme.getPaisField().getText()))
+		if(!Validador.validaCampoVazio(igCadastrarFilme.getPaisField().getText())){
 			return true;
-		else return false;
+		}else{
+			return false;
+		}
 	}
 	
 	//Valida se o usuario forneceu a duração correta.
 	private boolean validaDuracao(){
-		if(!Validador.validaCampoVazio(igCadastrarFilme.getPaisField().getText()))
-			if(Validador.validaNumeroInteiro(igCadastrarFilme.getDuracaoField().getText()))
+		if(!Validador.validaCampoVazio(igCadastrarFilme.getDuracaoField().getText()))
+			if(Validador.validaNumeroInteiro(igCadastrarFilme.getDuracaoField().getText())){
 				return true;
-			else return false;
-		else return false;
-	}
-	
-	//Verifica se o ususario forneceu a Sinopse.
-	private boolean validaSinopse(){
-		if(!Validador.validaCampoVazio(igCadastrarFilme.getSinopseEditorPane().getText()))
-			return true;
-		else return false;
+			}else{
+				return false;
+			}
+		else{
+			return false;
+		}
 	}
 	
 	//Verifica se o usuario forneceu os Diretores.
 	private boolean validaNomesDiretor(){
-		if(!Validador.validaCampoVazio(igCadastrarFilme.getDiretorArea().getText()))
+		if(igCadastrarFilme.getDiretorArea().getModel().getSize()>=1)
 			return true;
 		else return false;
 	}
 	
 	//Verifica se o usuario forneceu os autores.
 	private boolean validaNomesAutor(){
-		if(!Validador.validaCampoVazio(igCadastrarFilme.getAutorArea().getText()))
+		if(igCadastrarFilme.getAutorArea().getModel().getSize()>=1)
 			return true;
 		else return false;
 	}
 	
 	//Verifica se o usuario forneceu os atores.
 	private boolean validaNomesAtor(){
-		if(!Validador.validaCampoVazio(igCadastrarFilme.getAtorArea().getText()))
+		if(igCadastrarFilme.getAtorArea().getModel().getSize()>=1)
 			return true;
 		else return false;
+	}
+	
+	private boolean validaCadastroEAvisaUsuario(boolean...bs){
+		if(!bs[0])
+			igCadastrarFilme.getTituloField().setBorder(new LineBorder(Color.RED));
+		else
+			igCadastrarFilme.getTituloField().setBorder(new LineBorder(Color.WHITE));
+		if(!bs[1])
+			igCadastrarFilme.getPaisField().setBorder(new LineBorder(Color.RED));
+		else
+			igCadastrarFilme.getPaisField().setBorder(new LineBorder(Color.WHITE));
+		if(!bs[2])
+			igCadastrarFilme.getDuracaoField().setBorder(new LineBorder(Color.RED));
+		else
+			igCadastrarFilme.getDuracaoField().setBorder(new LineBorder(Color.WHITE));
+		if(!bs[3])
+			igCadastrarFilme.getErroAtorlabel().setText("Você deve fornecer um ator.");
+		else
+			igCadastrarFilme.getErroAtorlabel().setText("");
+		if(!bs[4])
+			igCadastrarFilme.getErroAutorlabel().setText("Você deve fornecer um autor.");
+		else
+			igCadastrarFilme.getErroAutorlabel().setText("");
+		if(!bs[5])
+			igCadastrarFilme.getErroDiretorlabel().setText("Você deve fornecer um diretor.");
+		else
+			igCadastrarFilme.getErroDiretorlabel().setText("");
+		return (bs[0] && bs[1] && bs[2] && bs[3] && bs[4] && bs[5]) ? true : false;
 	}
 	
 	// Lembrar de Melhorar esse Método.
@@ -139,7 +175,7 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 	
 	//Retorna um Array de Objetos de Artistas.
 	private Artista[] obtemArtistas(){
-		String nomes[] = FuncaoAuxiliar.obtemPalavras(igCadastrarFilme.getAtorArea().getText());
+		String nomes[] = FuncaoAuxiliar.obtemPalavras(igCadastrarFilme.getAtorArea());
 		LinkedList<Artista> artistas = new LinkedList<>();
 		
 		for(String nome : nomes)
@@ -150,7 +186,7 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 	
 	//Retorna um Array de Objetos de Autor.
 	private Autor[] obtemAutores(){
-		String nomes[] = FuncaoAuxiliar.obtemPalavras(igCadastrarFilme.getAutorArea().getText());
+		String nomes[] = FuncaoAuxiliar.obtemPalavras(igCadastrarFilme.getAutorArea());
 		LinkedList<Autor> autores = new LinkedList<>();
 		
 		for(String nome : nomes)
@@ -161,7 +197,7 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 	
 	//Retorna um Array de Objetos de Diretores.
 	private Diretor[] obtemDiretores(){
-		String nomes[] = FuncaoAuxiliar.obtemPalavras(igCadastrarFilme.getDiretorArea().getText());
+		String nomes[] = FuncaoAuxiliar.obtemPalavras(igCadastrarFilme.getDiretorArea());
 		LinkedList<Diretor> diretores = new LinkedList<>();
 		
 		for(String nome : nomes)
