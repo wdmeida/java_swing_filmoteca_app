@@ -1,5 +1,7 @@
 package tsi.lpv.samuelwagner.controller;
 
+import java.util.List;
+
 import tsi.lpv.samuelwagner.persistencia.ArtistaDAO;
 import tsi.lpv.samuelwagner.persistencia.AutorDAO;
 import tsi.lpv.samuelwagner.persistencia.AutorFilmeDAO;
@@ -134,12 +136,14 @@ public class CadastroControle {
 	
 	//Cria relação entre o filme e o artista.
 	private static void cadastraEleco(int codigoFilme, int codigoArtista){
-		ElencoDAO.cadastraElenco(codigoFilme, codigoArtista);
+		if(!verificaElenco(codigoFilme, codigoArtista))
+			ElencoDAO.cadastraElenco(codigoFilme, codigoArtista);
 	}
 	
 	//Cria relação entre o filme e o diretor.
 	private static void cadastraDiretorFilme(int codigoFilme, int codigoDiretor){
-		DiretorFilmeDAO.cadastrarDiretorFilme(codigoFilme, codigoDiretor);
+		if(!verificaDiretor(codigoFilme, codigoDiretor))
+			DiretorFilmeDAO.cadastrarDiretorFilme(codigoFilme, codigoDiretor);
 	}
 	
 	//Cria relação entre o filme e o pais.
@@ -154,7 +158,8 @@ public class CadastroControle {
 	
 	//Cria relação entre o filme e o autor.
 	private static void cadastraAutorFilme(int codigoFilme, int codigoAutor){
-		AutorFilmeDAO.cadastrarAutorFilme(codigoFilme, codigoAutor);
+		if(!verificaAutor(codigoFilme, codigoAutor))
+			AutorFilmeDAO.cadastrarAutorFilme(codigoFilme, codigoAutor);
 	}
 	
 	public static void cadastraAutorAtorDiretor(Filme filme, Diretor[] diretores, Autor[] autores, Artista[] artistas ){
@@ -200,5 +205,35 @@ public class CadastroControle {
 				codigoAutor = igual.getCodigo();
 			cadastraAutorFilme(codigoFilme, codigoAutor);
 		}
+	}
+	
+	//Verifca se o Artista já está associado ao filme.
+	private static boolean verificaElenco(int codigoFilme, int codigoArtista){
+		List<Integer> list = ElencoDAO.pesquisElencoFilme(codigoArtista);
+		if(list == null) return false;
+		for(Integer codigo : list)
+			if(codigo == codigoFilme)
+				return true;
+		return false;
+	}
+	
+	//Verifca se o Diretor já está associado ao filme.
+	private static boolean verificaDiretor(int codigoFilme, int codigoDiretor){
+		List<Integer> list = DiretorFilmeDAO.obterFilmesDiretor(codigoDiretor);
+		if(list == null) return false;
+		for(Integer codigo : list)
+			if(codigo == codigoFilme)
+				return true;
+		return false;
+	}
+	
+	//Verifca se o Autor já está associado ao filme.
+	private static boolean verificaAutor(int codigoFilme, int codigoAutor){
+		List<Integer> list = AutorFilmeDAO.obterAutoresFilme(codigoFilme);
+		if(list == null) return false;
+		for(Integer codigo : list)
+			if(codigo == codigoAutor)
+				return true;
+		return false;
 	}
 }

@@ -75,13 +75,12 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 
 	private void validaCadastro(){
 		//Valida se o usuario forneceu os dados correto para o cadastro do Filme.
-		if(validaCadastroEAvisaUsuario(validaNomeFilme(),validaNomePais(),validaDuracao(),validaNomesAtor(),
-				validaNomesAutor(),validaNomesDiretor())){
+		if(validaCadastroEAvisaUsuario(validaNomeFilme(),validaNomePais(),validaDuracao(),true,true,true)){
 				cadastraFilme();
-					igCadastrarFilme.dispose();
-				}else{
-					igCadastrarFilme.getInformaLabel().setText("Contem campos de Preencimento Obrigatorio sem preencher.");
-				}
+				igCadastrarFilme.dispose();
+		}else{
+			igCadastrarFilme.getInformaLabel().setText("Contem campos de Preencimento Obrigatorio sem preencher.");
+		}
 	}
 	//Valida o nome do filme.
 	private boolean validaNomeFilme(){

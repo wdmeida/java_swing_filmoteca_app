@@ -310,6 +310,7 @@ public class IgFilmoteca extends JFrame {
 		});
 		
 		JMenu navegarMenu = new JMenu("Navegar");
+		navegarMenu.setForeground(Color.WHITE);
 		principalMenuBar.add(navegarMenu);
 		
 		//Cria o item de menu cadastrar e registra o seu tratador de eventos.
@@ -393,6 +394,7 @@ public class IgFilmoteca extends JFrame {
 		});
 		
 		JMenu infoMenu = new JMenu("Info");
+		infoMenu.setForeground(Color.WHITE);
 		principalMenuBar.add(infoMenu);
 		
 		//Cria o menu sobre.
@@ -409,16 +411,45 @@ public class IgFilmoteca extends JFrame {
 			}
 		});
 		
+		criaPopMenu();
+		
+		//Define a tela como vísivel.
+		setLocationRelativeTo(null);
+		setVisible(false);
+	}//IgFilmoteca
+	
+	private void criaPopMenu(){
 		//Cria o menu jPopupMenu.
 		JPopupMenu jPopupMenu = new JPopupMenu();
-		JMenuItem menuItem = new JMenuItem("Atualiza Filme");
-		menuItem.addActionListener(new ActionListener() {
+		JMenuItem atualizaFilme = new JMenuItem("Atualiza Filme"),
+				  fechar = new JMenuItem("Fechar"),
+				  pesquisarAutor = new JMenuItem("Pesquisa Autor"),
+				  pesquisarAtor = new JMenuItem("Pesquisa Ator"),
+				  pesquisarDiretor = new JMenuItem("Pesquisa Diretor"),
+				  pesquisarMelhores = new JMenuItem("Pesquisa Melhores"),
+				  sobre = new JMenuItem("Sobre");
+		atualizaFilme.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			new IgCadastraAtorAutorDiretor(IgFilmoteca.this);
+		}
+		});
+		
+		sobre.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				new IgCadastraAtorAutorDiretor(IgFilmoteca.this);
+			public void actionPerformed(ActionEvent arg0) {
+				new IgSobre(IgFilmoteca.this);
 			}
 		});
 		
+		
+		
+		pesquisarAtor.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new IgTelaPesquisa("Pesquisar Filmes pelo Ator", "Ator: ", IgFilmoteca.this, IgFilmoteca.this.atorButton);
+			}
+		});
 		//Registra o tratador de eventos do mouse.
 		getContentPane().addMouseListener(new MouseAdapter() {
 		@Override
@@ -430,20 +461,31 @@ public class IgFilmoteca extends JFrame {
 		
 		getContentPane().add(jPopupMenu);
 		exibicaoPanel.add(jPopupMenu);
-		jPopupMenu.add(menuItem);
+		jPopupMenu.add(atualizaFilme);
+		jPopupMenu.addSeparator();
+		jPopupMenu.add(pesquisarAutor);
+		jPopupMenu.add(pesquisarAtor);
+		jPopupMenu.add(pesquisarDiretor);
+		jPopupMenu.add(pesquisarMelhores);
+		jPopupMenu.addSeparator();
+		jPopupMenu.add(sobre);
+		jPopupMenu.add(fechar);
 		
-		//Define a tela como vísivel.
-		setLocationRelativeTo(null);
-		setVisible(false);
-	}//IgFilmoteca
+	}
 	
 	/**Cria o painel para Exibição das capas dos Filmes no Banco de Dados conforme sua classificação.
 	 * @param panelAmostraFilme <code>JPanel</code>.
 	 */
 	public void criaPaneisFilme(JPanel panelAmostraFilme){
+		//Obtem todos os Filmes.
 		List<Filme> listFilme = FilmeDAO.pesquisarFilmeCriterio();
 		int indice = 0;
 		try {
+			/*Pega o primeiro Filme da Lista e cria o painel onde ficara
+			 * as informaçoes dele. Cria uma Borda para o painel e coloca
+			 * o nome do filme nela. Cria um Label para adicionar o poster 
+			 * filme.
+			 */
 			Filme filme = listFilme.get(indice++);
 			JPanel tela1Panel = new JPanel();
 			tela1Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), filme.getTitulo(), TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
@@ -457,7 +499,11 @@ public class IgFilmoteca extends JFrame {
 			if(filme.getPoster() != null)
 				tela1Label.setIcon(new ImageIcon(filme.getPoster()));
 			filme = listFilme.get(indice++);
-			
+			/*Pega o segundo Filme da Lista e cria o painel onde ficara
+			 * as informaçoes dele. Cria uma Borda para o painel e coloca
+			 * o nome do filme nela. Cria um Label para adicionar o poster 
+			 * filme.
+			 */
 			JPanel tela2Panel = new JPanel();
 			tela2Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), filme.getTitulo(), TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 			tela2Panel.setLayout(null);
@@ -471,6 +517,11 @@ public class IgFilmoteca extends JFrame {
 			if(filme.getPoster() != null)
 				tela2Label.setIcon(new ImageIcon(filme.getPoster()));
 			
+			/*Pega o terceiro Filme da Lista e cria o painel onde ficara
+			 * as informaçoes dele. Cria uma Borda para o painel e coloca
+			 * o nome do filme nela. Cria um Label para adicionar o poster 
+			 * filme.
+			 */
 			filme = listFilme.get(indice++);
 			JPanel tela3Panel = new JPanel();
 			tela3Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), filme.getTitulo(), TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
@@ -484,7 +535,7 @@ public class IgFilmoteca extends JFrame {
 			tela3Panel.add(tela3Label);
 			if(filme.getPoster() != null)
 				tela3Label.setIcon(new ImageIcon(filme.getPoster()));
-		
+			//Captura a exeção caso tiver menos de 3 filme.
 			} catch (Exception e) {
 				return;
 			}
