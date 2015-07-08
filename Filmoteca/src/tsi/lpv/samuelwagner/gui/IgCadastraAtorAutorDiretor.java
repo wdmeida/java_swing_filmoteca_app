@@ -71,8 +71,9 @@ public class IgCadastraAtorAutorDiretor extends JDialog {
 				});
 				
 				IgCadastrarFilme igCadastrarFilme = new IgCadastrarFilme(igFilmoteca,false);
-				
-				procurarButton.addActionListener(new TratadorEventoCadastraAAD(igCadastrarFilme, IgCadastraAtorAutorDiretor.this));
+				TratadorEventoCadastraAAD eventoCadastraAAD = new TratadorEventoCadastraAAD(igCadastrarFilme, IgCadastraAtorAutorDiretor.this);
+				procurarButton.addActionListener(eventoCadastraAAD);
+				areaDescricao.addActionListener(eventoCadastraAAD);
 				
 				cancelaButton.addActionListener(new ActionListener() {
 					@Override

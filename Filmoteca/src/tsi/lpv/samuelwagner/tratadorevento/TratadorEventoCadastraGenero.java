@@ -30,7 +30,7 @@ public class TratadorEventoCadastraGenero implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		if(event.getSource() == igCadastraGenero.getAdicionarButton())
+		if(event.getSource() == igCadastraGenero.getAdicionarButton() && event.getSource() == igCadastraGenero.getAreaDescricao())
 			cadastraGenero();
 		else
 			igCadastraGenero.dispose();
