@@ -165,8 +165,8 @@ public class RespostaEventoPesquisaElemento {
 	 */
 	private void carregarElementosJList(String[] filmes){
 		DefaultListModel<String> valores = new DefaultListModel<String>();
-		
-		for(String filme : filmes) valores.addElement(filme);
+		if(filmes != null)
+			for(String filme : filmes) valores.addElement(filme);
 		
 		new IgResultadoPesquisa(IgFilmoteca, "Filmes encontrados", valores);
 	}
