@@ -9,6 +9,7 @@ import tsi.lpv.samuelwagner.controller.PesquisaControle;
 import tsi.lpv.samuelwagner.funcaoauxiliar.Validador;
 import tsi.lpv.samuelwagner.gui.IgFilmoteca;
 import tsi.lpv.samuelwagner.gui.IgMensagem;
+import tsi.lpv.samuelwagner.gui.IgResultadoPesquisa;
 import tsi.lpv.samuelwagner.persistencia.ArtistaDAO;
 import tsi.lpv.samuelwagner.persistencia.AutorDAO;
 import tsi.lpv.samuelwagner.persistencia.AutorFilmeDAO;
@@ -45,7 +46,10 @@ public class RespostaEventoPesquisaElemento {
 		this.nomePesquisa = nomePesquisa;
 		this.botaoChamada = botaoChamada;
 	}
-
+	
+	/**
+	 * Controla a pesquisa do usuário através da referência do botão clicado.
+	 */
 	public void pesquisa(){
 		if(botaoChamada.equals(IgFilmoteca.getAutorButton())) buscarAutor();
 		if(botaoChamada.equals(IgFilmoteca.getAtorButton())) buscarAtor();
@@ -53,6 +57,9 @@ public class RespostaEventoPesquisaElemento {
 		if(botaoChamada.equals(IgFilmoteca.getGeneroButtono())) buscarGenero();
 	}
 	
+	/**
+	 * Busca as informações sobre o ator.
+	 */
 	private void buscarAtor(){
 		if(Validador.validaCampoVazio(nomePesquisa)){
 			new IgMensagem(IgFilmoteca, "Campo não pode ser vazio.");
@@ -74,7 +81,9 @@ public class RespostaEventoPesquisaElemento {
 		}			
 	}
 	
-	
+	/**
+	 * Busca as informações sobre o autor.
+	 */
 	private void buscarAutor() {
 		if(Validador.validaCampoVazio(nomePesquisa)){
 			new IgMensagem(IgFilmoteca, "Campo não pode ser vazio.");
@@ -97,6 +106,9 @@ public class RespostaEventoPesquisaElemento {
 		}			
 	}//buscaAutor()
 	
+	/**
+	 * Busca as informações sobre um diretor do filme.
+	 */
 	private void buscarDiretor(){
 		if(Validador.validaCampoVazio(nomePesquisa)){
 			new IgMensagem(IgFilmoteca, "Campo não pode ser vazio.");
@@ -120,6 +132,9 @@ public class RespostaEventoPesquisaElemento {
 		}		
 	}
 	
+	/**
+	 * Busca as informações sobre o gênero do filme.
+	 */
 	private void buscarGenero(){
 		if(Validador.validaCampoVazio(nomePesquisa)){
 			new IgMensagem(IgFilmoteca, "Campo não pode ser vazio.");
@@ -145,7 +160,7 @@ public class RespostaEventoPesquisaElemento {
 	}
 	
 	/**
-	 * Carrega os elementos encontrados para o comboBox.
+	 * Carrega os elementos encontrados para o comboBox e exibe a tela de resultados.
 	 * @param filmes <code>String[]</code> com os nomes dos filmes para serem carregados.
 	 */
 	private void carregarElementosJList(String[] filmes){
@@ -153,7 +168,7 @@ public class RespostaEventoPesquisaElemento {
 		
 		for(String filme : filmes) valores.addElement(filme);
 		
-		IgFilmoteca.getResultadoJList().setModel(valores);
+		new IgResultadoPesquisa(IgFilmoteca, "Filmes encontrados", valores);
 	}
 	
 }//class TratadorEventoPesquisaElemento

@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 
 import tsi.lpv.samuelwagner.gui.IgCadastraAtorAutorDiretor;
 import tsi.lpv.samuelwagner.gui.IgCadastrarFilme;
-import tsi.lpv.samuelwagner.gui.IgFilmoteca;
 import tsi.lpv.samuelwagner.gui.IgMensagem;
 import tsi.lpv.samuelwagner.persistencia.FilmeDAO;
 import tsi.lpv.samuelwagner.persistencia.GeneroDAO;

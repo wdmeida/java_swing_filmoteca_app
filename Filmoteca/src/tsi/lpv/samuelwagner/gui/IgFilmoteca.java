@@ -1,14 +1,17 @@
 package tsi.lpv.samuelwagner.gui;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,7 +20,6 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -26,17 +28,17 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ListCellRenderer;
-import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+import tsi.lpv.samuelwagner.persistencia.ConnectionFactory;
 import tsi.lpv.samuelwagner.persistencia.FilmeDAO;
 import tsi.lpv.samuelwagner.tipo.Filme;
 import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoPesquisarFilme;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import javax.swing.KeyStroke;
+
+import java.awt.event.InputEvent;
 /**
  * A classe <code>IgFilmoteca</code> é a responsável por construir a janela gráfica principal.
  * @author Wagner Almeida
@@ -48,7 +50,6 @@ public class IgFilmoteca extends JFrame {
 	private Color corFonte = new Color(237,255,40);
 	private Color corMenu = new Color(148,151,151);
 	private Color corSubMenu = new Color(124,61,139);
-	private Color corLista = new Color(114,124,115);
 	private JTextField pesquisarTextField;
 	private static JButton buscarFilmeButton;
 	private JPanel exibicaoPanel;
@@ -63,7 +64,6 @@ public class IgFilmoteca extends JFrame {
 	/**
 	 * Construtor da classe <code>IgFilmoteca</code> responsável pela interface gráfica do aplicativo Filmoteca.
 	 */
-	@SuppressWarnings("unchecked")
 	public IgFilmoteca() {
 		//Define o nome do app
 		setTitle("Darth Movies");
@@ -268,7 +268,12 @@ public class IgFilmoteca extends JFrame {
 		setSize(845, 517);
 		
 		//Define a ação a ser tomada quando o botão fechar for apertado.
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				IgFilmoteca.this.fecharAplicativo();
+			}
+		});
 		
 		JMenuBar principalMenuBar = new JMenuBar();
 		principalMenuBar.setBackground(corMenu);
@@ -279,11 +284,112 @@ public class IgFilmoteca extends JFrame {
 		arquivoMenu.setForeground(Color.WHITE);
 		principalMenuBar.add(arquivoMenu);
 		
-		JMenuItem apagarMenuItem= new JMenuItem("Apagar banco de dados");
-		apagarMenuItem.setForeground(Color.WHITE);
-		apagarMenuItem.setBackground(corBase);
-		arquivoMenu.add(apagarMenuItem);
+		JMenuItem fecharMenuItem = new JMenuItem("Fechar");
+		fecharMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_MASK));
+		fecharMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/Theater_ticket_24.png")));
+		arquivoMenu.add(fecharMenuItem);
 		
+		//Registra o tratador de eventos do botão fechar no menu.
+		fecharMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				IgFilmoteca.this.fecharAplicativo();
+			}
+		});
+		
+		JMenu navegarMenu = new JMenu("Navegar");
+		principalMenuBar.add(navegarMenu);
+		
+		//Cria o item de menu cadastrar e registra o seu tratador de eventos.
+		JMenuItem cadastrarMenuItem = new JMenuItem("Cadastrar Filme");
+		cadastrarMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
+		cadastrarMenuItem.setMnemonic(KeyEvent.VK_C);
+		cadastrarMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/video.png")));
+		navegarMenu.add(cadastrarMenuItem);
+		cadastrarMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new IgCadastrarFilme(IgFilmoteca.this,true);
+			}
+		});
+		
+		JMenu procurarMenu = new JMenu("Procurar Filme pelo...");
+		procurarMenu.setMnemonic(KeyEvent.VK_R);
+		procurarMenu.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/search.png")));
+		navegarMenu.add(procurarMenu);
+		
+		//Cria o item de menu autor e registra o seu tratador de eventos.
+		JMenuItem atorMenuItem = new JMenuItem("Ator");
+		atorMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.CTRL_MASK));
+		atorMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/actordark.png")));
+		procurarMenu.add(atorMenuItem);
+		atorMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new IgTelaPesquisa("Pesquisar Filmes Artista", "Nome do artista: ", IgFilmoteca.this, IgFilmoteca.this.atorButton);
+			}
+		});
+		
+		//Cria o item de menu autor e registra o seu tratador de eventos.
+		JMenuItem autorMenuItem = new JMenuItem("Autor");
+		autorMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
+		autorMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/author.png")));
+		procurarMenu.add(autorMenuItem);
+		autorMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new IgTelaPesquisa("Pesquisar Filmes Autor", "Nome do autor: ", IgFilmoteca.this, IgFilmoteca.this.autorButton);
+			}
+		});
+		
+		//Cria o item de menu diretor e registra seu tratador de eventos.
+		JMenuItem diretorMenuItem = new JMenuItem("Diretor");
+		diretorMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_MASK));
+		diretorMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/director_sit.png")));
+		procurarMenu.add(diretorMenuItem);
+		diretorMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new IgTelaPesquisa("Pesquisar Filmes Diretor", "Nome do Diretor: ", IgFilmoteca.this, IgFilmoteca.this.diretorButton);
+			}
+		});
+		
+		//Cria o item de menu gênero e registra seu tratador de eventos.
+		JMenuItem generoMenuItem = new JMenuItem("G\u00EAnero");
+		generoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_MASK));
+		generoMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/Hollywood_sign_24.png")));
+		procurarMenu.add(generoMenuItem);
+		generoMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new IgTelaPesquisa("Pesquisar Filmes pelo Gênero", "Gênero: ", IgFilmoteca.this, IgFilmoteca.this.generoButton);
+			}
+		});
+		
+		//Cria o item de menu preferidos.
+		JMenuItem preferidosMenuItem = new JMenuItem("Visualizar Preferidos");
+		preferidosMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_MASK));
+		preferidosMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/keditbookmarks.png")));
+		navegarMenu.add(preferidosMenuItem);
+		
+		//Registra o tratador de eventos do preferidosMenuItem.
+		preferidosMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+					exibirClassificacao();		
+			}
+		});
+		
+		JMenu infoMenu = new JMenu("Info");
+		principalMenuBar.add(infoMenu);
+		
+		//Cria o menu sobre.
+		JMenuItem mntmSobre = new JMenuItem("Sobre");
+		mntmSobre.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema-Batman-Old-icon.png")));
+		mntmSobre.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
+		infoMenu.add(mntmSobre);
+		
+		//Cria o menu jPopupMenu.
 		JPopupMenu jPopupMenu = new JPopupMenu();
 		JMenuItem menuItem = new JMenuItem("Atualiza Filme");
 		menuItem.addActionListener(new ActionListener() {
@@ -293,7 +399,7 @@ public class IgFilmoteca extends JFrame {
 			}
 		});
 		
-		
+		//Registra o tratador de eventos do mouse.
 		getContentPane().addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseReleased(MouseEvent e) {
@@ -330,6 +436,21 @@ public class IgFilmoteca extends JFrame {
 			new IgClassificacaoPessoalFilmes(this, dadosFilmes.toArray(new String[0]));
 		}
 	}
+	
+	/**
+	 * Fecha a conexão com o banco de dados e encerra o aplicativo.
+	 */
+	private void fecharAplicativo(){
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				ConnectionFactory.closeConnection();
+				System.exit(0);
+			}
+			
+		});
+	}
+	
 	/**
 	 * Obtém a referência da caixa de texto de pesquisa.
 	 * @return <code>JTextField</code>
