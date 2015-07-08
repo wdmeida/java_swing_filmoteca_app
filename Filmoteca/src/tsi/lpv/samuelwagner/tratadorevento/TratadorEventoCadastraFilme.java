@@ -67,7 +67,6 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 	}
 	
 	private void cadastraAutorAtorDiretor() {
-		System.out.println("Kkkk");
 		Artista artistas[] = obtemArtistas();
 		Diretor diretores[] = obtemDiretores();
 		Autor autores[] = obtemAutores();
