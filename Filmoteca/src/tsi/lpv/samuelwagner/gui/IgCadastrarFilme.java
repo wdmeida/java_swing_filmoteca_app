@@ -231,7 +231,7 @@ public class IgCadastrarFilme extends JDialog {
 			generos = new String[]{"Novo Genero..."};
 		}
 		
-		generoComboBox = new JComboBox<String>(generos);
+		generoComboBox = new JComboBox/*<String>*/(generos);
 		generoComboBox.setSize(195, 21);
 		generoComboBox.setLocation(10, 18);
 		generoComboBox.setSelectedIndex(0);
@@ -291,7 +291,7 @@ public class IgCadastrarFilme extends JDialog {
 		filmePanel1.add(faixaEtariaPanel);
 		faixaEtariaPanel.setLayout(null);
 		
-		faixaEtariaComboBox = new JComboBox<String>(new String[] {"Livre", " inadequado para menores de 10", " inadequado para menores de 12", " inadequado para menores de 14", " inadequado para menores de 16", " inadequado para menores de 18"});
+		faixaEtariaComboBox = new JComboBox/*<String>*/(new String[] {"Livre", " inadequado para menores de 10", " inadequado para menores de 12", " inadequado para menores de 14", " inadequado para menores de 16", " inadequado para menores de 18"});
 		faixaEtariaComboBox.setSelectedIndex(0);
 		faixaEtariaComboBox.setBounds(10, 21, 195, 22);
 		faixaEtariaPanel.add(faixaEtariaComboBox);
@@ -466,6 +466,22 @@ public class IgCadastrarFilme extends JDialog {
 		JLabel lblComoCadastraO = new JLabel("Como Cadastra o Diretor:");
 		lblComoCadastraO.setBounds(10, 67, 204, 21);
 		informacaoPanel.add(lblComoCadastraO);
+		
+		JLabel lblDigitaAO = new JLabel("Digita a o nome do diretor na caixa ");
+		lblDigitaAO.setBounds(20, 88, 204, 21);
+		informacaoPanel.add(lblDigitaAO);
+		
+		JLabel lblDeDialogo = new JLabel("de Dialogo.");
+		lblDeDialogo.setBounds(20, 103, 194, 21);
+		informacaoPanel.add(lblDeDialogo);
+		
+		JLabel lblAperteInserirOu = new JLabel("Aperte Inserir ou ALT+I.");
+		lblAperteInserirOu.setBounds(20, 120, 194, 29);
+		informacaoPanel.add(lblAperteInserirOu);
+		
+		JLabel lblParaApagarO = new JLabel("Para apagar o ultimo diretor.");
+		lblParaApagarO.setBounds(20, 141, 194, 27);
+		informacaoPanel.add(lblParaApagarO);
 		TratadorEventoInsereDiretor eventoInsereDiretor = new TratadorEventoInsereDiretor(IgCadastrarFilme.this);
 		
 		inserirDiretorButton.setMnemonic(KeyEvent.VK_I);
@@ -534,6 +550,35 @@ public class IgCadastrarFilme extends JDialog {
 		informacaoPanel.setBackground(new Color(87, 87, 87));
 		informacaoPanel.setBounds(228, 11, 236, 200);
 		autorPanel.add(informacaoPanel);
+		informacaoPanel.setLayout(null);
+		
+		JLabel lblInformeOAutores = new JLabel("Informe o Autor(es) do Filme:");
+		lblInformeOAutores.setBounds(10, 23, 204, 21);
+		informacaoPanel.add(lblInformeOAutores);
+		
+		JLabel lblOCadastroDo_1 = new JLabel("O cadastro do autor e obrigatorio.");
+		lblOCadastroDo_1.setBounds(20, 44, 204, 21);
+		informacaoPanel.add(lblOCadastroDo_1);
+		
+		JLabel lblComoCadastraO_1 = new JLabel("Como Cadastra o Autor:");
+		lblComoCadastraO_1.setBounds(10, 69, 204, 21);
+		informacaoPanel.add(lblComoCadastraO_1);
+		
+		JLabel lblDigitaAO_1 = new JLabel("Digita a o nome do autor na caixa ");
+		lblDigitaAO_1.setBounds(20, 90, 204, 21);
+		informacaoPanel.add(lblDigitaAO_1);
+		
+		JLabel lblDeAutor = new JLabel("de Autor.");
+		lblDeAutor.setBounds(20, 105, 194, 21);
+		informacaoPanel.add(lblDeAutor);
+		
+		JLabel label_5 = new JLabel("Aperte Inserir ou ALT+I.");
+		label_5.setBounds(20, 122, 194, 29);
+		informacaoPanel.add(label_5);
+		
+		JLabel lblParaApagarO_1 = new JLabel("Para apagar o ultimo autor.");
+		lblParaApagarO_1.setBounds(20, 143, 194, 27);
+		informacaoPanel.add(lblParaApagarO_1);
 		
 		erroAutorlabel = new JLabel("");
 		erroAutorlabel.setBounds(228, 222, 236, 23);
@@ -589,6 +634,35 @@ public class IgCadastrarFilme extends JDialog {
 		informacaoPanel.setBackground(new Color(87, 87, 87));
 		informacaoPanel.setBounds(228, 11, 236, 200);
 		artistaPanel.add(informacaoPanel);
+		informacaoPanel.setLayout(null);
+		
+		JLabel lblInformeOAtores = new JLabel("Informe o Ator(es) do Filme:");
+		lblInformeOAtores.setBounds(10, 25, 204, 21);
+		informacaoPanel.add(lblInformeOAtores);
+		
+		JLabel lblOCadastroDo_2 = new JLabel("O cadastro do ator e obrigatorio.");
+		lblOCadastroDo_2.setBounds(20, 46, 204, 21);
+		informacaoPanel.add(lblOCadastroDo_2);
+		
+		JLabel lblComoCadastraO_2 = new JLabel("Como Cadastra o Ator");
+		lblComoCadastraO_2.setBounds(10, 71, 204, 21);
+		informacaoPanel.add(lblComoCadastraO_2);
+		
+		JLabel lblDigitaAO_2 = new JLabel("Digita a o nome do ator na caixa ");
+		lblDigitaAO_2.setBounds(20, 92, 204, 21);
+		informacaoPanel.add(lblDigitaAO_2);
+		
+		JLabel label_4 = new JLabel("de Dialogo.");
+		label_4.setBounds(20, 107, 194, 21);
+		informacaoPanel.add(label_4);
+		
+		JLabel label_5 = new JLabel("Aperte Inserir ou ALT+I.");
+		label_5.setBounds(20, 124, 194, 29);
+		informacaoPanel.add(label_5);
+		
+		JLabel lblParaApagarO_2 = new JLabel("Para apagar o ultimo ator.");
+		lblParaApagarO_2.setBounds(20, 145, 194, 27);
+		informacaoPanel.add(lblParaApagarO_2);
 		
 		erroAtorlabel = new JLabel("");
 		erroAtorlabel.setBounds(228, 222, 236, 23);
