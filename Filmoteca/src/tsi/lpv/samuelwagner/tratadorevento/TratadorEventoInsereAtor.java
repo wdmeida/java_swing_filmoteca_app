@@ -11,14 +11,14 @@ import tsi.lpv.samuelwagner.gui.IgCadastrarFilme;
 
 /**  Classe <code>TratadorEventoInsereAtor</code> responsavel por tratar os eventos 
  *  da classe <code>IgCadastrarFilme</code>.
- * @author Samuel 
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  *
  */
 public class TratadorEventoInsereAtor implements ActionListener {
 private IgCadastrarFilme igCadastrarFilme;
 	
-	/**Construtor Sobrecarregado da classe <code>TratadorEventoInsereAtor</code>.
+	/**Construtor sobrecarregado da classe <code>TratadorEventoInsereAtor</code>.
 	 * @param igCadastrarFilme referencia da Classe <code>IgCadastrarFilme</code>.
 	 */
 	public TratadorEventoInsereAtor(IgCadastrarFilme igCadastrarFilme) {

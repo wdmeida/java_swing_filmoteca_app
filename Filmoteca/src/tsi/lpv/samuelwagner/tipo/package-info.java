@@ -1,8 +1,8 @@
 
 /**
- * Este pacote possui as classes base para o aplicativo de catálogo de filmes.
+ * Este pacote possui as classes base para o aplicativo Filmoteca.
  * 
- * @author Samuel 
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 package tsi.lpv.samuelwagner.tipo;

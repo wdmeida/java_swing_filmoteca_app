@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Samuel
- * @author Wagner
+ * A classe <code>PaisFilmeDAO</code> implementa as operações necessárias para manipulação dos dados na tabela paisfilme.
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class PaisFilmeDAO {
 	private static final String INSERIR_PAIS_FILME = "INSERT INTO paisfilme (codigo_filme,codigo_pais) VALUES (?,?);";

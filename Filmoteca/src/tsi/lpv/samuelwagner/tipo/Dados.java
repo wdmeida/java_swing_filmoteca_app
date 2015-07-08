@@ -4,8 +4,8 @@ package tsi.lpv.samuelwagner.tipo;
  * da filmoteca. Ela é definida para que as demais operações do aplicativo sejam executadas de forma
  * polimórfica.
  * 
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public /*abstract*/ class Dados {
 	private int codigo;

@@ -9,8 +9,8 @@ import java.util.LinkedList;
 import tsi.lpv.samuelwagner.tipo.Genero;
 
 /**A classe <code>GeneroDAO</code> implementa as operações necessárias para manipulação dos dados na tabela genero.
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class GeneroDAO {
 	private static final String INSERT_GENERO = "INSERT INTO genero (descricao) VALUES (?);";

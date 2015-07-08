@@ -7,8 +7,8 @@ import java.sql.SQLException;
 /**
  * A classe <code>ConnectionFactory</code> obtém uma conexão com o banco de dados do aplicativo Filmoteca.
  *  
- * @author Wagner
- * @author Samuel
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class ConnectionFactory {
 	private static Connection connection; //Conexão a ser gerada.

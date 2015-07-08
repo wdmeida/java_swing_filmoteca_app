@@ -11,8 +11,8 @@ import tsi.lpv.samuelwagner.gui.IgCadastrarFilme;
 
 /** Classe <code>TratadorEventoInsereDiretor</code> responsavel por tratar os eventos 
  *  da classe <code>IgCadastrarFilme</code>.
- * @author Samuel
- * @author Wanger
+ * @author Samuel Gonçalves
+ * @author Wanger Almeida
  */
 public class TratadorEventoInsereDiretor implements ActionListener {
 	private IgCadastrarFilme igCadastraFilme;

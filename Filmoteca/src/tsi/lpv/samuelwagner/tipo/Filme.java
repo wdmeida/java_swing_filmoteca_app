@@ -6,8 +6,8 @@ import java.util.Calendar;
  * A classe <code>Filme</code> possui os atributos necessário para armazenar as informações básicas dos
  * filmes cadastrados no aplicativo Filmoteca.
  * 
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class Filme {
 	private int codigo,

@@ -9,8 +9,8 @@ import java.util.List;
 
 /**A classe <code>GeneroFilmeDAO</code> contém as operações de inserção e pesquisa de dados na tabela de referência
  * de genero filme.
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class GeneroFilmeDAO {
 	private static final String INSERT_GENERO_FILME = "INSERT INTO generofilme(codigo_filme,codigo_genero) VALUES(?,?);";

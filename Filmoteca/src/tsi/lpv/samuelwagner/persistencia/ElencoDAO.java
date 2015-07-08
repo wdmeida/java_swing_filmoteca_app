@@ -9,8 +9,8 @@ import java.util.List;
 
 /**A classe <code>ElencoDAO</code> contém as operações de inserção e pesquisa de dados na tabela de referência
  * de artista e filme.
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class ElencoDAO {
 	private static final String INSERT_ELENCO = "INSERT INTO elenco(codigo_filme,codigo_artista) VALUES(?,?);";

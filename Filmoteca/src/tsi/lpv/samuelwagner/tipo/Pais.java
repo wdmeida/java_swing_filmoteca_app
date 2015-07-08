@@ -3,8 +3,8 @@ package tsi.lpv.samuelwagner.tipo;
 /**
  * A classe <code>Pais</code> possui as informações básicas sobre o país de produção do filme.
  * 
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class Pais extends Dados {
 	/**

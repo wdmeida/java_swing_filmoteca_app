@@ -12,8 +12,8 @@ import java.util.Locale;
 import javax.swing.JList;
 /**
  * A classe <code>FuncaoAuxiliar</code>
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class FuncaoAuxiliar {
 	private static String nomeMeses[] = {"Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho",

@@ -13,7 +13,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -243,6 +242,11 @@ public class IgFilmoteca extends JFrame {
 		buscarFilmeButton.setBounds(708, 9, 121, 30);
 		pesquisarPanel.add(buscarFilmeButton);
 		
+		JLabel iconLabel = new JLabel("");
+		iconLabel.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/Darth_Vader_Mask_64.png")));
+		iconLabel.setBounds(21, 0, 64, 48);
+		pesquisarPanel.add(iconLabel);
+		
 		//Registra o tratador de eventos da pesquisa.
 		buscarFilmeButton.addActionListener(new ActionListener() {			
 			@Override
@@ -291,7 +295,7 @@ public class IgFilmoteca extends JFrame {
 		//Cria o menu arquivo.
 		JMenu arquivoMenu = new JMenu("Arquivo");
 		arquivoMenu.setBackground(corBase);
-		arquivoMenu.setForeground(Color.WHITE);
+		arquivoMenu.setForeground(Color.BLACK);
 		principalMenuBar.add(arquivoMenu);
 		
 		//Cria o menu fechar.
@@ -304,11 +308,13 @@ public class IgFilmoteca extends JFrame {
 		fecharMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				IgFilmoteca.this.fecharAplicativo();
+				ConnectionFactory.closeConnection();
+				System.exit(0);
 			}
 		});
 		
 		JMenu navegarMenu = new JMenu("Navegar");
+		navegarMenu.setForeground(Color.BLACK);
 		navegarMenu.setForeground(Color.WHITE);
 		principalMenuBar.add(navegarMenu);
 		
@@ -393,6 +399,7 @@ public class IgFilmoteca extends JFrame {
 		});
 		
 		JMenu infoMenu = new JMenu("Info");
+		infoMenu.setForeground(Color.BLACK);
 		infoMenu.setForeground(Color.WHITE);
 		principalMenuBar.add(infoMenu);
 		
@@ -493,8 +500,9 @@ public class IgFilmoteca extends JFrame {
 			}
 		});
 		
-		getContentPane().add(jPopupMenu);
+		/*getContentPane().add(jPopupMenu);
 		exibicaoPanel.add(jPopupMenu);
+		jPopupMenu.add(menuItem);*/
 		jPopupMenu.add(atualizaFilme);
 		jPopupMenu.addSeparator();
 		jPopupMenu.add(pesquisarAutor);

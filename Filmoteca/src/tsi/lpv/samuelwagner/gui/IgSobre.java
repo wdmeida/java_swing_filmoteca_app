@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
+import javax.swing.ImageIcon;
 /**
  * A classe <code>IgSobre</code> constrói a janela com informações sobre o aplicativo.
  * @author Wagner Almeida
@@ -57,6 +58,16 @@ public class IgSobre extends JDialog {
 		getContentPane().add(lblBancadaNegraAcima);
 		lblBancadaNegraAcima.setForeground(Color.WHITE);
 		lblBancadaNegraAcima.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(IgSobre.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema-icon.png")));
+		lblNewLabel.setBounds(10, 21, 46, 32);
+		getContentPane().add(lblNewLabel);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(IgSobre.class.getResource("/tsi/lpv/samuelwagner/imagens/Popcorn_from_cinema_24.png")));
+		label.setBounds(411, 21, 33, 32);
+		getContentPane().add(label);
 		
 		//Registra o tratador de eventos da janela.
 		addWindowListener(new WindowAdapter() {

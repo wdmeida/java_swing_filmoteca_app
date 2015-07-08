@@ -29,6 +29,7 @@ public class IgEsperaInicial extends JDialog {
 		setResizable(false);
 		getContentPane().setLayout(null);
 		
+		//Cria um JProgressBar
 		progressBar = new JProgressBar();
 		progressBar.setBackground(corBase);
 		progressBar.setForeground(Color.BLACK);

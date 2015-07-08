@@ -73,13 +73,15 @@ public class IgTelaPesquisa extends JDialog {
 		pesquisaPanel.add(pesquisaTextField);
 		pesquisaTextField.setColumns(10);
 		
+		//Cria o botão pesquisar e atribui suas propriedades.
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.setMnemonic(KeyEvent.VK_P);
 		btnPesquisar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnPesquisar.setIcon(new ImageIcon(IgTelaPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Watching_a_video_on_a_tablet_16.png")));
 		btnPesquisar.setForeground(Color.BLACK);
-		btnPesquisar.setBackground(Color.WHITE);
-		btnPesquisar.setBounds(178, 123, 110, 38);
+		btnPesquisar.setBackground(Color.BLACK);
+		btnPesquisar.setBorder(null);
+		btnPesquisar.setBounds(178, 128, 110, 33);
 		pesquisaPanel.add(btnPesquisar);
 		
 		//Registra o tratador de eventos do botão pesquisar.
@@ -92,11 +94,14 @@ public class IgTelaPesquisa extends JDialog {
 			}
 		});
 		
+		//Cria o botão cancelar.
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setMnemonic(KeyEvent.VK_C);
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnCancelar.setIcon(new ImageIcon(IgTelaPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Film_reel_circular_shape_16.png")));
-		btnCancelar.setBounds(298, 123, 110, 38);
+		btnCancelar.setBackground(Color.BLACK);
+		btnCancelar.setBorder(null);
+		btnCancelar.setBounds(298, 128, 110, 33);
 		pesquisaPanel.add(btnCancelar);
 		
 		//Registra o tratador de eventos do botão pesquisar.
@@ -112,6 +117,7 @@ public class IgTelaPesquisa extends JDialog {
 		separator.setBounds(10, 110, 398, 2);
 		pesquisaPanel.add(separator);
 		
+		//Cria os label para inserir as imagens.
 		JLabel popLabel = new JLabel("");
 		popLabel.setIcon(new ImageIcon(IgTelaPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Popcorn_from_cinema_24.png")));
 		popLabel.setBounds(360, 11, 48, 38);

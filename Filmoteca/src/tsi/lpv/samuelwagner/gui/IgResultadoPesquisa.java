@@ -38,6 +38,12 @@ public class IgResultadoPesquisa extends JDialog {
 	private Color corBase =  new Color(17, 17, 17);
 	private Color corLista = new Color(114,124,115);
 	
+	/**
+	 * Construtor da classe <code>IgResultadoPesquisa</code> responsável por exibir dos detalhes da pesquisa.
+	 * @param igFilmoteca <code>IgFilmoteca</code> com a referência da classe principal.
+	 * @param tituloPesquisa <code>String</code> com o titulo da pesquisa.
+	 * @param valores <code>DefaultListModel</code> com os valores a serem exibidos.
+	 */
 	@SuppressWarnings("unchecked")
 	public IgResultadoPesquisa(IgFilmoteca igFilmoteca, String tituloPesquisa, DefaultListModel<String> valores) {
 		this.igFilmoteca = igFilmoteca;
@@ -77,6 +83,8 @@ public class IgResultadoPesquisa extends JDialog {
 		visualizarDetalhesButton.setIcon(new ImageIcon(IgResultadoPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/movie47.png")));
 		visualizarDetalhesButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		visualizarDetalhesButton.setBounds(139, 313, 137, 33);
+		visualizarDetalhesButton.setBackground(Color.BLACK);
+		visualizarDetalhesButton.setBorder(null);
 		getContentPane().add(visualizarDetalhesButton);
 		
 		//Registra o tratador de eventos do botão visualizarDetalhes;
@@ -91,6 +99,8 @@ public class IgResultadoPesquisa extends JDialog {
 		JButton sairButton = new JButton("Sair");
 		sairButton.setIcon(new ImageIcon(IgResultadoPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Film_reel_circular_shape_16.png")));
 		sairButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		sairButton.setBackground(Color.BLACK);
+		sairButton.setBorder(null);
 		sairButton.setBounds(286, 313, 130, 33);
 		getContentPane().add(sairButton);
 		

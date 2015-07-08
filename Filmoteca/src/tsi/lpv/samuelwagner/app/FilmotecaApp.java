@@ -14,8 +14,8 @@ import tsi.lpv.samuelwagner.gui.IgEsperaInicial;
 import tsi.lpv.samuelwagner.gui.IgFilmoteca;
 
 /**Classe <code>FilmotecaApp</code> responsavel por inicar a execução do Aplicativo Darth Movie.
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class FilmotecaApp {
 

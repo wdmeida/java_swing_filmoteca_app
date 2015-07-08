@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import tsi.lpv.samuelwagner.tipo.Artista;
 
 /**A classe <code>ArtistaDAO</code> implementa as operações necessárias para manipulação dos dados na tabela artista.
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class ArtistaDAO {
 	private static final String INSERT_ARTISTA = "INSERT INTO artista (nome) VALUES (?);";

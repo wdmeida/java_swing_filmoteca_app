@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import tsi.lpv.samuelwagner.tipo.Diretor;
 
 /**A classe <code>DiretorDAO</code> implementa as operações necessárias para manipulação dos dados na tabela diretor.
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class DiretorDAO {
 	private static final String INSERT_DIRETOR = "INSERT INTO diretor (nome) VALUES (?);";

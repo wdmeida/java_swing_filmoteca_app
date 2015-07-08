@@ -3,8 +3,8 @@ package tsi.lpv.samuelwagner.tipo;
 /**
  * A classe <code>Diretor</code> possui as informações básicas do diretor do filme.
  * 
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class Diretor extends Dados {
 	

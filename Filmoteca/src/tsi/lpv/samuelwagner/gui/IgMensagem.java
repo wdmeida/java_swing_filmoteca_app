@@ -81,6 +81,7 @@ public class IgMensagem extends JDialog {
 		btnOk.setBounds(122, 96, 114, 32);
 		mensagemPanel.add(btnOk);
 		
+		//Cria o label de mensagem
 		JLabel mensagemLabel = new JLabel(mensagem);
 		mensagemLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		mensagemLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -88,16 +89,19 @@ public class IgMensagem extends JDialog {
 		mensagemLabel.setBounds(10, 57, 339, 16);
 		mensagemPanel.add(mensagemLabel);
 		
+		//Cria o icone da janela.
 		JLabel dartMalLabel = new JLabel("");
 		dartMalLabel.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema-icon.png")));
 		dartMalLabel.setBounds(10, 11, 38, 40);
 		mensagemPanel.add(dartMalLabel);
 		
+		//Cria o icone do batman
 		JLabel batmanLabel = new JLabel("");
 		batmanLabel.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/samuelwagner/imagens/Film_strip_24.png")));
 		batmanLabel.setBounds(318, 11, 31, 23);
 		mensagemPanel.add(batmanLabel);
 		
+		//Cria o icone da foto.
 		JLabel iconFoto = new JLabel("");
 		iconFoto.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/samuelwagner/imagens/keditbookmarks.png")));
 		iconFoto.setBounds(37, 84, 38, 32);

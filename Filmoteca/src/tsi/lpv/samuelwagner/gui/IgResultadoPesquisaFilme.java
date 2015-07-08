@@ -45,7 +45,7 @@ public class IgResultadoPesquisaFilme extends JDialog {
 	/**
 	 * Construtor da classe <code>IgResultadoFilme</code>.
 	 * @param componente <code>IgFilmoteca</code> com a referência do método que realizou a chamada a classe.
-	 * @param filme
+	 * @param filme <code>Filme</code> com os dados a serem exibidos.
 	 */
 	public IgResultadoPesquisaFilme(IgFilmoteca componente, Filme filme) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IgResultadoPesquisaFilme.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema-Batman-Old-icon.png")));

@@ -14,8 +14,9 @@ import javax.swing.JTextField;
 import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoCadastraGenero;
 
 /**
- * @author Samuel
- * @author Wagner
+ * A classe <code>IgCadastraGenero</code> constrói a interface gráfica responsável pelo cadastro do gênero.
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class IgCadastraGenero extends JDialog {
 	private JButton adicionarButton;
@@ -23,8 +24,7 @@ public class IgCadastraGenero extends JDialog {
 	private JTextField areaDescricao;
 	private static Color corPainel = new Color(87, 87, 87);
 
-	/** Constrói a janela de cadastro de renda.
-	 * @param tituloJanela <code>TituloJanela</code> referencia do titulo da janela.
+	/** Constrói a janela de cadastro de gênero.
 	 * @param igPlanejamentoFinanceiro <code>IgPlanejamentoFinanceiro</code> referencia da Janela Principal.
 	 */
 	public IgCadastraGenero(IgCadastrarFilme igCadastrarFilme) {
@@ -39,7 +39,7 @@ public class IgCadastraGenero extends JDialog {
 	
 		//Cria um JTextField e difene suas propriedades.
 		areaDescricao = new JTextField();
-		areaDescricao.setToolTipText("Informa o tipo de Genero.");
+		areaDescricao.setToolTipText("Informa a Descri\u00E7\u00E3o da Renda.");
 		areaDescricao.setColumns(20);
 		areaDescricao.setBounds(87, 13, 198,20);
 		getContentPane().setLayout(null);
@@ -52,7 +52,7 @@ public class IgCadastraGenero extends JDialog {
 		//Cria os JButton e adiciona eles a Janela.
 		adicionarButton = new JButton("Add");
 		adicionarButton.setBounds(97, 44, 90, 25);
-		adicionarButton.setToolTipText("Cadastra Genero.");
+		adicionarButton.setToolTipText("Cadastra a Renda.");
 		cancelaButton = new JButton("Sair");
 		cancelaButton.setBounds(195, 44, 90, 25);
 		cancelaButton.setToolTipText("Cancela o Cadastro.");
@@ -63,7 +63,6 @@ public class IgCadastraGenero extends JDialog {
 		//Cria o tratador de Evento e Adiciona ele aos Buttons
 		adicionarButton.addActionListener(eventoCadastraGenero);
 		cancelaButton.addActionListener(eventoCadastraGenero);
-		areaDescricao.addActionListener(eventoCadastraGenero);
 		//Define as teclas Mnemonic dos Buttons.
 		adicionarButton.setMnemonic(KeyEvent.VK_A);
 		cancelaButton.setMnemonic(KeyEvent.VK_S);

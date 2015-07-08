@@ -11,9 +11,9 @@ import tsi.lpv.samuelwagner.gui.IgCadastrarFilme;
 import tsi.lpv.samuelwagner.persistencia.GeneroDAO;
 import tsi.lpv.samuelwagner.tipo.Genero;
 
-/**Classe Responsavel por tratar do Eventos da Classe <code>TratadorEventoCadastraGenero</code>.
- * @author Samuel
- * @author Wagner
+/**Classe Responsável por tratar do Eventos da Classe <code>TratadorEventoCadastraGenero</code>.
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class TratadorEventoCadastraGenero implements ActionListener{
 	private IgCadastrarFilme igCadastrarFilme;
@@ -30,7 +30,7 @@ public class TratadorEventoCadastraGenero implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		if(event.getSource() == igCadastraGenero.getAdicionarButton() && event.getSource() == igCadastraGenero.getAreaDescricao())
+		if(event.getSource() == igCadastraGenero.getAdicionarButton())
 			cadastraGenero();
 		else
 			igCadastraGenero.dispose();

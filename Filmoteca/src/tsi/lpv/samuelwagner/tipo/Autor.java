@@ -3,8 +3,8 @@ package tsi.lpv.samuelwagner.tipo;
 /**
  * A classe <code>Autor</code> possui as informações básicas dos autores do filme.
  * 
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class Autor extends Dados {
 	/**

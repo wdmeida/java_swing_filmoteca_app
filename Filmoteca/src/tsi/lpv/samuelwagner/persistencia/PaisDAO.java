@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import tsi.lpv.samuelwagner.tipo.Pais;
 
 /**A classe <code>PaisDAO</code> implementa as operações necessárias para manipulação dos dados na tabela pais.
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class PaisDAO {
 	private static final String INSERT_PAIS = "INSERT INTO pais (nome) VALUES (?);";

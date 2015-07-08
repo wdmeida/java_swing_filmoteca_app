@@ -16,8 +16,10 @@ import javax.swing.JTextField;
 import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoCadastraAAD;
 
 /**
- * @author Samuel
- * @author Wagner
+ * A classe <code>IgCadastraAtorAutorDiretor</code> constrói a interface gráfica responsável pelo cadastro de um novo 
+ * filme e seus atributos.
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class IgCadastraAtorAutorDiretor extends JDialog {
 	private JButton procurarButton;
@@ -25,6 +27,10 @@ public class IgCadastraAtorAutorDiretor extends JDialog {
 	private JTextField areaDescricao;
 	private static Color corPainel = new Color(87, 87, 87);
 	
+	/**
+	 * Construtor default da classe <code>IgCadastraAtorAutorDiretor</code>.
+	 * @param igFilmoteca <code>IgFilmoteca</code> com a referência da classe principal.
+	 */
 	public IgCadastraAtorAutorDiretor(IgFilmoteca igFilmoteca) {
 		//Define o titulo da Janela, o tamanho da Janela e o Layout utilizado na Janela.
 				setTitle("Cadastra Autor, Ator e Diretor.");
@@ -71,9 +77,8 @@ public class IgCadastraAtorAutorDiretor extends JDialog {
 				});
 				
 				IgCadastrarFilme igCadastrarFilme = new IgCadastrarFilme(igFilmoteca,false);
-				TratadorEventoCadastraAAD eventoCadastraAAD = new TratadorEventoCadastraAAD(igCadastrarFilme, IgCadastraAtorAutorDiretor.this);
-				procurarButton.addActionListener(eventoCadastraAAD);
-				areaDescricao.addActionListener(eventoCadastraAAD);
+				
+				procurarButton.addActionListener(new TratadorEventoCadastraAAD(igCadastrarFilme, IgCadastraAtorAutorDiretor.this));
 				
 				cancelaButton.addActionListener(new ActionListener() {
 					@Override
@@ -88,7 +93,11 @@ public class IgCadastraAtorAutorDiretor extends JDialog {
 				setResizable(false);
 				setVisible(true);
 			}
-
+	
+	/**
+	 * Obtém a referência do <code>JTextFeild</code> da descrição.
+	 * @return <code>JTextField</code>
+	 */
 	public JTextField getAreaDescricao() {
 		return areaDescricao;
 	}

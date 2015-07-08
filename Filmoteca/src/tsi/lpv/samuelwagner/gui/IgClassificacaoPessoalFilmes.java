@@ -54,6 +54,7 @@ public class IgClassificacaoPessoalFilmes extends JDialog {
 		tituloPanel.setBackground(corSubMenu);
 		tituloPanel.setLayout(null);
 		
+		//Cria o logo.
 		JLabel logoLabel = new JLabel("Classifica\u00E7\u00E3o Pessoal");
 		logoLabel.setFont(new Font("Tahoma", Font.BOLD, 19));
 		logoLabel.setIcon(new ImageIcon(IgClassificacaoPessoalFilmes.class.getResource("/tsi/lpv/samuelwagner/imagens/star.png")));

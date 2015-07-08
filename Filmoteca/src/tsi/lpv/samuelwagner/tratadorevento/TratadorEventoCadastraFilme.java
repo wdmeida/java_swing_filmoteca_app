@@ -31,15 +31,17 @@ import tsi.lpv.samuelwagner.tipo.Pais;
 
 /** Classe <code>TratadorEventoCadastraFilme</code> responsavel por tratar os eventos 
  *  da classe <code>IgCadastrarFilme</code>.
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class TratadorEventoCadastraFilme implements ActionListener {
 	private IgCadastrarFilme igCadastrarFilme;
 	private boolean cadastroAtivo;
 	private static Filme filme;
+	
 	/**Construtor Sobrecarregado da classe <code>TratadorEventoCadastraFilme</code>.
 	 * @param igCadastrarFilme referencia da Classe <code>IgCadastrarFilme</code>.
+	 * @param cadastroAtivo <code>boolean</code>
 	 */
 	public TratadorEventoCadastraFilme(IgCadastrarFilme igCadastrarFilme, boolean cadastroAtivo) {
 		this.igCadastrarFilme = igCadastrarFilme;

@@ -15,11 +15,22 @@ import tsi.lpv.samuelwagner.persistencia.GeneroFilmeDAO;
 import tsi.lpv.samuelwagner.persistencia.PaisDAO;
 import tsi.lpv.samuelwagner.persistencia.PaisFilmeDAO;
 import tsi.lpv.samuelwagner.tipo.Filme;
-
+/**
+ * A classe <code>TratadorEventoCadastraAAD</code> é responsável por tratar os eventos dos cadastro de dados do 
+ * aplicativo filmoteca.
+ * @author Wagner Almeida
+ * @author Samuel Gonçalves
+ *
+ */
 public class TratadorEventoCadastraAAD implements ActionListener{
 	private IgCadastrarFilme igCadastrarFilme;
 	private IgCadastraAtorAutorDiretor igCadastraAtorAutorDiretor;
 	
+	/**
+	 * Construtor defaul da classe <code>TratadorEventoCadastraAAD</code>.
+	 * @param igCadastrarFilme <code>IgCadastrarFilme</code>
+	 * @param igCadastraAtorAutorDiretor <code>IgCadastraAtorAutorDiretor</code>
+	 */
 	public TratadorEventoCadastraAAD(IgCadastrarFilme igCadastrarFilme,IgCadastraAtorAutorDiretor igCadastraAtorAutorDiretor) {
 		this.igCadastrarFilme = igCadastrarFilme;
 		this.igCadastraAtorAutorDiretor = igCadastraAtorAutorDiretor;

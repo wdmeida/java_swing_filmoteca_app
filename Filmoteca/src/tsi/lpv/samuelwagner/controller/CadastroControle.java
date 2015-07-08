@@ -21,8 +21,8 @@ import tsi.lpv.samuelwagner.tipo.Genero;
 import tsi.lpv.samuelwagner.tipo.Pais;
 
 /**Classe Resposavel por fazer a ponte entre a interface e o Banco de Dados.
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class CadastroControle {
 	
@@ -162,6 +162,13 @@ public class CadastroControle {
 			AutorFilmeDAO.cadastrarAutorFilme(codigoFilme, codigoAutor);
 	}
 	
+	/**
+	 * Cadastra o autor, ator e diretor no banco.
+	 * @param filme <code>Filme</code> com os dados do filme.
+	 * @param diretores <code>Diretor[]</code> com os diretores do filme.
+	 * @param autores <code>Autor[]</code> com os dados dos autores.
+	 * @param artistas <code>Artista[]</code> com os dados do artista.
+	 */
 	public static void cadastraAutorAtorDiretor(Filme filme, Diretor[] diretores, Autor[] autores, Artista[] artistas ){
 		int codigoArtista, codigoDiretor, codigoAutor, codigoFilme = filme.getCodigo();	
 		//Percorre o array de artista

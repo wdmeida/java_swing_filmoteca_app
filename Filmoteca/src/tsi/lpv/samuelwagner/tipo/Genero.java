@@ -3,8 +3,8 @@ package tsi.lpv.samuelwagner.tipo;
 /**
  * A classe <code>Genero</code> possui as informações básicas do gênero do filme.
  * 
- * @author Samuel
- * @author Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  */
 public class Genero extends Dados {
 	/**
