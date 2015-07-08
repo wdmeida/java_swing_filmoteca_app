@@ -39,7 +39,7 @@ public class IgCadastraGenero extends JDialog {
 	
 		//Cria um JTextField e difene suas propriedades.
 		areaDescricao = new JTextField();
-		areaDescricao.setToolTipText("Informa a Descri\u00E7\u00E3o da Renda.");
+		areaDescricao.setToolTipText("Informa o Gênero.");
 		areaDescricao.setColumns(20);
 		areaDescricao.setBounds(87, 13, 198,20);
 		getContentPane().setLayout(null);
@@ -52,7 +52,7 @@ public class IgCadastraGenero extends JDialog {
 		//Cria os JButton e adiciona eles a Janela.
 		adicionarButton = new JButton("Add");
 		adicionarButton.setBounds(97, 44, 90, 25);
-		adicionarButton.setToolTipText("Cadastra a Renda.");
+		adicionarButton.setToolTipText("Cadastra o Gênero.");
 		cancelaButton = new JButton("Sair");
 		cancelaButton.setBounds(195, 44, 90, 25);
 		cancelaButton.setToolTipText("Cancela o Cadastro.");
