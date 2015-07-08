@@ -275,15 +275,18 @@ public class IgFilmoteca extends JFrame {
 			}
 		});
 		
+		//Cria a barra de menu.
 		JMenuBar principalMenuBar = new JMenuBar();
 		principalMenuBar.setBackground(corMenu);
 		setJMenuBar(principalMenuBar);
 		
+		//Cria o menu arquivo.
 		JMenu arquivoMenu = new JMenu("Arquivo");
 		arquivoMenu.setBackground(corBase);
 		arquivoMenu.setForeground(Color.WHITE);
 		principalMenuBar.add(arquivoMenu);
 		
+		//Cria o menu fechar.
 		JMenuItem fecharMenuItem = new JMenuItem("Fechar");
 		fecharMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_MASK));
 		fecharMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/Theater_ticket_24.png")));
@@ -389,6 +392,14 @@ public class IgFilmoteca extends JFrame {
 		mntmSobre.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 		infoMenu.add(mntmSobre);
 		
+		//Registra o tratador de eventos do botão sobre.
+		mntmSobre.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new IgSobre(IgFilmoteca.this);
+			}
+		});
+		
 		//Cria o menu jPopupMenu.
 		JPopupMenu jPopupMenu = new JPopupMenu();
 		JMenuItem menuItem = new JMenuItem("Atualiza Filme");
@@ -441,14 +452,8 @@ public class IgFilmoteca extends JFrame {
 	 * Fecha a conexão com o banco de dados e encerra o aplicativo.
 	 */
 	private void fecharAplicativo(){
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent arg0) {
-				ConnectionFactory.closeConnection();
-				System.exit(0);
-			}
-			
-		});
+		ConnectionFactory.closeConnection();
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
 	/**
