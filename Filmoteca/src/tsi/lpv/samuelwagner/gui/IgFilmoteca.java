@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -29,6 +30,7 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
@@ -36,10 +38,6 @@ import tsi.lpv.samuelwagner.persistencia.ConnectionFactory;
 import tsi.lpv.samuelwagner.persistencia.FilmeDAO;
 import tsi.lpv.samuelwagner.tipo.Filme;
 import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoPesquisarFilme;
-
-import javax.swing.KeyStroke;
-
-import java.awt.event.InputEvent;
 /**
  * A classe <code>IgFilmoteca</code> é a responsável por construir a janela gráfica principal.
  * @author Wagner Almeida
@@ -411,7 +409,7 @@ public class IgFilmoteca extends JFrame {
 			}
 		});
 		
-		//criaPopMenu();
+		criaPopMenu();
 		
 		//Define a tela como vísivel.
 		setLocationRelativeTo(null);
@@ -435,49 +433,49 @@ public class IgFilmoteca extends JFrame {
 			new IgCadastraAtorAutorDiretor(IgFilmoteca.this);
 		}
 		});
-		
+		//Define o tratador de evento para o menuItem.
 		sobre.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				new IgSobre(IgFilmoteca.this);
 			}
 		});
-		
+		//Define o tratador de evento para o menuItem.
 		pesquisarAtor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new IgTelaPesquisa("Pesquisar Filmes Artista", "Nome do artista: ", IgFilmoteca.this, IgFilmoteca.this.atorButton);
 			}
 		});
-		
+		//Define o tratador de evento para o menuItem.
 		pesquisarAutor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new IgTelaPesquisa("Pesquisar Filmes Autor", "Nome do autor: ", IgFilmoteca.this, IgFilmoteca.this.autorButton);
 			}
 		});
-		
+		//Define o tratador de evento para o menuItem.
 		pesquisarDiretor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new IgTelaPesquisa("Pesquisar Filmes Diretor", "Nome do Diretor: ", IgFilmoteca.this, IgFilmoteca.this.diretorButton);
 			}
 		});
-		
+		//Define o tratador de evento para o menuItem.
 		pesquisaGenero.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new IgTelaPesquisa("Pesquisar Filmes pelo Gênero", "Gênero: ", IgFilmoteca.this, IgFilmoteca.this.generoButton);
 			}
 		});
-		
+		//Define o tratador de evento para o menuItem.
 		pesquisarMelhores.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				exibirClassificacao();
 			}
 		});
-		
+		//Define o tratador de evento para o menuItem.
 		fechar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
