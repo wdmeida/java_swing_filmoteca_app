@@ -29,7 +29,7 @@ import tsi.lpv.samuelwagner.tipo.Filme;
 import tsi.lpv.samuelwagner.tipo.Genero;
 import tsi.lpv.samuelwagner.tipo.Pais;
 
-/** Classe <code>TratadorEventoCadastraFilme</code> responsavel por tratar os eventos 
+/** Classe <code>TratadorEventoCadastraFilme</code> responsável por tratar os eventos 
  *  da classe <code>IgCadastrarFilme</code>.
  * @author Samuel Gonçalves
  * @author Wagner Almeida

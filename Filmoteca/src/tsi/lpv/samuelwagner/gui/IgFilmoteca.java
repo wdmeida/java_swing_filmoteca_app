@@ -315,7 +315,6 @@ public class IgFilmoteca extends JFrame {
 		
 		JMenu navegarMenu = new JMenu("Navegar");
 		navegarMenu.setForeground(Color.BLACK);
-		navegarMenu.setForeground(Color.WHITE);
 		principalMenuBar.add(navegarMenu);
 		
 		//Cria o item de menu cadastrar e registra o seu tratador de eventos.
@@ -400,7 +399,6 @@ public class IgFilmoteca extends JFrame {
 		
 		JMenu infoMenu = new JMenu("Info");
 		infoMenu.setForeground(Color.BLACK);
-		infoMenu.setForeground(Color.WHITE);
 		principalMenuBar.add(infoMenu);
 		
 		//Cria o menu sobre.
