@@ -411,7 +411,7 @@ public class IgFilmoteca extends JFrame {
 			}
 		});
 		
-		criaPopMenu();
+		//criaPopMenu();
 		
 		//Define a tela como vísivel.
 		setLocationRelativeTo(null);
@@ -468,6 +468,20 @@ public class IgFilmoteca extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new IgTelaPesquisa("Pesquisar Filmes pelo Gênero", "Gênero: ", IgFilmoteca.this, IgFilmoteca.this.generoButton);
+			}
+		});
+		
+		pesquisarMelhores.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				exibirClassificacao();
+			}
+		});
+		
+		fechar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				fecharAplicativo();
 			}
 		});
 		
@@ -589,6 +603,7 @@ public class IgFilmoteca extends JFrame {
 	private void fecharAplicativo(){
 		ConnectionFactory.closeConnection();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		System.exit(0);
 	}
 	
 	/**
