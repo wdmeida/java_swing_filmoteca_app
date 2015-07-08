@@ -10,7 +10,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
-import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
 import tsi.lpv.samuelwagner.controller.CadastroControle;
@@ -246,18 +245,19 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 		@Override
 		public void run() {
 			 Clip clip = null;
-				try {  
-				    File soundFile = new File("src\\tsi\\lpv\\samuelwagner\\som\\StarWarsDarthVaderTheme.wav");  
-				    AudioInputStream sound = AudioSystem.getAudioInputStream(soundFile);  
-				    DataLine.Info info = new DataLine.Info(Clip.class, sound.getFormat());  
-				    clip = (Clip) AudioSystem.getLine(info);  
-				    clip.open(sound);  
-				    clip.start();  
-				} catch (Exception e) {  
-				    JOptionPane.showMessageDialog(null, e);  
-				}  
-			new IgMensagem(igCadastrarFilme, "Salvando o Filme no Banco de Dados.");
+			try {  
+			    File soundFile = new File("src\\tsi\\lpv\\samuelwagner\\som\\StarWarsDarthVaderTheme.wav");  
+			    AudioInputStream sound = AudioSystem.getAudioInputStream(soundFile);  
+			    DataLine.Info info = new DataLine.Info(Clip.class, sound.getFormat());  
+			    clip = (Clip) AudioSystem.getLine(info);  
+			    clip.open(sound);  
+			    clip.start();  
+				 
+			    new IgMensagem(igCadastrarFilme, "Salvando o Filme no Banco de Dados.");
 			clip.close();
+			} catch (Exception e) {  
+			    e.printStackTrace();
+			} 
 		}
 	}
 

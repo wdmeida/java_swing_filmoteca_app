@@ -6,7 +6,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -55,21 +54,22 @@ public class FilmotecaApp {
 			    clip = (Clip) AudioSystem.getLine(info);  
 			    clip.open(sound);  
 			    clip.start();  
-			} catch (Exception e) {  
-			    JOptionPane.showMessageDialog(null, e);  
-			}  
-			//Loop para fazer o ProgressBar avançar.
-			for(int i = 0; i<= 100; i++){
-				try {
-					;;//Seta o valor do ProgressBar
-					igEspera.getProgressBar().setValue(i);
-					//Provaca o Atraso.
-					sleep(50);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+			  
+			    //Loop para fazer o ProgressBar avançar.
+			    for(int i = 0; i<= 100; i++){
+					try {
+						//Seta o valor do ProgressBar
+						igEspera.getProgressBar().setValue(i);
+						//Provaca o Atraso.
+						sleep(50);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
 				}
+				}
+				clip.stop();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			clip.stop();
 			//Fecha a Janela igEspera
 			igEspera.dispose();
 			//Ativa a janela IgFilmoteca.
