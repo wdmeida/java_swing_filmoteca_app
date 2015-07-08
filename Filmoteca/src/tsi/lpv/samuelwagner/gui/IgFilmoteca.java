@@ -20,6 +20,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -203,7 +204,7 @@ public class IgFilmoteca extends JFrame {
 		//Cria o painel pra barra de pesquisa.
 		JPanel pesquisarPanel = new JPanel();
 		pesquisarPanel.setBackground(corSubMenu);
-		pesquisarPanel.setBounds(0, 11, 839, 48);
+		pesquisarPanel.setBounds(0, 11, 877, 48);
 		getContentPane().add(pesquisarPanel);
 		pesquisarPanel.setLayout(null);
 		
@@ -255,9 +256,17 @@ public class IgFilmoteca extends JFrame {
 		exibicaoPanel = new JPanel();
 		exibicaoPanel.setBackground(corBase);
 		exibicaoPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Darth Movies", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255, 255, 255)));
-		exibicaoPanel.setBounds(161, 70, 668, 387);
+		exibicaoPanel.setBounds(161, 70, 706, 410);
 		getContentPane().add(exibicaoPanel);
 		exibicaoPanel.setLayout(null);
+		
+		JPanel panelAmostraFilme = new JPanel();
+		panelAmostraFilme.setBackground(corBase);
+		panelAmostraFilme.setBounds(10, 22, 684, 379);
+		exibicaoPanel.add(panelAmostraFilme);
+		panelAmostraFilme.setLayout(null);
+		
+		criaPaneisFilme(panelAmostraFilme);
 		
 		//Define a tela como não redimensionável.
 		setResizable(false);
@@ -265,7 +274,7 @@ public class IgFilmoteca extends JFrame {
 		setLocationByPlatform(true);
 		
 		//Define o tamanho da janela.
-		setSize(845, 517);
+		setSize(883, 540);
 		
 		//Define a ação a ser tomada quando o botão fechar for apertado.
 		addWindowListener(new WindowAdapter() {
@@ -427,6 +436,59 @@ public class IgFilmoteca extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(false);
 	}//IgFilmoteca
+	
+	/**Cria o painel para Exibição das capas dos Filmes no Banco de Dados conforme sua classificação.
+	 * @param panelAmostraFilme <code>JPanel</code>.
+	 */
+	public void criaPaneisFilme(JPanel panelAmostraFilme){
+		List<Filme> listFilme = FilmeDAO.pesquisarFilmeCriterio();
+		int indice = 0;
+		try {
+			Filme filme = listFilme.get(indice++);
+			JPanel tela1Panel = new JPanel();
+			tela1Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), filme.getTitulo(), TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+			tela1Panel.setLayout(null);
+			tela1Panel.setBackground(new Color(17, 17, 17));
+			tela1Panel.setBounds(0, 0, 222, 379);
+			panelAmostraFilme.add(tela1Panel);
+			JLabel tela1Label = new JLabel("");
+			tela1Label.setBounds(10, 22, 202, 346);
+			tela1Panel.add(tela1Label);
+			if(filme.getPoster() != null)
+				tela1Label.setIcon(new ImageIcon(filme.getPoster()));
+			filme = listFilme.get(indice++);
+			
+			JPanel tela2Panel = new JPanel();
+			tela2Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), filme.getTitulo(), TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+			tela2Panel.setLayout(null);
+			tela2Panel.setBackground(new Color(17, 17, 17));
+			tela2Panel.setBounds(232, 0, 222, 379);
+			panelAmostraFilme.add(tela2Panel);
+			
+			JLabel tela2Label = new JLabel("");
+			tela2Label.setBounds(10, 23, 202, 345);
+			tela2Panel.add(tela2Label);
+			if(filme.getPoster() != null)
+				tela2Label.setIcon(new ImageIcon(filme.getPoster()));
+			
+			filme = listFilme.get(indice++);
+			JPanel tela3Panel = new JPanel();
+			tela3Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), filme.getTitulo(), TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+			tela3Panel.setLayout(null);
+			tela3Panel.setBackground(new Color(17, 17, 17));
+			tela3Panel.setBounds(464, 0, 222, 379);
+			panelAmostraFilme.add(tela3Panel);
+			
+			JLabel tela3Label = new JLabel("");
+			tela3Label.setBounds(10, 21, 202, 347);
+			tela3Panel.add(tela3Label);
+			if(filme.getPoster() != null)
+				tela3Label.setIcon(new ImageIcon(filme.getPoster()));
+		
+			} catch (Exception e) {
+				return;
+			}
+	}	
 	
 	/**
 	 * Exibe os filmes em ordem descrescente.
