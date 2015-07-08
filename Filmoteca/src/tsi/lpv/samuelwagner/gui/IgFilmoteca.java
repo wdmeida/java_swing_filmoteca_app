@@ -427,7 +427,8 @@ public class IgFilmoteca extends JFrame {
 				  pesquisarAtor = new JMenuItem("Pesquisa Ator"),
 				  pesquisarDiretor = new JMenuItem("Pesquisa Diretor"),
 				  pesquisarMelhores = new JMenuItem("Pesquisa Melhores"),
-				  sobre = new JMenuItem("Sobre");
+				  sobre = new JMenuItem("Sobre"),
+				  pesquisaGenero = new JMenuItem("Pesquisa Gênero");
 		atualizaFilme.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -442,14 +443,34 @@ public class IgFilmoteca extends JFrame {
 			}
 		});
 		
-		
-		
 		pesquisarAtor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new IgTelaPesquisa("Pesquisar Filmes pelo Ator", "Ator: ", IgFilmoteca.this, IgFilmoteca.this.atorButton);
+				new IgTelaPesquisa("Pesquisar Filmes Artista", "Nome do artista: ", IgFilmoteca.this, IgFilmoteca.this.atorButton);
 			}
 		});
+		
+		pesquisarAutor.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new IgTelaPesquisa("Pesquisar Filmes Autor", "Nome do autor: ", IgFilmoteca.this, IgFilmoteca.this.autorButton);
+			}
+		});
+		
+		pesquisarDiretor.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new IgTelaPesquisa("Pesquisar Filmes Diretor", "Nome do Diretor: ", IgFilmoteca.this, IgFilmoteca.this.diretorButton);
+			}
+		});
+		
+		pesquisaGenero.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new IgTelaPesquisa("Pesquisar Filmes pelo Gênero", "Gênero: ", IgFilmoteca.this, IgFilmoteca.this.generoButton);
+			}
+		});
+		
 		//Registra o tratador de eventos do mouse.
 		getContentPane().addMouseListener(new MouseAdapter() {
 		@Override
@@ -466,6 +487,7 @@ public class IgFilmoteca extends JFrame {
 		jPopupMenu.add(pesquisarAutor);
 		jPopupMenu.add(pesquisarAtor);
 		jPopupMenu.add(pesquisarDiretor);
+		jPopupMenu.add(pesquisaGenero);
 		jPopupMenu.add(pesquisarMelhores);
 		jPopupMenu.addSeparator();
 		jPopupMenu.add(sobre);
