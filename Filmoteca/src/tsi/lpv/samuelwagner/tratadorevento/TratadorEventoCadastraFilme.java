@@ -3,13 +3,13 @@ package tsi.lpv.samuelwagner.tratadorevento;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.util.LinkedList;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
 import javax.swing.border.LineBorder;
 
 import tsi.lpv.samuelwagner.controller.CadastroControle;
@@ -28,7 +28,7 @@ import tsi.lpv.samuelwagner.tipo.Filme;
 import tsi.lpv.samuelwagner.tipo.Genero;
 import tsi.lpv.samuelwagner.tipo.Pais;
 
-/** Classe <code>TratadorEventoCadastraFilme</code> responsável por tratar os eventos 
+/** Classe <code>TratadorEventoCadastraFilme</code> responsavel por tratar os eventos 
  *  da classe <code>IgCadastrarFilme</code>.
  * @author Samuel Gonçalves
  * @author Wagner Almeida
@@ -66,6 +66,7 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 	}
 	
 	private void cadastraAutorAtorDiretor() {
+		System.out.println("Kkkk");
 		Artista artistas[] = obtemArtistas();
 		Diretor diretores[] = obtemDiretores();
 		Autor autores[] = obtemAutores();
@@ -244,20 +245,17 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 	private class ThreadMensagem extends Thread{
 		@Override
 		public void run() {
-			 Clip clip = null;
+			Clip clip = null;
 			try {  
-			    File soundFile = new File("src\\tsi\\lpv\\samuelwagner\\som\\StarWarsDarthVaderTheme.wav");  
-			    AudioInputStream sound = AudioSystem.getAudioInputStream(soundFile);  
-			    DataLine.Info info = new DataLine.Info(Clip.class, sound.getFormat());  
-			    clip = (Clip) AudioSystem.getLine(info);  
+			    AudioInputStream sound = AudioSystem.getAudioInputStream(new BufferedInputStream(Thread.currentThread().getClass().getResourceAsStream("/tsi/lpv/samuelwagner/som/StarWarsDarthVaderTheme.wav")));  
+			    clip = AudioSystem.getClip();  
 			    clip.open(sound);  
 			    clip.start();  
-				 
-			    new IgMensagem(igCadastrarFilme, "Salvando o Filme no Banco de Dados.");
-			clip.close();
 			} catch (Exception e) {  
-			    e.printStackTrace();
-			} 
+			   e.printStackTrace();
+			}  
+			new IgMensagem(igCadastrarFilme, "Salvando o Filme no Banco de Dados.");
+			clip.close();
 		}
 	}
 

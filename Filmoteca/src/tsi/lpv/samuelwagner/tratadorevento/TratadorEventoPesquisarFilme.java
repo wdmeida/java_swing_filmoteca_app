@@ -37,6 +37,7 @@ public class TratadorEventoPesquisarFilme implements ActionListener {
 	//Tratador de eventos do clique do mouse.
 	@Override
 	public void actionPerformed(ActionEvent event) {
+		System.out.println("eee");
 		pesquisarFilme();
 	}
 	

@@ -9,7 +9,7 @@ import tsi.lpv.samuelwagner.funcaoauxiliar.FuncaoAuxiliar;
 import tsi.lpv.samuelwagner.funcaoauxiliar.Validador;
 import tsi.lpv.samuelwagner.gui.IgCadastrarFilme;
 
-/** Classe <code>TratadorEventoInsereDiretor</code> responsável por tratar os eventos 
+/** Classe <code>TratadorEventoInsereDiretor</code> responsavel por tratar os eventos 
  *  da classe <code>IgCadastrarFilme</code>.
  * @author Samuel Gonçalves
  * @author Wanger Almeida

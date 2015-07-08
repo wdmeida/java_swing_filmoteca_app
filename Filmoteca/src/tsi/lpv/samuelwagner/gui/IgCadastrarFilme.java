@@ -2,6 +2,7 @@ package tsi.lpv.samuelwagner.gui;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -466,19 +467,31 @@ public class IgCadastrarFilme extends JDialog {
 		informacaoPanel.setBackground(new Color(87, 87, 87));
 		informacaoPanel.setBounds(228, 11, 236, 200);
 		diretorPanel.add(informacaoPanel);
-		informacaoPanel.setLayout(null);
+		informacaoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel lblInformeODiretores = new JLabel("Informe o Diretor(es) do Filme:");
-		lblInformeODiretores.setBounds(10, 21, 204, 21);
 		informacaoPanel.add(lblInformeODiretores);
-		
-		JLabel lblOCadastroDo = new JLabel("O cadastro do diretor e obrigatorio.");
-		lblOCadastroDo.setBounds(20, 42, 204, 21);
+
+		JLabel lblOCadastroDo = new JLabel("O cadastro do diretor e não obrigatorio.");
 		informacaoPanel.add(lblOCadastroDo);
-		
+
 		JLabel lblComoCadastraO = new JLabel("Como Cadastra o Diretor:");
-		lblComoCadastraO.setBounds(10, 67, 204, 21);
 		informacaoPanel.add(lblComoCadastraO);
+
+		JLabel lblDigitaAO = new JLabel("Digita a o nome do diretor na caixa ");
+		informacaoPanel.add(lblDigitaAO);
+
+		JLabel lblDeDialogo = new JLabel("de Dialogo.");
+		informacaoPanel.add(lblDeDialogo);
+
+		JLabel lblAperteInserirOu = new JLabel("Aperte Inserir ou ALT+I.");
+		informacaoPanel.add(lblAperteInserirOu);
+
+		JLabel lblParaApagarO = new JLabel("Para apagar o ultimo diretor.");
+		informacaoPanel.add(lblParaApagarO);
+		
+		JLabel lblCliqueEmLipar = new JLabel("Clique em Lipar ou ALT+L");
+		informacaoPanel.add(lblCliqueEmLipar);
 		TratadorEventoInsereDiretor eventoInsereDiretor = new TratadorEventoInsereDiretor(IgCadastrarFilme.this);
 		
 		inserirDiretorButton.setMnemonic(KeyEvent.VK_I);
@@ -551,6 +564,31 @@ public class IgCadastrarFilme extends JDialog {
 		informacaoPanel.setBackground(new Color(87, 87, 87));
 		informacaoPanel.setBounds(228, 11, 236, 200);
 		autorPanel.add(informacaoPanel);
+		informacaoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel lblInformeOAutores = new JLabel("Informe o Autor(es) do Filme:");
+		informacaoPanel.add(lblInformeOAutores);
+
+		JLabel lblOCadastroDo_1 = new JLabel("O cadastro do autor e não e obrigatorio.");
+		informacaoPanel.add(lblOCadastroDo_1);
+
+		JLabel lblComoCadastraO_1 = new JLabel("Como Cadastra o Autor:");
+		informacaoPanel.add(lblComoCadastraO_1);
+
+		JLabel lblDigitaAO_1 = new JLabel("Digita a o nome do autor na caixa ");
+		informacaoPanel.add(lblDigitaAO_1);
+
+		JLabel lblDeAutor = new JLabel("de Autor.");
+		informacaoPanel.add(lblDeAutor);
+
+		JLabel label_5 = new JLabel("Aperte Inserir ou ALT+I.");
+		informacaoPanel.add(label_5);
+
+		JLabel lblParaApagarO_1 = new JLabel("Para apagar o ultimo autor.");
+		informacaoPanel.add(lblParaApagarO_1);
+		
+		JLabel label = new JLabel("Clique em Lipar ou ALT+L");
+		informacaoPanel.add(label);
 		
 		erroAutorlabel = new JLabel("");
 		erroAutorlabel.setBounds(228, 222, 236, 23);
@@ -610,6 +648,37 @@ public class IgCadastrarFilme extends JDialog {
 		informacaoPanel.setBackground(new Color(87, 87, 87));
 		informacaoPanel.setBounds(228, 11, 236, 200);
 		artistaPanel.add(informacaoPanel);
+		
+		JLabel lblInformeOAtores = new JLabel("Informe o Ator(es) do Filme:");
+		lblInformeOAtores.setBounds(10, 25, 204, 21);
+		informacaoPanel.add(lblInformeOAtores);
+
+		JLabel lblOCadastroDo_2 = new JLabel("O cadastro do ator e não obrigatorio.");
+		lblOCadastroDo_2.setBounds(20, 46, 204, 21);
+		informacaoPanel.add(lblOCadastroDo_2);
+
+		JLabel lblComoCadastraO_2 = new JLabel("Como Cadastra o Ator");
+		lblComoCadastraO_2.setBounds(10, 71, 204, 21);
+		informacaoPanel.add(lblComoCadastraO_2);
+
+		JLabel lblDigitaAO_2 = new JLabel("Digita a o nome do ator na caixa ");
+		lblDigitaAO_2.setBounds(20, 92, 204, 21);
+		informacaoPanel.add(lblDigitaAO_2);
+
+		JLabel label_4 = new JLabel("de Dialogo.");
+		label_4.setBounds(20, 107, 194, 21);
+		informacaoPanel.add(label_4);
+
+		JLabel label_5 = new JLabel("Aperte Inserir ou ALT+I.");
+		label_5.setBounds(20, 124, 194, 29);
+		informacaoPanel.add(label_5);
+
+		JLabel lblParaApagarO_2 = new JLabel("Para apagar o ultimo ator.");
+		lblParaApagarO_2.setBounds(20, 145, 194, 27);
+		informacaoPanel.add(lblParaApagarO_2);
+		
+		JLabel label = new JLabel("Clique em Lipar ou ALT+L");
+		informacaoPanel.add(label);
 		
 		erroAtorlabel = new JLabel("");
 		erroAtorlabel.setBounds(228, 222, 236, 23);

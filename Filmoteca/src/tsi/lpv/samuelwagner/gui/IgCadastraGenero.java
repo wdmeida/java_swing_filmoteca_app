@@ -25,7 +25,7 @@ public class IgCadastraGenero extends JDialog {
 	private static Color corPainel = new Color(87, 87, 87);
 
 	/** Constrói a janela de cadastro de gênero.
-	 * @param igPlanejamentoFinanceiro <code>IgPlanejamentoFinanceiro</code> referencia da Janela Principal.
+	 * @param igCadastrarFilme <code>IgCadadastrarFilme</code> referência da Janela Principal.
 	 */
 	public IgCadastraGenero(IgCadastrarFilme igCadastrarFilme) {
 		//Define o titulo da Janela, o tamanho da Janela e o Layout utilizado na Janela.

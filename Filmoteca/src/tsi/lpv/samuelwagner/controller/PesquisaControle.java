@@ -116,7 +116,7 @@ public class PesquisaControle {
 	
 	/**
 	 * Obtém um array com os nomes dos filmes que os códigos foram recebidos por parâmetro.
-	 * @param codigoFilmes <code>List<Integer></code> com os codigos dos filmes.
+	 * @param codigoFilmes <code>List</code> com os codigos dos filmes.
 	 * @return <code>String[]</code> com os nomes dos filmes.
 	 */
 	public static String[] obterFilmes(List<Integer> codigoFilmes) {

@@ -294,7 +294,6 @@ public class IgFilmoteca extends JFrame {
 		
 		//Cria o menu arquivo.
 		JMenu arquivoMenu = new JMenu("Arquivo");
-		arquivoMenu.setBackground(corBase);
 		arquivoMenu.setForeground(Color.BLACK);
 		principalMenuBar.add(arquivoMenu);
 		
@@ -314,6 +313,7 @@ public class IgFilmoteca extends JFrame {
 		});
 		
 		JMenu navegarMenu = new JMenu("Navegar");
+		navegarMenu.setBackground(Color.WHITE);
 		navegarMenu.setForeground(Color.BLACK);
 		principalMenuBar.add(navegarMenu);
 		
@@ -399,6 +399,7 @@ public class IgFilmoteca extends JFrame {
 		
 		JMenu infoMenu = new JMenu("Info");
 		infoMenu.setForeground(Color.BLACK);
+		infoMenu.setBackground(Color.BLACK);
 		principalMenuBar.add(infoMenu);
 		
 		//Cria o menu sobre.
@@ -594,9 +595,11 @@ public class IgFilmoteca extends JFrame {
 		else{
 			List<String> dadosFilmes = new ArrayList<String>();
 			Iterator<Filme> it = filmes.iterator();
+			int contador = 1;
 			while(it.hasNext()){
 				Filme filme = it.next();
-				dadosFilmes.add(String.format("Título: %-45s Classificação Pessoal: %-30s Classificação IMDB: %-30s", filme.getTitulo(),filme.getClassificacaoPessoal(),filme.getClassificacaoIMDB()));
+				dadosFilmes.add(String.format(contador + " - Título: %-45s Classificação Pessoal: %-30s Classificação IMDB: %-30s", filme.getTitulo(),filme.getClassificacaoPessoal(),filme.getClassificacaoIMDB()));
+				contador++;
 			}
 			new IgClassificacaoPessoalFilmes(this, dadosFilmes.toArray(new String[0]));
 		}

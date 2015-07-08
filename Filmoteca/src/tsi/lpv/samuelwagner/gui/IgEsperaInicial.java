@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-/**Classe <code>IgEsperaInicial</code> responsável pela criação da Tela inicial do Darth Movie.
+/**Classe <code>IgEsperaInicial</code> reponsavel pela criação da Tela inicial do Darth Movie.
  * @author Samuel Gonçalves
  * @author Wagner Almeida
  */

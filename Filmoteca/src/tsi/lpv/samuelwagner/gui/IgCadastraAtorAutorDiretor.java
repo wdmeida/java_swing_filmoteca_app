@@ -76,6 +76,7 @@ public class IgCadastraAtorAutorDiretor extends JDialog {
 					}
 				});
 				
+				//Cadastra os dados de um novo filme
 				IgCadastrarFilme igCadastrarFilme = new IgCadastrarFilme(igFilmoteca,false);
 				
 				procurarButton.addActionListener(new TratadorEventoCadastraAAD(igCadastrarFilme, IgCadastraAtorAutorDiretor.this));

@@ -36,7 +36,7 @@ public class RespostaEventoPesquisaElemento {
 	private JButton botaoChamada;
 	
 	/**
-	 * Construtor da classe <code>RespostaEventoPesquisaElemento.
+	 * Construtor da classe <code>RespostaEventoPesquisaElemento</code>.
 	 * @param igFilmoteca <code>IgFilmoteca</code> com a referência da janela principal.
 	 * @param nomePesquisa <code>String</code> com o item a pesquisas.
 	 * @param botaoChamada <code>JButton</code> com a referência do botão que disparou o evento.
