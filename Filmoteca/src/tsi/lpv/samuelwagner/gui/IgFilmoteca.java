@@ -40,7 +40,7 @@ import tsi.lpv.samuelwagner.tipo.Filme;
 import tsi.lpv.samuelwagner.tratadorevento.TratadorEventoPesquisarFilme;
 /**
  * A classe <code>IgFilmoteca</code> é a responsável por construir a janela gráfica principal.
- * @author Wagner Almeida
+ * @author Wagner Almeida.
  * @author Samuel Gonçalves.
  *
  */
