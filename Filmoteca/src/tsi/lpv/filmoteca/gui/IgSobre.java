@@ -29,7 +29,7 @@ public class IgSobre extends JDialog {
 	 * @param igFilmoteca <code>IgFilmoteca</code> com a referência da janela principal.
 	 */
 	public IgSobre(IgFilmoteca igFilmoteca) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(IgSobre.class.getResource("/tsi/lpv/samuelwagner/imagens/Darth_Vader_Mask_64.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(IgSobre.class.getResource("/tsi/lpv/filmoteca/imagens/Darth_Vader_Mask_64.png")));
 		//Define as propriedades da janela.
 		setTitle("Darth Movies");
 		setSize(460, 342);
@@ -65,12 +65,12 @@ public class IgSobre extends JDialog {
 		lblBancadaNegraAcima.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(IgSobre.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema-icon.png")));
+		lblNewLabel.setIcon(new ImageIcon(IgSobre.class.getResource("/tsi/lpv/filmoteca/imagens/Cinema-icon.png")));
 		lblNewLabel.setBounds(10, 21, 46, 32);
 		getContentPane().add(lblNewLabel);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(IgSobre.class.getResource("/tsi/lpv/samuelwagner/imagens/Popcorn_from_cinema_24.png")));
+		label.setIcon(new ImageIcon(IgSobre.class.getResource("/tsi/lpv/filmoteca/imagens/Popcorn_from_cinema_24.png")));
 		label.setBounds(411, 21, 33, 32);
 		getContentPane().add(label);
 		

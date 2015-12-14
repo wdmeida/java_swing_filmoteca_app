@@ -54,7 +54,7 @@ public class IgResultadoPesquisa extends JDialog {
 		setTitle("Pesquisar");
 		
 		//Define as propriedades da janela.
-		setIconImage(Toolkit.getDefaultToolkit().getImage(IgResultadoPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Old_3d_glasses_16.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(IgResultadoPesquisa.class.getResource("/tsi/lpv/filmoteca/imagens/Old_3d_glasses_16.png")));
 		setSize(442, 395);
 		setResizable(false);
 		setModal(true);
@@ -83,7 +83,7 @@ public class IgResultadoPesquisa extends JDialog {
 		
 		//Cria o botão de visualização de detalhes do filme.
 		JButton visualizarDetalhesButton = new JButton("Visualizar");
-		visualizarDetalhesButton.setIcon(new ImageIcon(IgResultadoPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/movie47.png")));
+		visualizarDetalhesButton.setIcon(new ImageIcon(IgResultadoPesquisa.class.getResource("/tsi/lpv/filmoteca/imagens/movie47.png")));
 		visualizarDetalhesButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		visualizarDetalhesButton.setBounds(139, 313, 137, 33);
 		visualizarDetalhesButton.setBackground(Color.BLACK);
@@ -100,7 +100,7 @@ public class IgResultadoPesquisa extends JDialog {
 		
 		//Cria e registra o tratador de eventos do botão sair.
 		JButton sairButton = new JButton("Sair");
-		sairButton.setIcon(new ImageIcon(IgResultadoPesquisa.class.getResource("/tsi/lpv/samuelwagner/imagens/Film_reel_circular_shape_16.png")));
+		sairButton.setIcon(new ImageIcon(IgResultadoPesquisa.class.getResource("/tsi/lpv/filmoteca/imagens/Film_reel_circular_shape_16.png")));
 		sairButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		sairButton.setBackground(Color.BLACK);
 		sairButton.setBorder(null);

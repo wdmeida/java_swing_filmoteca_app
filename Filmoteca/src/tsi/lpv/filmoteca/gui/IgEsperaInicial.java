@@ -50,7 +50,7 @@ public class IgEsperaInicial extends JDialog {
 		JLabel darthLabel = new JLabel("");
 		darthLabel.setBounds(0, 0, 428, 336);
 		darthPanel.add(darthLabel);
-		darthLabel.setIcon(new ImageIcon(IgEsperaInicial.class.getResource("/tsi/lpv/samuelwagner/imagens/darth_vader_by_tomasgarcia.jpg")));
+		darthLabel.setIcon(new ImageIcon(IgEsperaInicial.class.getResource("/tsi/lpv/filmoteca/imagens/darth_vader_by_tomasgarcia.jpg")));
 	}
 
 	/**Retorna a referência da Barra de Progresso.

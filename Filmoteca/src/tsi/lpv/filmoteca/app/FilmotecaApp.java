@@ -47,7 +47,7 @@ public class FilmotecaApp {
 		public void run() {
 			Clip clip = null;
 			try {  
-			    AudioInputStream sound = AudioSystem.getAudioInputStream(new BufferedInputStream(Thread.currentThread().getClass().getResourceAsStream("/tsi/lpv/samuelwagner/som/StarWarsDarthVaderTheme.wav")));  
+			    AudioInputStream sound = AudioSystem.getAudioInputStream(new BufferedInputStream(Thread.currentThread().getClass().getResourceAsStream("/tsi/lpv/filmoteca/som/StarWarsDarthVaderTheme.wav")));  
 			    clip = AudioSystem.getClip();  
 			    clip.open(sound);  
 			    clip.start();  

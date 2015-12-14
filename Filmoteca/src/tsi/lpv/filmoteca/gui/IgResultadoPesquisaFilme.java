@@ -53,7 +53,7 @@ public class IgResultadoPesquisaFilme extends JDialog {
 	 * @param filme <code>Filme</code> com os dados a serem exibidos.
 	 */
 	public IgResultadoPesquisaFilme(IgFilmoteca componente, Filme filme) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(IgResultadoPesquisaFilme.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema-Batman-Old-icon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(IgResultadoPesquisaFilme.class.getResource("/tsi/lpv/filmoteca/imagens/Cinema-Batman-Old-icon.png")));
 		//Define o tamanho da janela.
 		setSize(841, 607);
 		

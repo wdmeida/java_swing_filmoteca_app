@@ -72,7 +72,7 @@ public class IgFilmoteca extends JFrame {
 		setTitle("Darth Movies");
 		
 		//Muda o icone da barra de títulos da janela. Cria um objeto url e passa o endereço da imagem.
-		URL url = this.getClass().getResource("/tsi/lpv/samuelwagner/imagens/Darth_Vader_Mask_64.png");
+		URL url = this.getClass().getResource("/tsi/lpv/filmoteca/imagens/Darth_Vader_Mask_64.png");
 	
 		//Cria um objeto imagem, Obtém a referência da imagem da barra e seta a nova imagem.
 		Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
@@ -95,7 +95,7 @@ public class IgFilmoteca extends JFrame {
 		//Cria o botão de cadastrar filme.
 		JButton cadastrarFilmeButton = new JButton("Cadastrar Filme");
 		cadastrarFilmeButton.setMnemonic(KeyEvent.VK_C);
-		cadastrarFilmeButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/video.png")));
+		cadastrarFilmeButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/video.png")));
 		cadastrarFilmeButton.setBackground(Color.BLACK);
 		cadastrarFilmeButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cadastrarFilmeButton.setForeground(corSubMenu);
@@ -114,7 +114,7 @@ public class IgFilmoteca extends JFrame {
 		//Cria o botão de procurar diretor.
 		diretorButton = new JButton("Buscar Diretor");
 		diretorButton.setMnemonic(KeyEvent.VK_D);
-		diretorButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/director_sit.png")));
+		diretorButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/director_sit.png")));
 		diretorButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		diretorButton.setForeground(corSubMenu);
 		diretorButton.setBackground(Color.BLACK);
@@ -132,7 +132,7 @@ public class IgFilmoteca extends JFrame {
 		//Cria o botão de buscar por ator.
 		atorButton = new JButton("Buscar Ator");		
 		atorButton.setMnemonic(KeyEvent.VK_A);
-		atorButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/actordark.png")));
+		atorButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/actordark.png")));
 		atorButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		atorButton.setBackground(Color.BLACK);
 		atorButton.setForeground(corSubMenu);
@@ -150,7 +150,7 @@ public class IgFilmoteca extends JFrame {
 		//Cria botão de busca por autor.
 		autorButton = new JButton("Buscar Autor");
 		autorButton.setMnemonic(KeyEvent.VK_B);
-		autorButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/author.png")));
+		autorButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/author.png")));
 		autorButton.setBackground(Color.BLACK);
 		autorButton.setForeground(corSubMenu);
 		autorButton.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -170,7 +170,7 @@ public class IgFilmoteca extends JFrame {
 		generoButton.setMnemonic(KeyEvent.VK_G);
 		generoButton.setBounds(0, 207, 153, 38);
 		panel.add(generoButton);
-		generoButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/Hollywood_sign_24.png")));
+		generoButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/Hollywood_sign_24.png")));
 		generoButton.setBackground(Color.BLACK);
 		generoButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		generoButton.setForeground(corSubMenu);
@@ -189,7 +189,7 @@ public class IgFilmoteca extends JFrame {
 		rankingButton.setMnemonic(KeyEvent.VK_V);
 		rankingButton.setBounds(0, 256, 153, 38);
 		panel.add(rankingButton);
-		rankingButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/keditbookmarks.png")));
+		rankingButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/keditbookmarks.png")));
 		rankingButton.setBackground(Color.BLACK);
 		rankingButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		rankingButton.setForeground(corSubMenu);
@@ -241,13 +241,13 @@ public class IgFilmoteca extends JFrame {
 		buscarFilmeButton.setOpaque(false);
 		buscarFilmeButton.setBorder(null);
 		buscarFilmeButton.setForeground(corSubMenu);
-		buscarFilmeButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/search.png")));
+		buscarFilmeButton.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/search.png")));
 		buscarFilmeButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		buscarFilmeButton.setBounds(708, 9, 121, 30);
 		pesquisarPanel.add(buscarFilmeButton);
 		
 		JLabel iconLabel = new JLabel("");
-		iconLabel.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/Darth_Vader_Mask_64.png")));
+		iconLabel.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/Darth_Vader_Mask_64.png")));
 		iconLabel.setBounds(21, 0, 64, 48);
 		pesquisarPanel.add(iconLabel);
 		
@@ -304,7 +304,7 @@ public class IgFilmoteca extends JFrame {
 		//Cria o menu fechar.
 		JMenuItem fecharMenuItem = new JMenuItem("Fechar");
 		fecharMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_MASK));
-		fecharMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/Theater_ticket_24.png")));
+		fecharMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/Theater_ticket_24.png")));
 		arquivoMenu.add(fecharMenuItem);
 		
 		//Registra o tratador de eventos do botão fechar no menu.
@@ -325,7 +325,7 @@ public class IgFilmoteca extends JFrame {
 		JMenuItem cadastrarMenuItem = new JMenuItem("Cadastrar Filme");
 		cadastrarMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
 		cadastrarMenuItem.setMnemonic(KeyEvent.VK_C);
-		cadastrarMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/video.png")));
+		cadastrarMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/video.png")));
 		navegarMenu.add(cadastrarMenuItem);
 		cadastrarMenuItem.addActionListener(new ActionListener() {
 			@Override
@@ -336,13 +336,13 @@ public class IgFilmoteca extends JFrame {
 		
 		JMenu procurarMenu = new JMenu("Procurar Filme pelo...");
 		procurarMenu.setMnemonic(KeyEvent.VK_R);
-		procurarMenu.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/search.png")));
+		procurarMenu.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/search.png")));
 		navegarMenu.add(procurarMenu);
 		
 		//Cria o item de menu autor e registra o seu tratador de eventos.
 		JMenuItem atorMenuItem = new JMenuItem("Ator");
 		atorMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.CTRL_MASK));
-		atorMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/actordark.png")));
+		atorMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/actordark.png")));
 		procurarMenu.add(atorMenuItem);
 		atorMenuItem.addActionListener(new ActionListener() {
 			@Override
@@ -354,7 +354,7 @@ public class IgFilmoteca extends JFrame {
 		//Cria o item de menu autor e registra o seu tratador de eventos.
 		JMenuItem autorMenuItem = new JMenuItem("Autor");
 		autorMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
-		autorMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/author.png")));
+		autorMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/author.png")));
 		procurarMenu.add(autorMenuItem);
 		autorMenuItem.addActionListener(new ActionListener() {
 			@Override
@@ -366,7 +366,7 @@ public class IgFilmoteca extends JFrame {
 		//Cria o item de menu diretor e registra seu tratador de eventos.
 		JMenuItem diretorMenuItem = new JMenuItem("Diretor");
 		diretorMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_MASK));
-		diretorMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/director_sit.png")));
+		diretorMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/director_sit.png")));
 		procurarMenu.add(diretorMenuItem);
 		diretorMenuItem.addActionListener(new ActionListener() {
 			@Override
@@ -378,7 +378,7 @@ public class IgFilmoteca extends JFrame {
 		//Cria o item de menu gênero e registra seu tratador de eventos.
 		JMenuItem generoMenuItem = new JMenuItem("G\u00EAnero");
 		generoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_MASK));
-		generoMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/Hollywood_sign_24.png")));
+		generoMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/Hollywood_sign_24.png")));
 		procurarMenu.add(generoMenuItem);
 		generoMenuItem.addActionListener(new ActionListener() {
 			@Override
@@ -390,7 +390,7 @@ public class IgFilmoteca extends JFrame {
 		//Cria o item de menu preferidos.
 		JMenuItem preferidosMenuItem = new JMenuItem("Visualizar Preferidos");
 		preferidosMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_MASK));
-		preferidosMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/keditbookmarks.png")));
+		preferidosMenuItem.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/keditbookmarks.png")));
 		navegarMenu.add(preferidosMenuItem);
 		
 		//Registra o tratador de eventos do preferidosMenuItem.
@@ -408,7 +408,7 @@ public class IgFilmoteca extends JFrame {
 		
 		//Cria o menu sobre.
 		JMenuItem mntmSobre = new JMenuItem("Sobre");
-		mntmSobre.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema-Batman-Old-icon.png")));
+		mntmSobre.setIcon(new ImageIcon(IgFilmoteca.class.getResource("/tsi/lpv/filmoteca/imagens/Cinema-Batman-Old-icon.png")));
 		mntmSobre.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 		infoMenu.add(mntmSobre);
 		

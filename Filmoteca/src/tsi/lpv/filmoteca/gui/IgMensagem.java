@@ -37,7 +37,7 @@ public class IgMensagem extends JDialog {
 	 * @param mensagem <code>String</code> com a mensagem a ser exibida.
 	 */
 	public IgMensagem(Component componente, String mensagem) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(IgMensagem.class.getResource("/tsi/lpv/samuelwagner/imagens/Darth_Vader_Mask_64.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(IgMensagem.class.getResource("/tsi/lpv/filmoteca/imagens/Darth_Vader_Mask_64.png")));
 		//Define o tamanho da janela.
 		setSize(385, 186);
 		
@@ -73,7 +73,7 @@ public class IgMensagem extends JDialog {
 		//Cria o botão de confirmação para fechar a caixa de mensagem.
 		JButton btnOk = new JButton("OK");
 		btnOk.setMnemonic(KeyEvent.VK_O);
-		btnOk.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/samuelwagner/imagens/video.png")));
+		btnOk.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/filmoteca/imagens/video.png")));
 		btnOk.setForeground(Color.BLACK);
 		btnOk.setBackground(Color.WHITE);
 		btnOk.addActionListener(new ActionListener() {
@@ -95,24 +95,24 @@ public class IgMensagem extends JDialog {
 		
 		//Cria o icone da janela.
 		JLabel dartMalLabel = new JLabel("");
-		dartMalLabel.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/samuelwagner/imagens/Cinema-icon.png")));
+		dartMalLabel.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/filmoteca/imagens/Cinema-icon.png")));
 		dartMalLabel.setBounds(10, 11, 38, 40);
 		mensagemPanel.add(dartMalLabel);
 		
 		//Cria o icone do batman
 		JLabel batmanLabel = new JLabel("");
-		batmanLabel.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/samuelwagner/imagens/Film_strip_24.png")));
+		batmanLabel.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/filmoteca/imagens/Film_strip_24.png")));
 		batmanLabel.setBounds(318, 11, 31, 23);
 		mensagemPanel.add(batmanLabel);
 		
 		//Cria o icone da foto.
 		JLabel iconFoto = new JLabel("");
-		iconFoto.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/samuelwagner/imagens/keditbookmarks.png")));
+		iconFoto.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/filmoteca/imagens/keditbookmarks.png")));
 		iconFoto.setBounds(37, 84, 38, 32);
 		mensagemPanel.add(iconFoto);
 		
 		JLabel fotoLabel = new JLabel("");
-		fotoLabel.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/samuelwagner/imagens/Theater_ticket_24.png")));
+		fotoLabel.setIcon(new ImageIcon(IgMensagem.class.getResource("/tsi/lpv/filmoteca/imagens/Theater_ticket_24.png")));
 		fotoLabel.setBounds(287, 96, 38, 20);
 		mensagemPanel.add(fotoLabel);
 		

@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -32,6 +34,9 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JYearChooser;
+
 import tsi.lpv.filmoteca.funcaoauxiliar.FuncaoAuxiliar;
 import tsi.lpv.filmoteca.persistencia.GeneroDAO;
 import tsi.lpv.filmoteca.trataeventos.TratadorEventoCadastraFilme;
@@ -39,9 +44,7 @@ import tsi.lpv.filmoteca.trataeventos.TratadorEventoInsereAtor;
 import tsi.lpv.filmoteca.trataeventos.TratadorEventoInsereAutor;
 import tsi.lpv.filmoteca.trataeventos.TratadorEventoInsereDiretor;
 import tsi.lpv.filmoteca.trataeventos.TratadorEventoInserirImagem;
-
-import com.toedter.calendar.JDateChooser;
-import com.toedter.calendar.JYearChooser;
+import tsi.lpv.filmoteca.trataeventos.TratadorPesquisaIMDB;
 
 /**
  * A classe <code>IgCadastraFilme</code> constrói a interface gráfica responsável pelo cadastro de um novo 
@@ -98,7 +101,7 @@ public class IgCadastrarFilme extends JDialog {
 	 */
 	public IgCadastrarFilme(IgFilmoteca igFilmoteca, boolean cadastraAtivo) {
 		//Define a proriedades da Janela.
-		setIconImage(Toolkit.getDefaultToolkit().getImage(IgCadastrarFilme.class.getResource("/tsi/lpv/samuelwagner/imagens/movie61.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(IgCadastrarFilme.class.getResource("/tsi/lpv/filmoteca/imagens/movie61.png")));
 		getContentPane().setBackground(new Color(87, 87, 87));
 		setBackground(new Color(87, 87, 87));
 		setTitle("Cadastrar Filme");
@@ -137,7 +140,7 @@ public class IgCadastrarFilme extends JDialog {
 		getContentPane().add(tabbedPane);
 		
 		//Cria a aba Filme e difine suas propriedades.
-		tabbedPane.addTab("Filme", new ImageIcon(IgCadastrarFilme.class.getResource("/tsi/lpv/samuelwagner/imagens/movie47.png")), criaAbaFilme(), "F");
+		tabbedPane.addTab("Filme", new ImageIcon(IgCadastrarFilme.class.getResource("/tsi/lpv/filmoteca/imagens/movie47.png")), criaAbaFilme(), "F");
 		tabbedPane.setEnabledAt(0, true);
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_F);
 		
@@ -147,7 +150,7 @@ public class IgCadastrarFilme extends JDialog {
 		tabbedPane.setMnemonicAt(1, 80);
 		
 		//Cria a aba Diretor e difine suas propriedades.
-		tabbedPane.addTab("Diretor", new ImageIcon(IgCadastrarFilme.class.getResource("/tsi/lpv/samuelwagner/imagens/directors.png")), criaAbaDiretor(), null);
+		tabbedPane.addTab("Diretor", new ImageIcon(IgCadastrarFilme.class.getResource("/tsi/lpv/filmoteca/imagens/directors.png")), criaAbaDiretor(), null);
 		tabbedPane.setDisplayedMnemonicIndexAt(2, 2);
 		tabbedPane.setMnemonicAt(2, 68);
 		
@@ -157,7 +160,7 @@ public class IgCadastrarFilme extends JDialog {
 		tabbedPane.setMnemonicAt(3, 65);
 		
 		//Cria a aba Ator e difine suas propriedades.
-		tabbedPane.addTab("Ator", new ImageIcon(IgCadastrarFilme.class.getResource("/tsi/lpv/samuelwagner/imagens/star-shape.png")), criaAbaArtista(), null);
+		tabbedPane.addTab("Ator", new ImageIcon(IgCadastrarFilme.class.getResource("/tsi/lpv/filmoteca/imagens/star-shape.png")), criaAbaArtista(), null);
 		tabbedPane.setMnemonicAt(4, 84);
 		
 		//Cria e difine o tratador do Botao cadastrar e cancelar.
@@ -215,6 +218,14 @@ public class IgCadastrarFilme extends JDialog {
 		tituloField.setBounds(10, 21, 195, 20);
 		tituloPanel.add(tituloField);
 		tituloField.setColumns(10);
+		
+		//Adiciona o evento de foco ao campo titulo para buscar as informações do filme na api do imdb.
+		tituloField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				new TratadorPesquisaIMDB(IgCadastrarFilme.this).preencherDados();
+			}
+		});
 		
 		JPanel paisPanel = new JPanel();
 		paisPanel.setBounds(230, 11, 221, 54);
