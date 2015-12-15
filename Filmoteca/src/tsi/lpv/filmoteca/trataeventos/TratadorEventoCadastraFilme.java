@@ -172,7 +172,6 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 	
 	// Lembrar de Melhorar esse Método.
 	private void cadastraFilme() {
-		byte[] poster = MetodosConversaoBanco.preparaImagemParaBanco(new File(igCadastrarFilme.getFotoField().getText()));
 		Filme filme = new Filme(0,Integer.parseInt(igCadastrarFilme.getDuracaoField().getText()),
 				igCadastrarFilme.getjYearChooser().getValue(),
 				(int)igCadastrarFilme.getClassificacaoIMDBspinner().getValue(), 
@@ -182,7 +181,7 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 				igCadastrarFilme.getFaixaEtariaComboBox().getItemAt(igCadastrarFilme.getFaixaEtariaComboBox().getSelectedIndex()),
 				tipoMidia(),
 				igCadastrarFilme.getChooser().getCalendar(),
-				poster);
+				igCadastrarFilme.getPoster());
 		Artista artistas[] = obtemArtistas();
 		Diretor diretores[] = obtemDiretores();
 		Autor autores[] = obtemAutores();

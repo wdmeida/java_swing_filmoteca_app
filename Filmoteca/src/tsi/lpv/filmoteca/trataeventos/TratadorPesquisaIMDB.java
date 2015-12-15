@@ -1,10 +1,13 @@
 package tsi.lpv.filmoteca.trataeventos;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.StringTokenizer;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 
+import tsi.lpv.filmoteca.funcaoauxiliar.ObtemPoster;
 import tsi.lpv.filmoteca.funcaoauxiliar.ObterDadosIMDB;
 import tsi.lpv.filmoteca.gui.IgCadastrarFilme;
 import tsi.lpv.filmoteca.modelo.DadosIMDB;
@@ -28,53 +31,31 @@ public class TratadorPesquisaIMDB {
 			
 			//Seta os atributos encontrados nos campos.
 			cadastrarFilme.getTituloField().setText(dadosIMDB.getTitle());
-			cadastrarFilme.getDuracaoField().setText(dadosIMDB.getRuntime());
+			cadastrarFilme.getDuracaoField().setText(dadosIMDB.getRuntime().replace("min", ""));
 			//cadastrarFilme.getClassificacaoIMDBspinner().setValue(Integer.parseInt(dadosIMDB.getImdbRating()));
 			//cadastrarFilme.getjYearChooser().setYear(Integer.parseInt(dadosIMDB.getYear()));
 			cadastrarFilme.getSinopseEditorPane().setText(dadosIMDB.getPlot());
 			cadastrarFilme.getPaisField().setText(dadosIMDB.getCountry());
-			insereAtores(dadosIMDB.getActors());
-			insereDiretor(dadosIMDB.getDirector());
-			insereAutor(dadosIMDB.getWriter());
-			
+			insereNomes(dadosIMDB.getActors(),(DefaultListModel<String>)cadastrarFilme.getAtorArea().getModel());
+			insereNomes(dadosIMDB.getDirector(),(DefaultListModel<String>)cadastrarFilme.getDiretorArea().getModel());
+			insereNomes(dadosIMDB.getWriter(),(DefaultListModel<String>)cadastrarFilme.getAutorArea().getModel());
+			byte[] poster = ObtemPoster.obtemPoster(dadosIMDB.getPoster());
+			ImageIcon img = new ImageIcon(poster);
+			img.setImage(img.getImage().getScaledInstance(208, 305,100));
+			cadastrarFilme.getPosterLabel().setIcon(img);
+			cadastrarFilme.setPoster(poster);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	private void insereDiretor(String diretores){
-		//Obtem o listModel do JList
-		DefaultListModel<String> listModel = (DefaultListModel<String>)cadastrarFilme.getDiretorArea().getModel();
+	private void insereNomes(String nomes, DefaultListModel<String> listModel){
 		//Apaga o dados do listModel
 		listModel.clear();
 		//Separa os diretores.
-		StringTokenizer diretorTok = new StringTokenizer(diretores,",");
+		StringTokenizer diretorTok = new StringTokenizer(nomes,",");
 		//Adiciona diretor por diretor no jlist removendo o espaços do inicio e fim do nome.
 		while(diretorTok.hasMoreTokens())
 			listModel.addElement(diretorTok.nextToken().trim());
-	}
-	
-	private void insereAutor(String autores){
-		//Obtem o listModel do JList
-		DefaultListModel<String> listModel = (DefaultListModel<String>)cadastrarFilme.getAutorArea().getModel();
-		//Apaga o dados do listModel
-		listModel.clear();
-		//Separa os autores.
-		StringTokenizer autorTok = new StringTokenizer(autores,",");
-		//Adiciona autor por autor no jlist removendo o espaços do inicio e fim do nome.
-		while(autorTok.hasMoreTokens())
-			listModel.addElement(autorTok.nextToken().trim());
-	}
-	
-	private void insereAtores(String atores){
-		//Obtem o listModel do JList
-		DefaultListModel<String> listModel = (DefaultListModel<String>)cadastrarFilme.getAtorArea().getModel();
-		//Apaga o dados do listModel
-		listModel.clear();
-		//Separa os atores.
-		StringTokenizer atoresTok = new StringTokenizer(atores,",");
-		//Adiciona ator por ator no jlist removendo o espaços do inicio e fim do nome.
-		while(atoresTok.hasMoreTokens())
-			listModel.addElement(atoresTok.nextToken().trim());
 	}
 }

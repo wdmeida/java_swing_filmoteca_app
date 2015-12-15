@@ -52,10 +52,15 @@ import tsi.lpv.filmoteca.trataeventos.TratadorPesquisaIMDB;
  * @author Samuel Gonçalves
  * @author Wagner Almeida
  */
+/**
+ * @author samuk
+ *
+ */
 public class IgCadastrarFilme extends JDialog {
 	/**
 	 * 
 	 */
+	private Color corBase =  new Color(17, 17, 17);
 	private static final long serialVersionUID = 1L;
 	private JTextField tituloField;
 	private JTextField paisField;
@@ -94,6 +99,7 @@ public class IgCadastrarFilme extends JDialog {
 	private JLabel erroDiretorlabel;
 	private JLabel erroAutorlabel;
 	private JLabel erroAtorlabel;
+	private byte[] poster;
 	
 	/**Construtor da classe <code>IgCadastrarFilme</code>.
 	 * @param igFilmoteca <code>IgFilmoteca</code>.
@@ -102,21 +108,22 @@ public class IgCadastrarFilme extends JDialog {
 	public IgCadastrarFilme(IgFilmoteca igFilmoteca, boolean cadastraAtivo) {
 		//Define a proriedades da Janela.
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IgCadastrarFilme.class.getResource("/tsi/lpv/filmoteca/imagens/movie61.png")));
-		getContentPane().setBackground(new Color(87, 87, 87));
+		getContentPane().setBackground(corBase);
 		setBackground(new Color(87, 87, 87));
 		setTitle("Cadastrar Filme");
-		setSize(485, 462);
+		setSize(498, 462);
 		getContentPane().setLayout(null);
 		
 		//Cria o panel para ficar na parte Sul da Janela.
 		JPanel panelSul = new JPanel();
-		panelSul.setBackground(new Color(87, 87, 87));
+		panelSul.setBackground(corBase);
 		panelSul.setBounds(0, 399, 479, 35);
 		getContentPane().add(panelSul);
 		panelSul.setLayout(null);
 		
 		//Cria um Label para ter a hora do sistem.
 		JLabel dataAtualLabel = new JLabel(obtemData());
+		dataAtualLabel.setForeground(Color.WHITE);
 		dataAtualLabel.setBounds(10, 9, 241, 19);
 		panelSul.add(dataAtualLabel);
 		
@@ -135,8 +142,8 @@ public class IgCadastrarFilme extends JDialog {
 		//Cria um JTabbedPane e define suas propriedades e adiciona a janela.
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setForeground(Color.BLACK);
-		tabbedPane.setBackground(new Color(87, 87, 87));
-		tabbedPane.setBounds(0, 0, 479, 399);
+		tabbedPane.setBackground(corBase);
+		tabbedPane.setBounds(0, 0, 492, 399);
 		getContentPane().add(tabbedPane);
 		
 		//Cria a aba Filme e difine suas propriedades.
@@ -190,7 +197,7 @@ public class IgCadastrarFilme extends JDialog {
 		//Cria um Painel e um CardLayout para Aba de filme.
 		CardLayout cardLayout = new CardLayout();
 		JPanel filmePanel = new JPanel(cardLayout);
-		filmePanel.setBackground(new Color(87, 87, 87));
+		filmePanel.setBackground(corBase);
 		//Cria as Janelas do CardLayout.
 		criaParte1DaAbaFilme(filmePanel,cardLayout);
 		criaParte2DaAbaFilme(filmePanel,cardLayout);
@@ -203,13 +210,13 @@ public class IgCadastrarFilme extends JDialog {
 		//Cria o Painel e define suas propriedades.
 		JPanel filmePanel1 = new JPanel();
 		filmePanel1.setLayout(null);
-		filmePanel1.setBackground(new Color(87,87,87));
+		filmePanel1.setBackground(corBase);
 		
 		//Cria painel de Titulos define suas propriedades e adiciona ao painel principal.
 		JPanel tituloPanel = new JPanel();
 		tituloPanel.setBounds(4, 11, 221, 54);
-		tituloPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Titulo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		tituloPanel.setBackground(new Color(87, 87, 87));
+		tituloPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Titulo", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		tituloPanel.setBackground(corBase);
 		tituloPanel.setLayout(null);
 		filmePanel1.add(tituloPanel);
 		
@@ -229,8 +236,8 @@ public class IgCadastrarFilme extends JDialog {
 		
 		JPanel paisPanel = new JPanel();
 		paisPanel.setBounds(230, 11, 221, 54);
-		paisPanel.setBorder(new TitledBorder(null, "Pais", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		paisPanel.setBackground(new Color(87, 87, 87));
+		paisPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Pais", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		paisPanel.setBackground(corBase);
 		filmePanel1.add(paisPanel);
 		paisPanel.setLayout(null);
 		
@@ -241,8 +248,8 @@ public class IgCadastrarFilme extends JDialog {
 		
 		JPanel generoPanel = new JPanel();
 		generoPanel.setBounds(230, 76, 221, 54);
-		generoPanel.setBorder(new TitledBorder(null, "Genero", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		generoPanel.setBackground(new Color(87, 87, 87));
+		generoPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Genero", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		generoPanel.setBackground(corBase);
 		filmePanel1.add(generoPanel);
 		generoPanel.setLayout(null);
 		String[] generos = GeneroDAO.obtemNomesGenero();
@@ -267,9 +274,9 @@ public class IgCadastrarFilme extends JDialog {
 		//Cria painel de duração define suas propriedades e adiciona ao painel principal.
 		JPanel duracaoPanel = new JPanel();
 		filmePanel1.add(duracaoPanel);
-		duracaoPanel.setBorder(new TitledBorder(null, "Dura\u00E7\u00E3o", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		duracaoPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Dura\u00E7\u00E3o", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		duracaoPanel.setBounds(4, 141, 221, 54);
-		duracaoPanel.setBackground(new Color(87, 87, 87));
+		duracaoPanel.setBackground(corBase);
 		duracaoPanel.setLayout(null);
 
 		duracaoField = new JTextField();
@@ -280,8 +287,8 @@ public class IgCadastrarFilme extends JDialog {
 		//Cria painel de ano define suas propriedades e adiciona ao painel principal.
 		JPanel anoPanel = new JPanel();
 		anoPanel.setBounds(230, 141, 221, 54);
-		anoPanel.setBorder(new TitledBorder(null, "Ano", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		anoPanel.setBackground(new Color(87, 87, 87));
+		anoPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Ano", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		anoPanel.setBackground(corBase);
 		anoPanel.setLayout(null);
 		filmePanel1.add(anoPanel);
 		
@@ -292,9 +299,10 @@ public class IgCadastrarFilme extends JDialog {
 		
 		//Cria painel de ano lançamento define suas propriedades e adiciona ao painel principal.
 		JPanel anoLacamentoPanel = new JPanel(null);
+		anoLacamentoPanel.setForeground(Color.WHITE);
 		anoLacamentoPanel.setBounds(230, 207, 216, 54);
-		anoLacamentoPanel.setBackground(new Color(87, 87, 87));
-		anoLacamentoPanel.setBorder(new TitledBorder(null, "Ano de Lan\u00E7amento", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		anoLacamentoPanel.setBackground(corBase);
+		anoLacamentoPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Ano de Lan\u00E7amento", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		filmePanel1.add(anoLacamentoPanel);
 		
 		Calendar cal = Calendar.getInstance();
@@ -306,8 +314,8 @@ public class IgCadastrarFilme extends JDialog {
 		//Cria painel de faixa Etaria define suas propriedades e adiciona ao painel principal.
 		JPanel faixaEtariaPanel = new JPanel();
 		faixaEtariaPanel.setBounds(4, 76, 221, 54);
-		faixaEtariaPanel.setBorder(new TitledBorder(null, "Faixa Etaria", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		faixaEtariaPanel.setBackground(new Color(87, 87, 87));
+		faixaEtariaPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Faixa Etaria", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		faixaEtariaPanel.setBackground(corBase);
 		filmePanel1.add(faixaEtariaPanel);
 		faixaEtariaPanel.setLayout(null);
 		
@@ -317,28 +325,32 @@ public class IgCadastrarFilme extends JDialog {
 		faixaEtariaPanel.add(faixaEtariaComboBox);
 		
 		JPanel midiaPanel = new JPanel();
-		midiaPanel.setBackground(new Color(87, 87, 87));
-		midiaPanel.setBorder(new TitledBorder(null, "M\u00EDdia", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		midiaPanel.setForeground(Color.WHITE);
+		midiaPanel.setBackground(corBase);
+		midiaPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "M\u00EDdia", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		midiaPanel.setBounds(4, 207, 221, 74);
 		filmePanel1.add(midiaPanel);
 		midiaPanel.setLayout(null);
 		
 		dvdRadio = new JRadioButton("DVD");
+		dvdRadio.setForeground(Color.WHITE);
 		buttonGroup.add(dvdRadio);
-		dvdRadio.setBackground(new Color(87, 87, 87));
+		dvdRadio.setBackground(corBase);
 		dvdRadio.setBounds(6, 17, 66, 23);
 		dvdRadio.setSelected(true);
 		midiaPanel.add(dvdRadio);
 		
 		bluRayRadio = new JRadioButton("Blu-Ray");
+		bluRayRadio.setForeground(Color.WHITE);
 		buttonGroup.add(bluRayRadio);
-		bluRayRadio.setBackground(new Color(87, 87, 87));
+		bluRayRadio.setBackground(corBase);
 		bluRayRadio.setBounds(100, 17, 109, 23);
 		midiaPanel.add(bluRayRadio);
 		
 		arquivoDigitalRadio = new JRadioButton("Arquivo Digital");
+		arquivoDigitalRadio.setForeground(Color.WHITE);
 		buttonGroup.add(arquivoDigitalRadio);
-		arquivoDigitalRadio.setBackground(new Color(87, 87, 87));
+		arquivoDigitalRadio.setBackground(corBase);
 		arquivoDigitalRadio.setBounds(6, 43, 109, 23);
 		midiaPanel.add(arquivoDigitalRadio);
 		
@@ -377,13 +389,13 @@ public class IgCadastrarFilme extends JDialog {
 	private void criaParte2DaAbaFilme(JPanel filmePanel,CardLayout cardLayout){
 		JPanel filmePanel2 = new JPanel();
 		filmePanel2.setLayout(null);
-		filmePanel2.setBackground(new Color(87, 87, 87));
+		filmePanel2.setBackground(corBase);
 		
 		JPanel classificacaoIMDBpanel = new JPanel();
 		filmePanel2.add(classificacaoIMDBpanel);
-		classificacaoIMDBpanel.setBorder(new TitledBorder(null, "Classifica\u00E7\u00E3o IMDB", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		classificacaoIMDBpanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Classifica\u00E7\u00E3o IMDB", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		classificacaoIMDBpanel.setBounds(252, 10, 199, 50);
-		classificacaoIMDBpanel.setBackground(new Color(87, 87, 87));
+		classificacaoIMDBpanel.setBackground(corBase);
 		classificacaoIMDBpanel.setLayout(null);
 		
 		classificacaoIMDBspinner = new JSpinner();
@@ -393,9 +405,9 @@ public class IgCadastrarFilme extends JDialog {
 		
 		JPanel classificacaoPessoalPanel = new JPanel();
 		filmePanel2.add(classificacaoPessoalPanel);
-		classificacaoPessoalPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Classifica\u00E7\u00E3o Pessoal", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		classificacaoPessoalPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Classifica\u00E7\u00E3o Pessoal", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		classificacaoPessoalPanel.setBounds(8, 10, 199, 50);
-		classificacaoPessoalPanel.setBackground(new Color(87, 87, 87));
+		classificacaoPessoalPanel.setBackground(corBase);
 		classificacaoPessoalPanel.setLayout(null);
 		
 		cllassificacaoSpinner = new JSpinner();
@@ -406,13 +418,13 @@ public class IgCadastrarFilme extends JDialog {
 		JPanel sinopsePanel = new JPanel();
 		filmePanel2.add(sinopsePanel);
 		sinopsePanel.setBorder(new TitledBorder(null, "Sinopse", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		sinopsePanel.setBackground(new Color(87, 87, 87));
+		sinopsePanel.setBackground(corBase);
 		sinopsePanel.setBounds(10, 71, 441, 253);
 		sinopsePanel.setLayout(null);
 		
 		JScrollPane sinopseScrollPane = new JScrollPane();
 		sinopseScrollPane.setBounds(10, 14, 416, 228);
-		sinopseScrollPane.setBackground(new Color(87, 87, 87));
+		sinopseScrollPane.setBackground(corBase);
 		sinopsePanel.add(sinopseScrollPane);
 		
 		sinopseEditorPane = new JEditorPane();
@@ -440,12 +452,12 @@ public class IgCadastrarFilme extends JDialog {
 	 */
 	private JPanel criaAbaDiretor(){
 		JPanel diretorPanel = new JPanel();
-		diretorPanel.setBackground(new Color(87, 87, 87));
+		diretorPanel.setBackground(corBase);
 		diretorPanel.setLayout(null);
 		
 		JPanel diretorCadastroPanel = new JPanel();
-		diretorCadastroPanel.setBorder(new TitledBorder(null, "Diretores", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		diretorCadastroPanel.setBackground(new Color(87, 87, 87));
+		diretorCadastroPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Diretores", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		diretorCadastroPanel.setBackground(corBase);
 		diretorCadastroPanel.setBounds(10, 11, 208, 347);
 		diretorPanel.add(diretorCadastroPanel);
 		diretorCadastroPanel.setLayout(null);
@@ -458,8 +470,8 @@ public class IgCadastrarFilme extends JDialog {
 		scrollPane.setViewportView(diretorArea);
 		
 		JPanel cadastraDiretorPanel = new JPanel();
-		cadastraDiretorPanel.setBorder(new TitledBorder(null, "Cadastra Diretor", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		cadastraDiretorPanel.setBackground(new Color(87, 87, 87));
+		cadastraDiretorPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cadastra Diretor", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		cadastraDiretorPanel.setBackground(corBase);
 		cadastraDiretorPanel.setBounds(228, 262, 236, 62);
 		diretorPanel.add(cadastraDiretorPanel);
 		cadastraDiretorPanel.setLayout(null);
@@ -478,34 +490,50 @@ public class IgCadastrarFilme extends JDialog {
 		diretorPanel.add(limparDiretorButton);
 		
 		JPanel informacaoPanel = new JPanel();
-		informacaoPanel.setBorder(new TitledBorder(null, "Informa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		informacaoPanel.setBackground(new Color(87, 87, 87));
-		informacaoPanel.setBounds(228, 11, 236, 200);
+		informacaoPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		informacaoPanel.setBackground(corBase);
+		informacaoPanel.setBounds(228, 11, 249, 200);
 		diretorPanel.add(informacaoPanel);
 		informacaoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel lblInformeODiretores = new JLabel("Informe o Diretor(es) do Filme:");
+		lblInformeODiretores.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblInformeODiretores.setForeground(Color.WHITE);
 		informacaoPanel.add(lblInformeODiretores);
 
 		JLabel lblOCadastroDo = new JLabel("O cadastro do diretor e não obrigatorio.");
+		lblOCadastroDo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblOCadastroDo.setForeground(Color.WHITE);
 		informacaoPanel.add(lblOCadastroDo);
 
 		JLabel lblComoCadastraO = new JLabel("Como Cadastra o Diretor:");
+		lblComoCadastraO.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblComoCadastraO.setForeground(Color.WHITE);
 		informacaoPanel.add(lblComoCadastraO);
 
 		JLabel lblDigitaAO = new JLabel("Digita a o nome do diretor na caixa ");
+		lblDigitaAO.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblDigitaAO.setForeground(Color.WHITE);
 		informacaoPanel.add(lblDigitaAO);
 
 		JLabel lblDeDialogo = new JLabel("de Dialogo.");
+		lblDeDialogo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblDeDialogo.setForeground(Color.WHITE);
 		informacaoPanel.add(lblDeDialogo);
 
 		JLabel lblAperteInserirOu = new JLabel("Aperte Inserir ou ALT+I.");
+		lblAperteInserirOu.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAperteInserirOu.setForeground(Color.WHITE);
 		informacaoPanel.add(lblAperteInserirOu);
 
 		JLabel lblParaApagarO = new JLabel("Para apagar o ultimo diretor.");
+		lblParaApagarO.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblParaApagarO.setForeground(Color.WHITE);
 		informacaoPanel.add(lblParaApagarO);
 		
 		JLabel lblCliqueEmLipar = new JLabel("Clique em Lipar ou ALT+L");
+		lblCliqueEmLipar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblCliqueEmLipar.setForeground(Color.WHITE);
 		informacaoPanel.add(lblCliqueEmLipar);
 		TratadorEventoInsereDiretor eventoInsereDiretor = new TratadorEventoInsereDiretor(IgCadastrarFilme.this);
 		
@@ -530,12 +558,12 @@ public class IgCadastrarFilme extends JDialog {
 	 */
 	private JPanel criaAbaAutor(){
 		JPanel autorPanel = new JPanel();
-		autorPanel.setBackground(new Color(87, 87, 87));
+		autorPanel.setBackground(corBase);
 		autorPanel.setLayout(null);
 		
 		JPanel autorCadastroPanel = new JPanel();
-		autorCadastroPanel.setBorder(new TitledBorder(null, "Autores", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		autorCadastroPanel.setBackground(new Color(87, 87, 87));
+		autorCadastroPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Autores", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		autorCadastroPanel.setBackground(corBase);
 		autorCadastroPanel.setBounds(10, 11, 208, 347);
 		autorPanel.add(autorCadastroPanel);
 		autorCadastroPanel.setLayout(null);
@@ -548,8 +576,8 @@ public class IgCadastrarFilme extends JDialog {
 		scrollPane.setViewportView(autorArea);
 		
 		JPanel cadastraAutorPanel = new JPanel();
-		cadastraAutorPanel.setBorder(new TitledBorder(null, "Cadastra Autor", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		cadastraAutorPanel.setBackground(new Color(87, 87, 87));
+		cadastraAutorPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cadastra Autor", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		cadastraAutorPanel.setBackground(corBase);
 		cadastraAutorPanel.setBounds(228, 262, 236, 62);
 		autorPanel.add(cadastraAutorPanel);
 		cadastraAutorPanel.setLayout(null);
@@ -575,34 +603,51 @@ public class IgCadastrarFilme extends JDialog {
 		limparAutorButton.addActionListener(eventoInsereAutor);
 		
 		JPanel informacaoPanel = new JPanel();
-		informacaoPanel.setBorder(new TitledBorder(null, "Informa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		informacaoPanel.setBackground(new Color(87, 87, 87));
-		informacaoPanel.setBounds(228, 11, 236, 200);
+		informacaoPanel.setForeground(Color.WHITE);
+		informacaoPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		informacaoPanel.setBackground(corBase);
+		informacaoPanel.setBounds(228, 11, 249, 200);
 		autorPanel.add(informacaoPanel);
 		informacaoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel lblInformeOAutores = new JLabel("Informe o Autor(es) do Filme:");
+		lblInformeOAutores.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblInformeOAutores.setForeground(Color.WHITE);
 		informacaoPanel.add(lblInformeOAutores);
 
 		JLabel lblOCadastroDo_1 = new JLabel("O cadastro do autor e não e obrigatorio.");
+		lblOCadastroDo_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblOCadastroDo_1.setForeground(Color.WHITE);
 		informacaoPanel.add(lblOCadastroDo_1);
 
 		JLabel lblComoCadastraO_1 = new JLabel("Como Cadastra o Autor:");
+		lblComoCadastraO_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblComoCadastraO_1.setForeground(Color.WHITE);
 		informacaoPanel.add(lblComoCadastraO_1);
 
 		JLabel lblDigitaAO_1 = new JLabel("Digita a o nome do autor na caixa ");
+		lblDigitaAO_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblDigitaAO_1.setForeground(Color.WHITE);
 		informacaoPanel.add(lblDigitaAO_1);
 
 		JLabel lblDeAutor = new JLabel("de Autor.");
+		lblDeAutor.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblDeAutor.setForeground(Color.WHITE);
 		informacaoPanel.add(lblDeAutor);
 
 		JLabel label_5 = new JLabel("Aperte Inserir ou ALT+I.");
+		label_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		label_5.setForeground(Color.WHITE);
 		informacaoPanel.add(label_5);
 
 		JLabel lblParaApagarO_1 = new JLabel("Para apagar o ultimo autor.");
+		lblParaApagarO_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblParaApagarO_1.setForeground(Color.WHITE);
 		informacaoPanel.add(lblParaApagarO_1);
 		
 		JLabel label = new JLabel("Clique em Lipar ou ALT+L");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		label.setForeground(Color.WHITE);
 		informacaoPanel.add(label);
 		
 		erroAutorlabel = new JLabel("");
@@ -619,12 +664,12 @@ public class IgCadastrarFilme extends JDialog {
 	 */
 	private JPanel criaAbaArtista(){
 		JPanel artistaPanel = new JPanel();
-		artistaPanel.setBackground(new Color(87, 87, 87));
+		artistaPanel.setBackground(corBase);
 		artistaPanel.setLayout(null);
 		
 		JPanel artistaCadastroPanel = new JPanel();
-		artistaCadastroPanel.setBorder(new TitledBorder(null, "Atores", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		artistaCadastroPanel.setBackground(new Color(87, 87, 87));
+		artistaCadastroPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Atores", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		artistaCadastroPanel.setBackground(corBase);
 		artistaCadastroPanel.setBounds(10, 11, 208, 347);
 		artistaPanel.add(artistaCadastroPanel);
 		artistaCadastroPanel.setLayout(null);
@@ -637,8 +682,8 @@ public class IgCadastrarFilme extends JDialog {
 		scrollPane.setViewportView(atorArea);
 		
 		JPanel cadastraArtistasPanel = new JPanel();
-		cadastraArtistasPanel.setBorder(new TitledBorder(null, "Cadastra Ator", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		cadastraArtistasPanel.setBackground(new Color(87, 87, 87));
+		cadastraArtistasPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cadastra Ator", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		cadastraArtistasPanel.setBackground(corBase);
 		cadastraArtistasPanel.setBounds(228, 262, 236, 62);
 		artistaPanel.add(cadastraArtistasPanel);
 		cadastraArtistasPanel.setLayout(null);
@@ -659,40 +704,56 @@ public class IgCadastrarFilme extends JDialog {
 		artistaPanel.add(limparAtorButton);
 		
 		JPanel informacaoPanel = new JPanel();
-		informacaoPanel.setBorder(new TitledBorder(null, "Informa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		informacaoPanel.setBackground(new Color(87, 87, 87));
-		informacaoPanel.setBounds(228, 11, 236, 200);
+		informacaoPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		informacaoPanel.setBackground(corBase);
+		informacaoPanel.setBounds(228, 11, 249, 200);
 		artistaPanel.add(informacaoPanel);
 		
 		JLabel lblInformeOAtores = new JLabel("Informe o Ator(es) do Filme:");
+		lblInformeOAtores.setForeground(Color.WHITE);
+		lblInformeOAtores.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblInformeOAtores.setBounds(10, 25, 204, 21);
 		informacaoPanel.add(lblInformeOAtores);
 
 		JLabel lblOCadastroDo_2 = new JLabel("O cadastro do ator e não obrigatorio.");
+		lblOCadastroDo_2.setForeground(Color.WHITE);
+		lblOCadastroDo_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblOCadastroDo_2.setBounds(20, 46, 204, 21);
 		informacaoPanel.add(lblOCadastroDo_2);
 
 		JLabel lblComoCadastraO_2 = new JLabel("Como Cadastra o Ator");
+		lblComoCadastraO_2.setForeground(Color.WHITE);
+		lblComoCadastraO_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblComoCadastraO_2.setBounds(10, 71, 204, 21);
 		informacaoPanel.add(lblComoCadastraO_2);
 
 		JLabel lblDigitaAO_2 = new JLabel("Digita a o nome do ator na caixa ");
+		lblDigitaAO_2.setForeground(Color.WHITE);
+		lblDigitaAO_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDigitaAO_2.setBounds(20, 92, 204, 21);
 		informacaoPanel.add(lblDigitaAO_2);
 
 		JLabel label_4 = new JLabel("de Dialogo.");
+		label_4.setForeground(Color.WHITE);
+		label_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		label_4.setBounds(20, 107, 194, 21);
 		informacaoPanel.add(label_4);
 
 		JLabel label_5 = new JLabel("Aperte Inserir ou ALT+I.");
+		label_5.setForeground(Color.WHITE);
+		label_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		label_5.setBounds(20, 124, 194, 29);
 		informacaoPanel.add(label_5);
 
 		JLabel lblParaApagarO_2 = new JLabel("Para apagar o ultimo ator.");
+		lblParaApagarO_2.setForeground(Color.WHITE);
+		lblParaApagarO_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblParaApagarO_2.setBounds(20, 145, 194, 27);
 		informacaoPanel.add(lblParaApagarO_2);
 		
 		JLabel label = new JLabel("Clique em Lipar ou ALT+L");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		informacaoPanel.add(label);
 		
 		erroAtorlabel = new JLabel("");
@@ -714,12 +775,12 @@ public class IgCadastrarFilme extends JDialog {
 	 */
 	private JPanel criaAbaPoster(){
 		JPanel posterPanel = new JPanel();
-		posterPanel.setBackground(new Color(87, 87, 87));
+		posterPanel.setBackground(corBase);
 		posterPanel.setLayout(null);
 		
 		JPanel posterImagemPanel = new JPanel();
-		posterImagemPanel.setBorder(new TitledBorder(null, "P\u00F4ster", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		posterImagemPanel.setBackground(new Color(87, 87, 87));
+		posterImagemPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "P\u00F4ster", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		posterImagemPanel.setBackground(corBase);
 		posterImagemPanel.setBounds(10, 11, 228, 331);
 		posterPanel.add(posterImagemPanel);
 		posterImagemPanel.setLayout(null);
@@ -729,47 +790,64 @@ public class IgCadastrarFilme extends JDialog {
 		posterImagemPanel.add(posterLabel);
 		
 		JPanel informacoePanel = new JPanel();
-		informacoePanel.setBackground(new Color(87, 87, 87));
-		informacoePanel.setBorder(new TitledBorder(null, "Informa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		informacoePanel.setBounds(248, 11, 216, 212);
+		informacoePanel.setForeground(Color.WHITE);
+		informacoePanel.setBackground(corBase);
+		informacoePanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+		informacoePanel.setBounds(248, 11, 229, 212);
 		posterPanel.add(informacoePanel);
 		informacoePanel.setLayout(null);
 		
 		JLabel lblSelecioneOPster = new JLabel("Selecione o P\u00F4ster do filme:");
+		lblSelecioneOPster.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblSelecioneOPster.setForeground(Color.WHITE);
 		lblSelecioneOPster.setBounds(10, 22, 196, 20);
 		informacoePanel.add(lblSelecioneOPster);
 		
 		JLabel lblOPsteNo = new JLabel("O P\u00F4ste n\u00E3o e de preenchimento");
+		lblOPsteNo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblOPsteNo.setForeground(Color.WHITE);
 		lblOPsteNo.setBounds(10, 47, 196, 20);
 		informacoePanel.add(lblOPsteNo);
 		
 		JLabel lblObrigatorio = new JLabel("obrigatorio.");
+		lblObrigatorio.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblObrigatorio.setForeground(Color.WHITE);
 		lblObrigatorio.setBounds(10, 64, 70, 20);
 		informacoePanel.add(lblObrigatorio);
 		
 		JLabel lblComoSelecionarO = new JLabel("Como selecionar o P\u00F4ster:");
+		lblComoSelecionarO.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblComoSelecionarO.setForeground(Color.WHITE);
 		lblComoSelecionarO.setBounds(10, 95, 196, 20);
 		informacoePanel.add(lblComoSelecionarO);
 		
 		JLabel lblCliqueNoBoto = new JLabel("Clique no bot\u00E3o Inserir ou utilize");
-		lblCliqueNoBoto.setBounds(20, 114, 186, 20);
+		lblCliqueNoBoto.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblCliqueNoBoto.setForeground(Color.WHITE);
+		lblCliqueNoBoto.setBounds(20, 114, 199, 20);
 		informacoePanel.add(lblCliqueNoBoto);
 		
 		JLabel lblOAlti = new JLabel(" o ALT+I.");
+		lblOAlti.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblOAlti.setForeground(Color.WHITE);
 		lblOAlti.setBounds(20, 132, 186, 20);
 		informacoePanel.add(lblOAlti);
 		
 		JLabel lblDepoisESelecionar = new JLabel("Depois e selecionar a");
+		lblDepoisESelecionar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblDepoisESelecionar.setForeground(Color.WHITE);
 		lblDepoisESelecionar.setBounds(20, 159, 186, 20);
 		informacoePanel.add(lblDepoisESelecionar);
 		
 		JLabel lblImagemEConfimar = new JLabel("Imagem e confimar");
+		lblImagemEConfimar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblImagemEConfimar.setForeground(Color.WHITE);
 		lblImagemEConfimar.setBounds(20, 181, 186, 20);
 		informacoePanel.add(lblImagemEConfimar);
 		
 		JPanel fotoPanel = new JPanel();
-		fotoPanel.setBackground(new Color(87, 87, 87));
-		fotoPanel.setBorder(new TitledBorder(null, "Foto", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		fotoPanel.setBackground(corBase);
+		fotoPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Foto", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		fotoPanel.setBounds(254, 239, 210, 61);
 		posterPanel.add(fotoPanel);
 		fotoPanel.setLayout(null);
@@ -1055,6 +1133,17 @@ public class IgCadastrarFilme extends JDialog {
 	 */
 	public JLabel getErroAtorlabel() {
 		return erroAtorlabel;
+	}
+	
+	/**Retorna a Referencia do poster
+	 * @return um <code>byte[]</code>.
+	 */
+	public byte[] getPoster() {
+		return poster;
+	}
+	
+	public void setPoster(byte[] poster) {
+		this.poster = poster;
 	}
 
 	private void verificaComandoComboBox(){

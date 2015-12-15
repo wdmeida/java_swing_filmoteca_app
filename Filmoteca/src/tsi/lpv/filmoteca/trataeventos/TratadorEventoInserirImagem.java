@@ -74,6 +74,7 @@ public class TratadorEventoInserirImagem implements ActionListener {
 								 ,obtemExtensao(file.getName())));
 						 if(fileNovo != null){
 							 ImageIcon icon = new ImageIcon(fileNovo);
+							 igCadastraFilme.setPoster(fileNovo);
 							 igCadastraFilme.getPosterLabel().setIcon(icon);
 							 igCadastraFilme.getFotoField().setText(file.getAbsolutePath());
 							 igCadastraFilme.getPosterLabel().repaint();

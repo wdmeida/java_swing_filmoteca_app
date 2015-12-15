@@ -111,6 +111,7 @@ public class TratadorEventoPesquisarFilme implements ActionListener {
 		//Configura a foto
 		if(filme.getPoster() != null){
 			ImageIcon icon = new ImageIcon(filme.getPoster());
+			icon.setImage(icon.getImage().getScaledInstance(215, 254,100));
 			igResultadoPesquisaFilme.getFotoLabel().setIcon(icon);
 		}
 		
