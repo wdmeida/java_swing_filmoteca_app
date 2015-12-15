@@ -1,5 +1,6 @@
 package tsi.lpv.filmoteca.gui;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -263,7 +264,7 @@ public class IgFilmoteca extends JFrame {
 		exibicaoPanel = new JPanel();
 		exibicaoPanel.setBackground(corBase);
 		exibicaoPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Darth Movies", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(255, 255, 255)));
-		exibicaoPanel.setBounds(161, 70, 706, 410);
+		exibicaoPanel.setBounds(161, 70, 706, 417);
 		getContentPane().add(exibicaoPanel);
 		exibicaoPanel.setLayout(null);
 		
@@ -281,7 +282,7 @@ public class IgFilmoteca extends JFrame {
 		setLocationByPlatform(true);
 		
 		//Define o tamanho da janela.
-		setSize(883, 540);
+		setSize(883, 548);
 		
 		//Define a ação a ser tomada quando o botão fechar for apertado.
 		addWindowListener(new WindowAdapter() {
@@ -525,67 +526,121 @@ public class IgFilmoteca extends JFrame {
 	public void criaPaneisFilme(JPanel panelAmostraFilme){
 		//Obtem todos os Filmes.
 		List<Filme> listFilme = FilmeDAO.pesquisarFilmeCriterio();
+		int indiceTela = 0;
+		CardLayout cardLayout = new CardLayout();
+		panelAmostraFilme.setLayout(cardLayout);
+		
 		int indice = 0;
-		try {
-			/*Pega o primeiro Filme da Lista e cria o painel onde ficara
-			 * as informaçoes dele. Cria uma Borda para o painel e coloca
-			 * o nome do filme nela. Cria um Label para adicionar o poster 
-			 * filme.
-			 */
-			Filme filme = listFilme.get(indice++);
-			JPanel tela1Panel = new JPanel();
-			tela1Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), filme.getTitulo(), TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
-			tela1Panel.setLayout(null);
-			tela1Panel.setBackground(new Color(17, 17, 17));
-			tela1Panel.setBounds(0, 0, 222, 379);
-			panelAmostraFilme.add(tela1Panel);
-			JLabel tela1Label = new JLabel("");
-			tela1Label.setBounds(10, 22, 202, 346);
-			tela1Panel.add(tela1Label);
-			if(filme.getPoster() != null)
-				tela1Label.setIcon(new ImageIcon(filme.getPoster()));
-			filme = listFilme.get(indice++);
-			/*Pega o segundo Filme da Lista e cria o painel onde ficara
-			 * as informaçoes dele. Cria uma Borda para o painel e coloca
-			 * o nome do filme nela. Cria um Label para adicionar o poster 
-			 * filme.
-			 */
-			JPanel tela2Panel = new JPanel();
-			tela2Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), filme.getTitulo(), TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
-			tela2Panel.setLayout(null);
-			tela2Panel.setBackground(new Color(17, 17, 17));
-			tela2Panel.setBounds(232, 0, 222, 379);
-			panelAmostraFilme.add(tela2Panel);
+		for(;indice<listFilme.size();indiceTela++){
 			
-			JLabel tela2Label = new JLabel("");
-			tela2Label.setBounds(10, 23, 202, 345);
-			tela2Panel.add(tela2Label);
-			if(filme.getPoster() != null)
-				tela2Label.setIcon(new ImageIcon(filme.getPoster()));
+			JPanel tela = new JPanel(null);
+			tela.setBounds(161, 70, 706, 459);
+			tela.setBackground(corBase);
+			panelAmostraFilme.add(tela,indiceTela+"");
 			
-			/*Pega o terceiro Filme da Lista e cria o painel onde ficara
-			 * as informaçoes dele. Cria uma Borda para o painel e coloca
-			 * o nome do filme nela. Cria um Label para adicionar o poster 
-			 * filme.
-			 */
-			filme = listFilme.get(indice++);
-			JPanel tela3Panel = new JPanel();
-			tela3Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), filme.getTitulo(), TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
-			tela3Panel.setLayout(null);
-			tela3Panel.setBackground(new Color(17, 17, 17));
-			tela3Panel.setBounds(464, 0, 222, 379);
-			panelAmostraFilme.add(tela3Panel);
-			
-			JLabel tela3Label = new JLabel("");
-			tela3Label.setBounds(10, 21, 202, 347);
-			tela3Panel.add(tela3Label);
-			if(filme.getPoster() != null)
-				tela3Label.setIcon(new ImageIcon(filme.getPoster()));
-			//Captura a exeção caso tiver menos de 3 filme.
-			} catch (Exception e) {
-				return;
-			}
+			try {
+				/*Pega o primeiro Filme da Lista e cria o painel onde ficara
+				 * as informaçoes dele. Cria uma Borda para o painel e coloca
+				 * o nome do filme nela. Cria um Label para adicionar o poster 
+				 * filme.
+				 */
+				Filme filme = listFilme.get(indice++);
+				JPanel tela1Panel = new JPanel();
+				tela1Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), filme.getTitulo(), TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+				tela1Panel.setLayout(null);
+				tela1Panel.setBackground(new Color(17, 17, 17));
+				tela1Panel.setBounds(0, 0, 222, 379);
+				tela.add(tela1Panel);
+				
+				JLabel tela1Label = new JLabel("");
+				tela1Label.setBounds(10, 22, 202, 346);
+				tela1Panel.add(tela1Label);
+				if(filme.getPoster() != null){
+					ImageIcon icon = new ImageIcon(filme.getPoster());
+					icon.setImage(icon.getImage().getScaledInstance(202, 346, 100));
+					tela1Label.setIcon(icon);
+				}
+				filme = listFilme.get(indice++);
+				/*Pega o segundo Filme da Lista e cria o painel onde ficara
+				 * as informaçoes dele. Cria uma Borda para o painel e coloca
+				 * o nome do filme nela. Cria um Label para adicionar o poster 
+				 * filme.
+				 */
+				JPanel tela2Panel = new JPanel();
+				tela2Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), filme.getTitulo(), TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+				tela2Panel.setLayout(null);
+				tela2Panel.setBackground(new Color(17, 17, 17));
+				tela2Panel.setBounds(232, 0, 222, 379);
+				tela.add(tela2Panel);
+				
+				JLabel tela2Label = new JLabel("");
+				tela2Label.setBounds(10, 23, 202, 345);
+				tela2Panel.add(tela2Label);
+				if(filme.getPoster() != null){
+					ImageIcon icon = new ImageIcon(filme.getPoster());
+					icon.setImage(icon.getImage().getScaledInstance(202, 346, 100));
+					tela2Label.setIcon(icon);
+				}
+				
+				/*Pega o terceiro Filme da Lista e cria o painel onde ficara
+				 * as informaçoes dele. Cria uma Borda para o painel e coloca
+				 * o nome do filme nela. Cria um Label para adicionar o poster 
+				 * filme.
+				 */
+				filme = listFilme.get(indice++);
+				JPanel tela3Panel = new JPanel();
+				tela3Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), filme.getTitulo(), TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
+				tela3Panel.setLayout(null);
+				tela3Panel.setBackground(new Color(17, 17, 17));
+				tela3Panel.setBounds(464, 0, 222, 379);
+				tela.add(tela3Panel);
+				
+				JLabel tela3Label = new JLabel("");
+				tela3Label.setBounds(10, 21, 202, 347);
+				tela3Panel.add(tela3Label);
+				if(filme.getPoster() != null){
+					ImageIcon icon = new ImageIcon(filme.getPoster());
+					icon.setImage(icon.getImage().getScaledInstance(202, 346, 100));
+					tela3Label.setIcon(icon);
+				}
+				//Captura a exeção caso tiver menos de 3 filme.
+				} catch (Exception e) {
+					ThreadMensagem mensagem = new ThreadMensagem(indiceTela,panelAmostraFilme,cardLayout);
+					mensagem.start();
+					return;
+				}
+			tela = null;
+		}
+		ThreadMensagem mensagem = new ThreadMensagem(indiceTela,panelAmostraFilme,cardLayout);
+		mensagem.start();
 	}	
+	
+	private class ThreadMensagem extends Thread{
+		private int indice;
+		private JPanel jpanel;
+		private CardLayout card;
+		
+		public ThreadMensagem(int indice, JPanel jPanel, CardLayout card) {
+			this.card = card;
+			this.indice = indice;
+			this.jpanel = jPanel;
+		}
+		
+		@Override
+		public void run() {
+			int i = 0;
+			while(true){
+				try{
+					card.show(jpanel, (i%indice)+"");
+					if(i == indice) i=0;
+					else i++;
+					sleep(5000);
+				}catch(Exception e){
+					i = 0;
+				}
+			}
+		}
+	}
 	
 	/**
 	 * Exibe os filmes em ordem descrescente.
