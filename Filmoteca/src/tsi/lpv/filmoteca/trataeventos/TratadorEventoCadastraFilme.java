@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.util.LinkedList;
 
 import javax.sound.sampled.AudioInputStream;
@@ -14,7 +13,6 @@ import javax.swing.border.LineBorder;
 
 import tsi.lpv.filmoteca.controller.CadastroControle;
 import tsi.lpv.filmoteca.funcaoauxiliar.FuncaoAuxiliar;
-import tsi.lpv.filmoteca.funcaoauxiliar.MetodosConversaoBanco;
 import tsi.lpv.filmoteca.funcaoauxiliar.Validador;
 import tsi.lpv.filmoteca.gui.IgCadastrarFilme;
 import tsi.lpv.filmoteca.gui.IgMensagem;

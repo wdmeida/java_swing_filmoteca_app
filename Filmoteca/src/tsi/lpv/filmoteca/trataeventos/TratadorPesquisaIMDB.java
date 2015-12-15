@@ -1,7 +1,6 @@
 package tsi.lpv.filmoteca.trataeventos;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.StringTokenizer;
 
 import javax.swing.DefaultListModel;
@@ -31,7 +30,7 @@ public class TratadorPesquisaIMDB {
 			
 			//Seta os atributos encontrados nos campos.
 			cadastrarFilme.getTituloField().setText(dadosIMDB.getTitle());
-			cadastrarFilme.getDuracaoField().setText(dadosIMDB.getRuntime().replace("min", ""));
+			cadastrarFilme.getDuracaoField().setText(dadosIMDB.getRuntime().replace("min", "").trim());
 			//cadastrarFilme.getClassificacaoIMDBspinner().setValue(Integer.parseInt(dadosIMDB.getImdbRating()));
 			//cadastrarFilme.getjYearChooser().setYear(Integer.parseInt(dadosIMDB.getYear()));
 			cadastrarFilme.getSinopseEditorPane().setText(dadosIMDB.getPlot());
