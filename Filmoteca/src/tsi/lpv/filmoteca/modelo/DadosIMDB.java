@@ -21,7 +21,7 @@ public class DadosIMDB {
 				   Released,
 				   Runtime,
 				   Renre,
-				   Rirector,
+				   Director,
 				   Writer,
 				   Actors,
 				   Plot,
@@ -83,12 +83,12 @@ public class DadosIMDB {
 		Renre = renre;
 	}
 
-	public String getRirector() {
-		return Rirector;
+	public String getDirector() {
+		return Director;
 	}
 
-	public void setRirector(String rirector) {
-		Rirector = rirector;
+	public void setDirector(String director) {
+		Director = director;
 	}
 
 	public String getWriter() {
