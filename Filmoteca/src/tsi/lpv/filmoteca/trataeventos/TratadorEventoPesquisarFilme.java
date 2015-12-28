@@ -2,14 +2,18 @@ package tsi.lpv.filmoteca.trataeventos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 
 import tsi.lpv.filmoteca.controller.PesquisaControle;
 import tsi.lpv.filmoteca.funcaoauxiliar.FuncaoAuxiliar;
+import tsi.lpv.filmoteca.funcaoauxiliar.ObtemPoster;
+import tsi.lpv.filmoteca.funcaoauxiliar.ObterDadosIMDB;
 import tsi.lpv.filmoteca.gui.IgFilmoteca;
 import tsi.lpv.filmoteca.gui.IgMensagem;
 import tsi.lpv.filmoteca.gui.IgResultadoPesquisaFilme;
+import tsi.lpv.filmoteca.modelo.DadosIMDB;
 import tsi.lpv.filmoteca.modelo.Filme;
 import tsi.lpv.filmoteca.persistencia.FilmeDAO;
 import tsi.lpv.filmoteca.persistencia.PaisDAO;
@@ -54,9 +58,74 @@ public class TratadorEventoPesquisarFilme implements ActionListener {
 		
 		//Pesquisa o filme no banco de dados.
 		Filme filme = FilmeDAO.pesquisarFilme(nomeFilme);
-		if(filme != null) exibeDadosFilme(filme);
-		else new IgMensagem(igFilmoteca, "Filme não encontrado.");
+		if(filme != null){
+			exibeDadosFilme(filme);
+			return;
+		}
+		DadosIMDB dadosIMDB;
+		try {
+			dadosIMDB = ObterDadosIMDB.pesquisarDados(nomeFilme);
+			if(dadosIMDB.getActors() != null) exibeDadosFilmeIMDB(dadosIMDB);
+			else new IgMensagem(igFilmoteca, "Filme não encontrado.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}//pesquisarFilme()
+	
+	
+	/**
+	 * Exibe todos os dados do filme cadastrado.
+	 * @param filme <code>Filme</code> objeto com o filme a ser exibido.
+	 */
+	public void exibeDadosFilmeIMDB(DadosIMDB dadosIMDB){
+		igResultadoPesquisaFilme = new IgResultadoPesquisaFilme(igFilmoteca, new Filme());
+		
+		//Configura o nome do filme na tela.
+		igResultadoPesquisaFilme.getNomeFilme().setText(dadosIMDB.getTitle());
+		
+		//Configura o país.
+		igResultadoPesquisaFilme.getPaisLabel().setText("País: " + dadosIMDB.getCountry());
+		
+		//Configura o ano.
+		igResultadoPesquisaFilme.getAnoLabel().setText("Ano: " + dadosIMDB.getYear());
+		
+		//Configura a duração.
+		igResultadoPesquisaFilme.getDuracaoLabel().setText("Duração: " + dadosIMDB.getRuntime());
+		
+		//Configura a classificação etária.
+		igResultadoPesquisaFilme.getEtariaLabel().setText("Classificação etária: " + dadosIMDB.getRated());
+		
+		//Configura o gênero.
+		igResultadoPesquisaFilme.getGeneroLabel().setText("Gênero: " + dadosIMDB.getGenre());
+		
+		//Configura a sinopse
+		igResultadoPesquisaFilme.getSinopseTextArea().setText(dadosIMDB.getPlot());
+		
+		//Configura a mídia
+		igResultadoPesquisaFilme.getMidiaTextField().setText(dadosIMDB.getType());
+		
+		//Configura a classificação IMDB e pessoal.
+		igResultadoPesquisaFilme.getImdbTextField().setText(dadosIMDB.getImdbRating() + " estrelas");
+		igResultadoPesquisaFilme.getPessoalTextField().setText("0 estrelas");
+		
+		//Configura autor, diretor e elenco.
+		igResultadoPesquisaFilme.getElencoTextArea().setText(dadosIMDB.getActors());
+		
+		igResultadoPesquisaFilme.getAutorTextField().setText(dadosIMDB.getWriter());
+		
+		igResultadoPesquisaFilme.getDiretorTextField().setText(dadosIMDB.getDirector());
+		
+		//Configura a data
+		igResultadoPesquisaFilme.getLancamentoTextField().setText(dadosIMDB.getReleased());
+		
+		ImageIcon icon = new ImageIcon(ObtemPoster.obtemPoster(dadosIMDB.getPoster()));
+		icon.setImage(icon.getImage().getScaledInstance(215, 254,100));
+		igResultadoPesquisaFilme.getFotoLabel().setIcon(icon);
+		
+		//Exibe a tela para o usuário.
+		igResultadoPesquisaFilme.setVisible(true);
+	}//exibeDadosFilme()
 	
 	/**
 	 * Exibe todos os dados do filme cadastrado.

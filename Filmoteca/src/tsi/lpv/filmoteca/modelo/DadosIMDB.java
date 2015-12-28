@@ -29,8 +29,9 @@ public class DadosIMDB {
 				   Country,
 				   Awards,
 				   Poster,
+				   Genre,
 				   Metascore,
-				   ImdbRating,
+				   imdbRating,
 				   ImdbVotes,
 				   ImdbID,
 				   Type;
@@ -156,11 +157,11 @@ public class DadosIMDB {
 	}
 
 	public String getImdbRating() {
-		return ImdbRating;
+		return imdbRating;
 	}
 
 	public void setImdbRating(String imdbRating) {
-		ImdbRating = imdbRating;
+		this.imdbRating = imdbRating;
 	}
 
 	public String getImdbVotes() {
@@ -185,6 +186,14 @@ public class DadosIMDB {
 
 	public void setType(String type) {
 		Type = type;
+	}
+
+	public String getGenre() {
+		return Genre;
+	}
+
+	public void setGenre(String genre) {
+		Genre = genre;
 	}
 
 	

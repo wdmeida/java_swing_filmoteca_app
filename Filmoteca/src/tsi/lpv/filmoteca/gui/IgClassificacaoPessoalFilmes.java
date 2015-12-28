@@ -40,7 +40,7 @@ public class IgClassificacaoPessoalFilmes extends JDialog {
 	 */
 	@SuppressWarnings("unchecked")
 	public IgClassificacaoPessoalFilmes(IgFilmoteca igFilmoteca, String[] filmes) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(IgClassificacaoPessoalFilmes.class.getResource("/tsi/lpv/samuelwagner/imagens/star.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(IgClassificacaoPessoalFilmes.class.getResource("/tsi/lpv/filmoteca/imagens/star.png")));
 		setTitle("Classifica\u00E7\u00E3o Filmes");
 		getContentPane().setBackground(corBase);
 		
@@ -61,7 +61,7 @@ public class IgClassificacaoPessoalFilmes extends JDialog {
 		//Cria o logo.
 		JLabel logoLabel = new JLabel("Classifica\u00E7\u00E3o Pessoal");
 		logoLabel.setFont(new Font("Tahoma", Font.BOLD, 19));
-		logoLabel.setIcon(new ImageIcon(IgClassificacaoPessoalFilmes.class.getResource("/tsi/lpv/samuelwagner/imagens/star.png")));
+		logoLabel.setIcon(new ImageIcon(IgClassificacaoPessoalFilmes.class.getResource("/tsi/lpv/filmoteca/imagens/star.png")));
 		logoLabel.setForeground(Color.WHITE);
 		logoLabel.setBounds(10, 5, 306, 45);
 		tituloPanel.add(logoLabel);

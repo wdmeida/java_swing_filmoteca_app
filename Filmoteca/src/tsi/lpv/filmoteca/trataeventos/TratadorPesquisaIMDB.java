@@ -27,12 +27,17 @@ public class TratadorPesquisaIMDB {
 			//Realiza a busca e verifica se os dados foram encontrados.
 			DadosIMDB dadosIMDB = ObterDadosIMDB.pesquisarDados(nomeFilme);
 			if(dadosIMDB == null) return;
-			
+			Double rating;
+			try{
+				rating = Double.parseDouble(dadosIMDB.getImdbRating());
+			}catch(NumberFormatException e){
+				rating = 0.0;
+			}
 			//Seta os atributos encontrados nos campos.
 			cadastrarFilme.getTituloField().setText(dadosIMDB.getTitle());
 			cadastrarFilme.getDuracaoField().setText(dadosIMDB.getRuntime().replace("min", "").trim());
-			//cadastrarFilme.getClassificacaoIMDBspinner().setValue(Integer.parseInt(dadosIMDB.getImdbRating()));
-			//cadastrarFilme.getjYearChooser().setYear(Integer.parseInt(dadosIMDB.getYear()));
+			cadastrarFilme.getClassificacaoIMDBspinner().setValue(rating.intValue());
+			cadastrarFilme.getjYearChooser().setYear(Integer.parseInt(dadosIMDB.getYear()));
 			cadastrarFilme.getSinopseEditorPane().setText(dadosIMDB.getPlot());
 			cadastrarFilme.getPaisField().setText(dadosIMDB.getCountry());
 			insereNomes(dadosIMDB.getActors(),(DefaultListModel<String>)cadastrarFilme.getAtorArea().getModel());

@@ -64,7 +64,6 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 	}
 	
 	private void cadastraAutorAtorDiretor() {
-		System.out.println("Kkkk");
 		Artista artistas[] = obtemArtistas();
 		Diretor diretores[] = obtemDiretores();
 		Autor autores[] = obtemAutores();
@@ -244,7 +243,7 @@ public class TratadorEventoCadastraFilme implements ActionListener {
 		public void run() {
 			Clip clip = null;
 			try {  
-			    AudioInputStream sound = AudioSystem.getAudioInputStream(new BufferedInputStream(Thread.currentThread().getClass().getResourceAsStream("/tsi/lpv/samuelwagner/som/StarWarsDarthVaderTheme.wav")));  
+			    AudioInputStream sound = AudioSystem.getAudioInputStream(new BufferedInputStream(Thread.currentThread().getClass().getResourceAsStream("/tsi/lpv/filmoteca/som/StarWarsDarthVaderTheme.wav")));  
 			    clip = AudioSystem.getClip();  
 			    clip.open(sound);  
 			    clip.start();  

@@ -106,6 +106,7 @@ public class IgCadastrarFilme extends JDialog {
 	 * @param cadastraAtivo <code>boolean</code>.
 	 */
 	public IgCadastrarFilme(IgFilmoteca igFilmoteca, boolean cadastraAtivo) {
+		
 		//Define a proriedades da Janela.
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IgCadastrarFilme.class.getResource("/tsi/lpv/filmoteca/imagens/movie61.png")));
 		getContentPane().setBackground(corBase);

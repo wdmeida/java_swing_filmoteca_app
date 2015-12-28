@@ -64,7 +64,7 @@ public class IgFilmoteca extends JFrame {
 	private JButton diretorButton;
 	private JButton generoButton;
 	private JButton rankingButton;
-	
+	private ThreadListFilmeInicio filmeInicio;
 	/**
 	 * Construtor da classe <code>IgFilmoteca</code> responsável pela interface gráfica do aplicativo Filmoteca.
 	 */
@@ -275,7 +275,6 @@ public class IgFilmoteca extends JFrame {
 		panelAmostraFilme.setLayout(null);
 		
 		criaPaneisFilme(panelAmostraFilme);
-		
 		//Define a tela como não redimensionável.
 		setResizable(false);
 		
@@ -529,22 +528,23 @@ public class IgFilmoteca extends JFrame {
 		int indiceTela = 0;
 		CardLayout cardLayout = new CardLayout();
 		panelAmostraFilme.setLayout(cardLayout);
-		
+		boolean erro = false;
 		int indice = 0;
-		for(;indice<listFilme.size();indiceTela++){
+		for(;indice<listFilme.size() && !erro;indiceTela++){
 			
 			JPanel tela = new JPanel(null);
 			tela.setBounds(161, 70, 706, 459);
 			tela.setBackground(corBase);
 			panelAmostraFilme.add(tela,indiceTela+"");
 			
-			try {
-				/*Pega o primeiro Filme da Lista e cria o painel onde ficara
-				 * as informaçoes dele. Cria uma Borda para o painel e coloca
-				 * o nome do filme nela. Cria um Label para adicionar o poster 
-				 * filme.
-				 */
-				Filme filme = listFilme.get(indice++);
+			/*Pega o primeiro Filme da Lista e cria o painel onde ficara
+			 * as informaçoes dele. Cria uma Borda para o painel e coloca
+			 * o nome do filme nela. Cria um Label para adicionar o poster 
+			 * filme.
+			 */
+			Filme filme;
+			try{
+				filme = listFilme.get(indice++);
 				JPanel tela1Panel = new JPanel();
 				tela1Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), filme.getTitulo(), TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 				tela1Panel.setLayout(null);
@@ -560,6 +560,10 @@ public class IgFilmoteca extends JFrame {
 					icon.setImage(icon.getImage().getScaledInstance(202, 346, 100));
 					tela1Label.setIcon(icon);
 				}
+			}catch(Exception e){
+				erro = true;
+			}
+			try{
 				filme = listFilme.get(indice++);
 				/*Pega o segundo Filme da Lista e cria o painel onde ficara
 				 * as informaçoes dele. Cria uma Borda para o painel e coloca
@@ -581,12 +585,15 @@ public class IgFilmoteca extends JFrame {
 					icon.setImage(icon.getImage().getScaledInstance(202, 346, 100));
 					tela2Label.setIcon(icon);
 				}
-				
-				/*Pega o terceiro Filme da Lista e cria o painel onde ficara
-				 * as informaçoes dele. Cria uma Borda para o painel e coloca
-				 * o nome do filme nela. Cria um Label para adicionar o poster 
-				 * filme.
-				 */
+			}catch(Exception e){
+				erro = true;
+			}
+			/*Pega o terceiro Filme da Lista e cria o painel onde ficara
+			 * as informaçoes dele. Cria uma Borda para o painel e coloca
+			 * o nome do filme nela. Cria um Label para adicionar o poster 
+			 * filme.
+			 */
+			try{
 				filme = listFilme.get(indice++);
 				JPanel tela3Panel = new JPanel();
 				tela3Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), filme.getTitulo(), TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
@@ -603,24 +610,21 @@ public class IgFilmoteca extends JFrame {
 					icon.setImage(icon.getImage().getScaledInstance(202, 346, 100));
 					tela3Label.setIcon(icon);
 				}
-				//Captura a exeção caso tiver menos de 3 filme.
-				} catch (Exception e) {
-					ThreadMensagem mensagem = new ThreadMensagem(indiceTela,panelAmostraFilme,cardLayout);
-					mensagem.start();
-					return;
-				}
+			}catch(Exception e){
+				erro = true;
+			}
 			tela = null;
 		}
-		ThreadMensagem mensagem = new ThreadMensagem(indiceTela,panelAmostraFilme,cardLayout);
-		mensagem.start();
+		filmeInicio = new ThreadListFilmeInicio(indiceTela,panelAmostraFilme,cardLayout);
+		filmeInicio.start();
 	}	
 	
-	private class ThreadMensagem extends Thread{
+	/*Thread responsavel para poder mudar de tempo em tempo os filmes da tela inicial.*/
+	public class ThreadListFilmeInicio extends Thread{
 		private int indice;
 		private JPanel jpanel;
 		private CardLayout card;
-		
-		public ThreadMensagem(int indice, JPanel jPanel, CardLayout card) {
+		public ThreadListFilmeInicio(int indice, JPanel jPanel, CardLayout card) {
 			this.card = card;
 			this.indice = indice;
 			this.jpanel = jPanel;
@@ -629,15 +633,21 @@ public class IgFilmoteca extends JFrame {
 		@Override
 		public void run() {
 			int i = 0;
-			while(true){
-				try{
-					card.show(jpanel, (i%indice)+"");
-					if(i == indice) i=0;
-					else i++;
-					sleep(5000);
-				}catch(Exception e){
-					i = 0;
+			try {
+				sleep(2000);
+			
+				while(true){
+					try{
+						card.show(jpanel, (i%indice)+"");
+						if(i == indice) i=0;
+						else i++;
+						sleep(5000);
+					}catch(Exception e){
+						i = 0;
+					}
 				}
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
 			}
 		}
 	}
@@ -744,4 +754,9 @@ public class IgFilmoteca extends JFrame {
 	public JButton getGeneroButtono() {
 		return generoButton;
 	}
+
+	public ThreadListFilmeInicio getFilmeInicio() {
+		return filmeInicio;
+	}
+
 }//class IgFilmoteca
