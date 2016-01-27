@@ -320,7 +320,7 @@ public class IgCadastrarFilme extends JDialog {
 		filmePanel1.add(faixaEtariaPanel);
 		faixaEtariaPanel.setLayout(null);
 		
-		faixaEtariaComboBox = new JComboBox<String>(new String[] {"Livre", " inadequado para menores de 10", " inadequado para menores de 12", " inadequado para menores de 14", " inadequado para menores de 16", " inadequado para menores de 18"});
+		faixaEtariaComboBox = new JComboBox<String>(new String[] {"Livre", " Inadequado para menores de 10", " Inadequado para menores de 12", " Inadequado para menores de 14", " Inadequado para menores de 16", " Inadequado para menores de 18"});
 		faixaEtariaComboBox.setSelectedIndex(0);
 		faixaEtariaComboBox.setBounds(10, 21, 195, 22);
 		faixaEtariaPanel.add(faixaEtariaComboBox);
@@ -502,37 +502,37 @@ public class IgCadastrarFilme extends JDialog {
 		lblInformeODiretores.setForeground(Color.WHITE);
 		informacaoPanel.add(lblInformeODiretores);
 
-		JLabel lblOCadastroDo = new JLabel("O cadastro do diretor e não obrigatorio.");
+		JLabel lblOCadastroDo = new JLabel("O cadastro do diretor não é obrigatório.");
 		lblOCadastroDo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblOCadastroDo.setForeground(Color.WHITE);
 		informacaoPanel.add(lblOCadastroDo);
 
-		JLabel lblComoCadastraO = new JLabel("Como Cadastra o Diretor:");
+		JLabel lblComoCadastraO = new JLabel("Como cadastrar Diretor:");
 		lblComoCadastraO.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblComoCadastraO.setForeground(Color.WHITE);
 		informacaoPanel.add(lblComoCadastraO);
 
-		JLabel lblDigitaAO = new JLabel("Digita a o nome do diretor na caixa ");
+		JLabel lblDigitaAO = new JLabel("Digite o nome do diretor na caixa de texto.");
 		lblDigitaAO.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDigitaAO.setForeground(Color.WHITE);
 		informacaoPanel.add(lblDigitaAO);
 
-		JLabel lblDeDialogo = new JLabel("de Dialogo.");
+	/*	JLabel lblDeDialogo = new JLabel("de Dialogo.");
 		lblDeDialogo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDeDialogo.setForeground(Color.WHITE);
-		informacaoPanel.add(lblDeDialogo);
+		informacaoPanel.add(lblDeDialogo);*/
 
 		JLabel lblAperteInserirOu = new JLabel("Aperte Inserir ou ALT+I.");
 		lblAperteInserirOu.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblAperteInserirOu.setForeground(Color.WHITE);
 		informacaoPanel.add(lblAperteInserirOu);
 
-		JLabel lblParaApagarO = new JLabel("Para apagar o ultimo diretor.");
+		JLabel lblParaApagarO = new JLabel("Para apagar o último diretor.");
 		lblParaApagarO.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblParaApagarO.setForeground(Color.WHITE);
 		informacaoPanel.add(lblParaApagarO);
 		
-		JLabel lblCliqueEmLipar = new JLabel("Clique em Lipar ou ALT+L");
+		JLabel lblCliqueEmLipar = new JLabel("Clique em Limpar ou ALT+L");
 		lblCliqueEmLipar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCliqueEmLipar.setForeground(Color.WHITE);
 		informacaoPanel.add(lblCliqueEmLipar);
@@ -616,17 +616,17 @@ public class IgCadastrarFilme extends JDialog {
 		lblInformeOAutores.setForeground(Color.WHITE);
 		informacaoPanel.add(lblInformeOAutores);
 
-		JLabel lblOCadastroDo_1 = new JLabel("O cadastro do autor e não e obrigatorio.");
+		JLabel lblOCadastroDo_1 = new JLabel("O cadastro do autor não é obrigatorio.");
 		lblOCadastroDo_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblOCadastroDo_1.setForeground(Color.WHITE);
 		informacaoPanel.add(lblOCadastroDo_1);
 
-		JLabel lblComoCadastraO_1 = new JLabel("Como Cadastra o Autor:");
+		JLabel lblComoCadastraO_1 = new JLabel("Como Cadastrar Autor:");
 		lblComoCadastraO_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblComoCadastraO_1.setForeground(Color.WHITE);
 		informacaoPanel.add(lblComoCadastraO_1);
 
-		JLabel lblDigitaAO_1 = new JLabel("Digita a o nome do autor na caixa ");
+		JLabel lblDigitaAO_1 = new JLabel("Digite o nome do autor na caixa de texto.");
 		lblDigitaAO_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDigitaAO_1.setForeground(Color.WHITE);
 		informacaoPanel.add(lblDigitaAO_1);
@@ -641,12 +641,12 @@ public class IgCadastrarFilme extends JDialog {
 		label_5.setForeground(Color.WHITE);
 		informacaoPanel.add(label_5);
 
-		JLabel lblParaApagarO_1 = new JLabel("Para apagar o ultimo autor.");
+		JLabel lblParaApagarO_1 = new JLabel("Para apagar o último autor.");
 		lblParaApagarO_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblParaApagarO_1.setForeground(Color.WHITE);
 		informacaoPanel.add(lblParaApagarO_1);
 		
-		JLabel label = new JLabel("Clique em Lipar ou ALT+L");
+		JLabel label = new JLabel("Clique em Limpar ou ALT+L");
 		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		label.setForeground(Color.WHITE);
 		informacaoPanel.add(label);
@@ -716,19 +716,19 @@ public class IgCadastrarFilme extends JDialog {
 		lblInformeOAtores.setBounds(10, 25, 204, 21);
 		informacaoPanel.add(lblInformeOAtores);
 
-		JLabel lblOCadastroDo_2 = new JLabel("O cadastro do ator e não obrigatorio.");
+		JLabel lblOCadastroDo_2 = new JLabel("O cadastro do ator não é obrigatório.");
 		lblOCadastroDo_2.setForeground(Color.WHITE);
 		lblOCadastroDo_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblOCadastroDo_2.setBounds(20, 46, 204, 21);
 		informacaoPanel.add(lblOCadastroDo_2);
 
-		JLabel lblComoCadastraO_2 = new JLabel("Como Cadastra o Ator");
+		JLabel lblComoCadastraO_2 = new JLabel("Como Cadastrar Ator");
 		lblComoCadastraO_2.setForeground(Color.WHITE);
 		lblComoCadastraO_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblComoCadastraO_2.setBounds(10, 71, 204, 21);
 		informacaoPanel.add(lblComoCadastraO_2);
 
-		JLabel lblDigitaAO_2 = new JLabel("Digita a o nome do ator na caixa ");
+		JLabel lblDigitaAO_2 = new JLabel("Digite o nome do ator na caixa de texto.");
 		lblDigitaAO_2.setForeground(Color.WHITE);
 		lblDigitaAO_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDigitaAO_2.setBounds(20, 92, 204, 21);
@@ -746,13 +746,13 @@ public class IgCadastrarFilme extends JDialog {
 		label_5.setBounds(20, 124, 194, 29);
 		informacaoPanel.add(label_5);
 
-		JLabel lblParaApagarO_2 = new JLabel("Para apagar o ultimo ator.");
+		JLabel lblParaApagarO_2 = new JLabel("Para apagar o último ator.");
 		lblParaApagarO_2.setForeground(Color.WHITE);
 		lblParaApagarO_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblParaApagarO_2.setBounds(20, 145, 194, 27);
 		informacaoPanel.add(lblParaApagarO_2);
 		
-		JLabel label = new JLabel("Clique em Lipar ou ALT+L");
+		JLabel label = new JLabel("Clique em Limpar ou ALT+L");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		informacaoPanel.add(label);
@@ -804,17 +804,17 @@ public class IgCadastrarFilme extends JDialog {
 		lblSelecioneOPster.setBounds(10, 22, 196, 20);
 		informacoePanel.add(lblSelecioneOPster);
 		
-		JLabel lblOPsteNo = new JLabel("O P\u00F4ste n\u00E3o e de preenchimento");
+		JLabel lblOPsteNo = new JLabel("O P\u00F4ster n\u00E3o é obrigatório.");
 		lblOPsteNo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblOPsteNo.setForeground(Color.WHITE);
 		lblOPsteNo.setBounds(10, 47, 196, 20);
 		informacoePanel.add(lblOPsteNo);
 		
-		JLabel lblObrigatorio = new JLabel("obrigatorio.");
+	/*	JLabel lblObrigatorio = new JLabel("obrigatório.");
 		lblObrigatorio.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblObrigatorio.setForeground(Color.WHITE);
 		lblObrigatorio.setBounds(10, 64, 70, 20);
-		informacoePanel.add(lblObrigatorio);
+		informacoePanel.add(lblObrigatorio);*/
 		
 		JLabel lblComoSelecionarO = new JLabel("Como selecionar o P\u00F4ster:");
 		lblComoSelecionarO.setFont(new Font("Tahoma", Font.PLAIN, 14));
