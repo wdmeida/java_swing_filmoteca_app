@@ -43,7 +43,7 @@ public class IgCadastraGenero extends JDialog {
 	
 		//Cria um JTextField e difene suas propriedades.
 		areaDescricao = new JTextField();
-		areaDescricao.setToolTipText("Informa o Gênero.");
+		areaDescricao.setToolTipText("Informe o Gênero:");
 		areaDescricao.setColumns(20);
 		areaDescricao.setBounds(87, 13, 198,20);
 		getContentPane().setLayout(null);

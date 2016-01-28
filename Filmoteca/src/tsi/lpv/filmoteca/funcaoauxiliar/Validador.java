@@ -1,7 +1,8 @@
 package tsi.lpv.filmoteca.funcaoauxiliar;
 
 /** Essa Classe e reponsavel implementar métodos que valida dados do programa.
- * @author Samuel e Wagner
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  *
  */
 public class Validador {

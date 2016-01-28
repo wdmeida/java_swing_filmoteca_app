@@ -38,7 +38,7 @@ public class FuncaoAuxiliar {
 	/**
 	 * Converte a uma data em <code>String</code> para <code>Calendar</code>.
 	 * @param data <code>String</code> com a data a ser convertida.
-	 * @return um <code>Calendar</code> com a data ja convertida.
+	 * @return um <code>Calendar</code> com a data já convertida.
 	 */
 	public static Calendar converteDataParaCalendar(String data) {
 		Calendar dataPesquisa = Calendar.getInstance();
@@ -92,7 +92,7 @@ public class FuncaoAuxiliar {
 		for(int indice = 0; indice < texto.getModel().getSize(); indice++)
 			nomes[indice] =  texto.getModel().getElementAt(indice);
 		return nomes;
-	}
+	}//obtemPalavras()
 	
 	/**Junta um número de palavras de um array de <code>String</code>.
 	 * @param textos <code>String</code> array a ser unido.

@@ -30,7 +30,7 @@ public class IgAjuda extends JDialog {
 	 * @param modulo <code>String</code> com o título do módulo de ajuda que está sendo executado.
 	 * @param mensagemAjuda <code>String</code> com a mensagem de ajuda ao usuário que será exibida.
 	 */
-	public IgAjuda(IgFilmoteca igFilmoteca, String modulo, String mensagemAjuda) {
+	public IgAjuda(IgCadastrarFilme igCadastrarFilme, String modulo, String mensagemAjuda) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IgAjuda.class.getResource("/tsi/lpv/filmoteca/imagens/Darth_Vader_Mask_64.png")));
 		//Define as propriedades da janela.
 		setTitle("Darth Movies");
@@ -48,7 +48,7 @@ public class IgAjuda extends JDialog {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		setLocationRelativeTo(igFilmoteca);
+		setLocationRelativeTo(igCadastrarFilme);
 		
 		//Cria a área de texto para exibição do conteúdo.
 		JTextArea sobreTextArea = new JTextArea();

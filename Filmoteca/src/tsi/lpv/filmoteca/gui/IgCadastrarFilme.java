@@ -38,6 +38,7 @@ import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JYearChooser;
 
 import tsi.lpv.filmoteca.funcaoauxiliar.FuncaoAuxiliar;
+import tsi.lpv.filmoteca.mensagens.MensagensAjuda;
 import tsi.lpv.filmoteca.persistencia.GeneroDAO;
 import tsi.lpv.filmoteca.trataeventos.TratadorEventoCadastraFilme;
 import tsi.lpv.filmoteca.trataeventos.TratadorEventoInsereAtor;
@@ -53,7 +54,8 @@ import tsi.lpv.filmoteca.trataeventos.TratadorPesquisaIMDB;
  * @author Wagner Almeida
  */
 /**
- * @author samuk
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
  *
  */
 public class IgCadastrarFilme extends JDialog {
@@ -794,11 +796,23 @@ public class IgCadastrarFilme extends JDialog {
 		informacoePanel.setForeground(Color.WHITE);
 		informacoePanel.setBackground(corBase);
 		informacoePanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
-		informacoePanel.setBounds(248, 11, 229, 212);
+		informacoePanel.setBounds(248, 11, 229, 100);
 		posterPanel.add(informacoePanel);
 		informacoePanel.setLayout(null);
 		
-		JLabel lblSelecioneOPster = new JLabel("Selecione o P\u00F4ster do filme:");
+		JButton ajudaButton = new JButton("Ajuda");
+		ajudaButton.setBounds(18, 35, 196, 20);
+		informacoePanel.add(ajudaButton);
+		ajudaButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new IgAjuda(IgCadastrarFilme.this, "Cadastrar Postêr", MensagensAjuda.CADASTRAR_POSTER);
+			}
+		});
+		
+		
+		/*JLabel lblSelecioneOPster = new JLabel("Selecione o P\u00F4ster do filme:");
 		lblSelecioneOPster.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblSelecioneOPster.setForeground(Color.WHITE);
 		lblSelecioneOPster.setBounds(10, 22, 196, 20);
@@ -810,11 +824,11 @@ public class IgCadastrarFilme extends JDialog {
 		lblOPsteNo.setBounds(10, 47, 196, 20);
 		informacoePanel.add(lblOPsteNo);
 		
-	/*	JLabel lblObrigatorio = new JLabel("obrigatório.");
+		JLabel lblObrigatorio = new JLabel("obrigatório.");
 		lblObrigatorio.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblObrigatorio.setForeground(Color.WHITE);
 		lblObrigatorio.setBounds(10, 64, 70, 20);
-		informacoePanel.add(lblObrigatorio);*/
+		informacoePanel.add(lblObrigatorio);
 		
 		JLabel lblComoSelecionarO = new JLabel("Como selecionar o P\u00F4ster:");
 		lblComoSelecionarO.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -844,7 +858,7 @@ public class IgCadastrarFilme extends JDialog {
 		lblImagemEConfimar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblImagemEConfimar.setForeground(Color.WHITE);
 		lblImagemEConfimar.setBounds(20, 181, 186, 20);
-		informacoePanel.add(lblImagemEConfimar);
+		informacoePanel.add(lblImagemEConfimar);*/
 		
 		JPanel fotoPanel = new JPanel();
 		fotoPanel.setBackground(corBase);
