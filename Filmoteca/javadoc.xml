@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="public" author="true" classpath="jar/jcalendar-1.4.jar;jar/postgresql-9.4-1201.jdbc41.jar;jar/gson-2.3.1.jar" destdir="doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="tsi.lpv.filmoteca.gui,tsi.lpv.filmoteca.funcaoauxiliar,tsi.lpv.filmoteca.app,tsi.lpv.filmoteca.trataeventos,tsi.lpv.filmoteca.imagens,tsi.lpv.filmoteca.modelo,tsi.lpv.filmoteca.mensagens,tsi.lpv.filmoteca.som,tsi.lpv.filmoteca.controller,tsi.lpv.filmoteca.persistencia" source="1.8" sourcepath="src" splitindex="true" use="true" version="true">
+            <link href="https://docs.oracle.com/javase/8/docs/api/"/>
+            <link href="http://docs.oracle.com/javase/8/javafx/api/"/>
+        </javadoc>
+    </target>
+</project>

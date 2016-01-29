@@ -26,7 +26,7 @@ public class IgAjuda extends JDialog {
 
 	/**
 	 * Construtor da classe <code>IgAjuda</code>.
-	 * @param igFilmoteca <code>IgFilmoteca</code> com a referência da janela principal.
+	 * @param igCadastrarFilme <code>IgCadastrarFilme</code> com a referência da janela de cadastro de filmes.
 	 * @param modulo <code>String</code> com o título do módulo de ajuda que está sendo executado.
 	 * @param mensagemAjuda <code>String</code> com a mensagem de ajuda ao usuário que será exibida.
 	 */

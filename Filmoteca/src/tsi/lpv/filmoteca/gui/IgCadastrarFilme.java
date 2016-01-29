@@ -514,7 +514,6 @@ public class IgCadastrarFilme extends JDialog {
 			}
 		});
 		
-		
 		TratadorEventoInsereDiretor eventoInsereDiretor = new TratadorEventoInsereDiretor(IgCadastrarFilme.this);
 		inserirDiretorButton.setMnemonic(KeyEvent.VK_I);
 		limparDiretorButton.setMnemonic(KeyEvent.VK_L);

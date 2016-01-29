@@ -1,5 +1,12 @@
 package tsi.lpv.filmoteca.mensagens;
 
+/**
+ * A Interface <code>MensagensAjuda</code> define as constantes com as mensagens que serão usadas nas telas de ajuda 
+ * da aplicação
+ * 
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
+ * */ 
 public interface MensagensAjuda {
 	public String CADASTRAR_POSTER = "Caso queira cadastrar um pôster, "
 			+ "clique no botão INSERIR ou utilize as teclas de atalho ALT + I, "

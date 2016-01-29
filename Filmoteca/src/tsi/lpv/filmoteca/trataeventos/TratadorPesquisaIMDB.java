@@ -11,22 +11,39 @@ import tsi.lpv.filmoteca.funcaoauxiliar.ObterDadosIMDB;
 import tsi.lpv.filmoteca.gui.IgCadastrarFilme;
 import tsi.lpv.filmoteca.modelo.DadosIMDB;
 
+/**
+ * A classe <code>TratadorPesquisaIMDB</code> é responsável por preencher os informações do filme se estas forem
+ * obtidas através da API do IMDB.
+ * 
+ * @author Samuel Gonçalves
+ * @author Wagner Almeida
+ * */
 public class TratadorPesquisaIMDB {
 	private IgCadastrarFilme cadastrarFilme;
 	
+	/**
+	 * Construtor da classe <code>TratadorPesquisaIMDB</code>.
+	 * @param cadastrarFilme <code>IgCadastrarFilme</code> com a refêrencia da janela onde serão
+	 * preenchidas as informações encontradas.
+	 * */
 	public TratadorPesquisaIMDB(IgCadastrarFilme cadastrarFilme) {
 		this.cadastrarFilme = cadastrarFilme;
 	}
 	
+	/**
+	 * Preenche as informações do filme caso sejam encontradas pela pesquisa na API do IMDB.
+	 * */
 	public void preencherDados(){
 		//Obtém o nome do filme e realiza a busca.
 		String nomeFilme = cadastrarFilme.getTituloField().getText();
 		
-		System.out.println(nomeFilme);
+		//Verifica se algum filme foi digitado para pesquisa.
+		if(nomeFilme == null || nomeFilme.equals("")) return;
+		
 		try {
 			//Realiza a busca e verifica se os dados foram encontrados.
 			DadosIMDB dadosIMDB = ObterDadosIMDB.pesquisarDados(nomeFilme);
-			if(dadosIMDB == null) return;
+			if(dadosIMDB == null || dadosIMDB.getTitle() == null) return;
 			Double rating;
 			try{
 				rating = Double.parseDouble(dadosIMDB.getImdbRating());
@@ -51,7 +68,7 @@ public class TratadorPesquisaIMDB {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}//preencherDados()
 	
 	private void insereNomes(String nomes, DefaultListModel<String> listModel){
 		//Apaga o dados do listModel
@@ -61,5 +78,5 @@ public class TratadorPesquisaIMDB {
 		//Adiciona diretor por diretor no jlist removendo o espaços do inicio e fim do nome.
 		while(diretorTok.hasMoreTokens())
 			listModel.addElement(diretorTok.nextToken().trim());
-	}
-}
+	}//insereNomes()
+}//class TratadorPesquisaIMDB

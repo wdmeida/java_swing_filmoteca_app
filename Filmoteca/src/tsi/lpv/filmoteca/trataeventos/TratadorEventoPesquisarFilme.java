@@ -75,8 +75,8 @@ public class TratadorEventoPesquisarFilme implements ActionListener {
 	
 	
 	/**
-	 * Exibe todos os dados do filme cadastrado.
-	 * @param filme <code>Filme</code> objeto com o filme a ser exibido.
+	 * Exibe todos os dados do filme através da API do IMDB.
+	 * @param dadosIMDB <code>DadosIMDB</code> objeto com os dados do filme.
 	 */
 	public void exibeDadosFilmeIMDB(DadosIMDB dadosIMDB){
 		igResultadoPesquisaFilme = new IgResultadoPesquisaFilme(igFilmoteca, new Filme());
