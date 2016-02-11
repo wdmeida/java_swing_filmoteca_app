@@ -131,13 +131,13 @@ public class IgCadastrarFilme extends JDialog {
 		
 		//Cria e adiciona o botao cadastra ao panelSul e define o atalho mnemonic.
 		cadastrarButton = new JButton("Cadastrar");
-		cadastrarButton.setBounds(230, 7, 91, 23);
+		cadastrarButton.setBounds(248, 7, 91, 23);
 		cadastrarButton.setMnemonic(KeyEvent.VK_C);
 		panelSul.add(cadastrarButton);
 		
 		//Cria e adiciona o botao cancelar ao panelSul e define o atalho mnemonic.
 		cancelarButton = new JButton("Cancelar");
-		cancelarButton.setBounds(375, 7, 91, 23);
+		cancelarButton.setBounds(365, 7, 91, 23);
 		cancelarButton.setMnemonic(KeyEvent.VK_N);
 		panelSul.add(cancelarButton);
 		
@@ -474,21 +474,22 @@ public class IgCadastrarFilme extends JDialog {
 		JPanel cadastraDiretorPanel = new JPanel();
 		cadastraDiretorPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cadastra Diretor", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		cadastraDiretorPanel.setBackground(corBase);
-		cadastraDiretorPanel.setBounds(228, 262, 236, 62);
+		cadastraDiretorPanel.setBounds(228, 262, 249, 62);
 		diretorPanel.add(cadastraDiretorPanel);
 		cadastraDiretorPanel.setLayout(null);
 		
 		diretorField = new JTextField();
-		diretorField.setBounds(10, 25, 216, 20);
+		//TODO
+		diretorField.setBounds(18, 23, 213, 20);
 		cadastraDiretorPanel.add(diretorField);
 		diretorField.setColumns(10);
 		
 		inserirDiretorButton = new JButton("Inserir");
-		inserirDiretorButton.setBounds(228, 335, 91, 23);
+		inserirDiretorButton.setBounds(248, 335, 91, 23);
 		diretorPanel.add(inserirDiretorButton);
 		
 		limparDiretorButton = new JButton("Limpar");
-		limparDiretorButton.setBounds(373, 335, 91, 23);
+		limparDiretorButton.setBounds(365, 335, 91, 23);
 		diretorPanel.add(limparDiretorButton);
 		
 		//Cria o painel com informações da aba.
@@ -504,7 +505,8 @@ public class IgCadastrarFilme extends JDialog {
 		
 		//Cria o botão de ajuda da aba.
 		JButton ajudaButton = new JButton("Ajuda");
-		ajudaButton.setBounds(18, 35, 196, 20);
+		ajudaButton.setBounds(43, 35, 160, 30);
+		ajudaButton.setIcon(new ImageIcon(IgCadastrarFilme.class.getResource("/tsi/lpv/filmoteca/imagens/help.png")));
 		informacoePanel.add(ajudaButton);
 		ajudaButton.addActionListener(new ActionListener() {
 			
@@ -556,23 +558,23 @@ public class IgCadastrarFilme extends JDialog {
 		JPanel cadastraAutorPanel = new JPanel();
 		cadastraAutorPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cadastra Autor", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		cadastraAutorPanel.setBackground(corBase);
-		cadastraAutorPanel.setBounds(228, 262, 236, 62);
+		cadastraAutorPanel.setBounds(228, 262, 249, 62);
 		autorPanel.add(cadastraAutorPanel);
 		cadastraAutorPanel.setLayout(null);
 		
 		autorField = new JTextField();
-		autorField.setBounds(10, 25, 216, 20);
+		autorField.setBounds(18, 23, 213, 20);
 		cadastraAutorPanel.add(autorField);
 		autorField.setColumns(10);
 		
 		inserirAutorButton = new JButton("Inserir");
 		inserirAutorButton.setMnemonic(KeyEvent.VK_I);
-		inserirAutorButton.setBounds(228, 335, 91, 23);
+		inserirAutorButton.setBounds(248, 335, 91, 23);
 		autorPanel.add(inserirAutorButton);
 		
 		limparAutorButton = new JButton("Limpar");
 		limparAutorButton.setMnemonic(KeyEvent.VK_L);
-		limparAutorButton.setBounds(373, 335, 91, 23);
+		limparAutorButton.setBounds(365, 335, 91, 23);
 		autorPanel.add(limparAutorButton);
 		
 		TratadorEventoInsereAutor eventoInsereAutor = new TratadorEventoInsereAutor(IgCadastrarFilme.this);
@@ -593,7 +595,8 @@ public class IgCadastrarFilme extends JDialog {
 		
 		//Cria o botão de ajuda da aba.
 		JButton ajudaButton = new JButton("Ajuda");
-		ajudaButton.setBounds(18, 35, 196, 20);
+		ajudaButton.setBounds(43, 35, 160, 30);
+		ajudaButton.setIcon(new ImageIcon(IgCadastrarFilme.class.getResource("/tsi/lpv/filmoteca/imagens/help.png")));
 		informacoePanel.add(ajudaButton);
 		ajudaButton.addActionListener(new ActionListener() {
 			
@@ -637,23 +640,23 @@ public class IgCadastrarFilme extends JDialog {
 		JPanel cadastraArtistasPanel = new JPanel();
 		cadastraArtistasPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cadastra Ator", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		cadastraArtistasPanel.setBackground(corBase);
-		cadastraArtistasPanel.setBounds(228, 262, 236, 62);
+		cadastraArtistasPanel.setBounds(228, 262, 249, 62);
 		artistaPanel.add(cadastraArtistasPanel);
 		cadastraArtistasPanel.setLayout(null);
 		
 		atorField = new JTextField();
-		atorField.setBounds(10, 25, 216, 20);
+		atorField.setBounds(18, 23, 213, 20);
 		cadastraArtistasPanel.add(atorField);
 		atorField.setColumns(10);
 		
 		inserirAtorButton = new JButton("Inserir");
 		inserirAtorButton.setMnemonic(KeyEvent.VK_I);
-		inserirAtorButton.setBounds(228, 335, 91, 23);
+		inserirAtorButton.setBounds(248, 335, 91, 23);
 		artistaPanel.add(inserirAtorButton);
 		
 		limparAtorButton = new JButton("Limpar");
 		limparAtorButton.setMnemonic(KeyEvent.VK_L);
-		limparAtorButton.setBounds(373, 335, 91, 23);
+		limparAtorButton.setBounds(365, 335, 91, 23);
 		artistaPanel.add(limparAtorButton);
 		
 		//Cria o painel com informações da aba.
@@ -667,7 +670,8 @@ public class IgCadastrarFilme extends JDialog {
 		
 		//Cria o botão de ajuda da aba.
 		JButton ajudaButton = new JButton("Ajuda");
-		ajudaButton.setBounds(18, 35, 196, 20);
+		ajudaButton.setBounds(43, 35, 160, 30);
+		ajudaButton.setIcon(new ImageIcon(IgCadastrarFilme.class.getResource("/tsi/lpv/filmoteca/imagens/help.png")));
 		informacoePanel.add(ajudaButton);
 		ajudaButton.addActionListener(new ActionListener() {
 			
@@ -722,6 +726,7 @@ public class IgCadastrarFilme extends JDialog {
 		//Cria o botão de ajuda da aba.
 		JButton ajudaButton = new JButton("Ajuda");
 		ajudaButton.setBounds(18, 35, 196, 20);
+		ajudaButton.setIcon(new ImageIcon(IgCadastrarFilme.class.getResource("/tsi/lpv/filmoteca/imagens/help.png")));
 		informacoePanel.add(ajudaButton);
 		ajudaButton.addActionListener(new ActionListener() {
 			
