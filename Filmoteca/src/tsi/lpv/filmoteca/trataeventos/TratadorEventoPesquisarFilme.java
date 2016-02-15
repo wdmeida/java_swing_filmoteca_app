@@ -119,10 +119,13 @@ public class TratadorEventoPesquisarFilme implements ActionListener {
 		//Configura a data
 		igResultadoPesquisaFilme.getLancamentoTextField().setText(dadosIMDB.getReleased());
 		
-		ImageIcon icon = new ImageIcon(ObtemPoster.obtemPoster(dadosIMDB.getPoster()));
-		icon.setImage(icon.getImage().getScaledInstance(215, 254,100));
-		igResultadoPesquisaFilme.getFotoLabel().setIcon(icon);
-		
+		byte[] poster = ObtemPoster.obtemPoster(dadosIMDB.getPoster());
+		//Verifica se o filme, serie, jogo, documentario, etc contem poster.
+		if(poster != null){
+			ImageIcon icon = new ImageIcon(poster);
+			icon.setImage(icon.getImage().getScaledInstance(215, 254,100));
+			igResultadoPesquisaFilme.getFotoLabel().setIcon(icon);
+		}
 		//Exibe a tela para o usuário.
 		igResultadoPesquisaFilme.setVisible(true);
 	}//exibeDadosFilme()

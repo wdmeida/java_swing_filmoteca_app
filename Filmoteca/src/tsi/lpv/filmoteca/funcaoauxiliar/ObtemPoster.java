@@ -3,6 +3,7 @@ package tsi.lpv.filmoteca.funcaoauxiliar;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -21,20 +22,23 @@ public class ObtemPoster {
 	public static byte[] obtemPoster(String urlPoster){
 		//Atribui a url de conexão para buscar o poster do filme.
 		URL url;
-		try {
-			url = new URL(urlPoster);
+			try {
+				url = new URL(urlPoster);
+			
 		
-			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-			InputStream inputStream = url.openStream ();
-			byte[] poster = new byte[80000]; // Or whatever size you want to read in at a time.
-			int n;
-
-			while ( (n = inputStream.read(poster)) > 0 ) byteArrayOutputStream.write(poster, 0, n);
-			 
-			return byteArrayOutputStream.toByteArray();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+				InputStream inputStream = url.openStream ();
+				byte[] poster = new byte[80000]; // Or whatever size you want to read in at a time.
+				int n;
+	
+				while ( (n = inputStream.read(poster)) > 0 ) byteArrayOutputStream.write(poster, 0, n);
+				 
+				return byteArrayOutputStream.toByteArray();
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		return null;
 	}//obtemPoster()
 }//class ObtemPoster

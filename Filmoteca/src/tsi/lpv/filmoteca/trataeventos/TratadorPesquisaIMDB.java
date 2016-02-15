@@ -61,10 +61,13 @@ public class TratadorPesquisaIMDB {
 			insereNomes(dadosIMDB.getDirector(),(DefaultListModel<String>)cadastrarFilme.getDiretorArea().getModel());
 			insereNomes(dadosIMDB.getWriter(),(DefaultListModel<String>)cadastrarFilme.getAutorArea().getModel());
 			byte[] poster = ObtemPoster.obtemPoster(dadosIMDB.getPoster());
-			ImageIcon img = new ImageIcon(poster);
-			img.setImage(img.getImage().getScaledInstance(208, 305,100));
-			cadastrarFilme.getPosterLabel().setIcon(img);
-			cadastrarFilme.setPoster(poster);
+			//Verifica se o filme, serie, jogo, documentario, etc contem poster.
+			if(poster != null){
+				ImageIcon img = new ImageIcon(poster);
+				img.setImage(img.getImage().getScaledInstance(208, 305,100));
+				cadastrarFilme.getPosterLabel().setIcon(img);
+				cadastrarFilme.setPoster(poster);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
