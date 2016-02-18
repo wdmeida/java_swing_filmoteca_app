@@ -706,7 +706,7 @@ public class IgCadastrarFilme extends JDialog {
 		JPanel posterImagemPanel = new JPanel();
 		posterImagemPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "P\u00F4ster", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		posterImagemPanel.setBackground(corBase);
-		posterImagemPanel.setBounds(10, 11, 228, 331);
+		posterImagemPanel.setBounds(10, 11, 228, 350);
 		posterPanel.add(posterImagemPanel);
 		posterImagemPanel.setLayout(null);
 		
@@ -725,7 +725,7 @@ public class IgCadastrarFilme extends JDialog {
 		
 		//Cria o botão de ajuda da aba.
 		JButton ajudaButton = new JButton("Ajuda");
-		ajudaButton.setBounds(18, 35, 196, 20);
+		ajudaButton.setBounds(43, 35, 160, 30);
 		ajudaButton.setIcon(new ImageIcon(IgCadastrarFilme.class.getResource("/tsi/lpv/filmoteca/imagens/help.png")));
 		informacoePanel.add(ajudaButton);
 		ajudaButton.addActionListener(new ActionListener() {
@@ -750,11 +750,11 @@ public class IgCadastrarFilme extends JDialog {
 		fotoField.setColumns(10);
 		
 		inserirFotoButton = new JButton("Inserir");
-		inserirFotoButton.setBounds(254, 319, 91, 23);
+		inserirFotoButton.setBounds(248, 335, 91, 23);
 		posterPanel.add(inserirFotoButton);
 		
 		limparFotoButton = new JButton("Limpar");
-		limparFotoButton.setBounds(373, 319, 91, 23);
+		limparFotoButton.setBounds(365, 335, 91, 23);
 		posterPanel.add(limparFotoButton);
 		
 		inserirFotoButton.setMnemonic(KeyEvent.VK_I);
